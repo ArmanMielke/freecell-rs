@@ -1,2 +1,7 @@
-/target
+
+# Cargo
+/target/
 **/*.rs.bk
+
+# IntelliJ
+/.idea/
