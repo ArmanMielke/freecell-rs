@@ -1,0 +1,12 @@
+foundations:
+
+cascade_0:
+cascade_1:
+cascade_2:
+cascade_3:
+cascade_4:
+cascade_5:
+cascade_6:
+cascade_7:
+
+freecells:

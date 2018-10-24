@@ -1,0 +1,17 @@
+foundations: <up to 4 cards of different suits>
+
+cascade_0: <some cards>
+cascade_1: <some cards>
+cascade_2: <some cards>
+cascade_3: <some cards>
+cascade_4: <some cards>
+cascade_5: <some cards>
+cascade_6: <some cards>
+cascade_7: <some cards>
+
+freecells: <up to 4 cards>
+
+Cards: AC, 2C, 3C, 4C, 5C, 6C, 7C, 8C, 9C, TC, JC, QC, KC,
+       AS, 2S, ...
+       AH, 2H, ...
+       AD, 2D, ...
