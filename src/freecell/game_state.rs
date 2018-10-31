@@ -18,4 +18,11 @@ impl GameState {
     pub fn get_legal_moves(&self) -> String {
         return "not implemented yet".to_string();
     }
+
+    pub fn is_won(&self) -> bool {
+        self.foundations[0].cards.len() == 13 &&
+        self.foundations[1].cards.len() == 13 &&
+        self.foundations[2].cards.len() == 13 &&
+        self.foundations[3].cards.len() == 13
+    }
 }
