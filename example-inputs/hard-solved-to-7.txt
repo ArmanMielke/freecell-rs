@@ -1,0 +1,10 @@
+foundations: 7C 7S 7H 7D
+
+cascade: QC QS TH
+cascade: 9C KS 8H JH JC
+cascade: KC
+cascade: TD 9H 9S
+cascade: JS JD
+cascade: 8D 8C KD QD
+cascade: TS TC 8S
+cascade: QH 9D KH

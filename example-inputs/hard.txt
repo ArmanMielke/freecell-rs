@@ -1,0 +1,8 @@
+cascade: 6C QC 5D QS 7C TH 4S
+cascade: 9C 3H KS 8H JH 2S JC
+cascade: 5C 7H 6H AD AS AH KC
+cascade: TD 9H 5H 9S 6D 6S 3C
+cascade: 7S JS JD AC 2D 3S
+cascade: 3D 2C 8D 8C KD QD
+cascade: TS 4H 2H TC 4C 8S
+cascade: QH 4D 5S 7D 9D KH

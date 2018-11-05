@@ -1,0 +1,10 @@
+foundations: QC QS QH QD
+
+cascade:
+cascade: KS
+cascade: KC
+cascade:
+cascade:
+cascade: KD
+cascade:
+cascade: KH
