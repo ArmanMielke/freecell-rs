@@ -78,22 +78,10 @@ fn test_hard() {
             ],
         ],
         foundations: [
-            Foundation {
-                cards: Vec::new(),
-                suit: Club,
-            },
-            Foundation {
-                cards: Vec::new(),
-                suit: Spade,
-            },
-            Foundation {
-                cards: Vec::new(),
-                suit: Heart,
-            },
-            Foundation {
-                cards: Vec::new(),
-                suit: Diamond,
-            },
+            Vec::new(),
+            Vec::new(),
+            Vec::new(),
+            Vec::new(),
         ],
         freecells: [None, None, None, None],
     };

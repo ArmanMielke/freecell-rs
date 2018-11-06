@@ -6,10 +6,10 @@ pub const ACE: Rank = 1;
 
 #[derive(Debug, PartialEq)]
 pub enum Suit {
-    Club,
-    Spade,
-    Heart,
-    Diamond,
+    Club = 0,
+    Spade = 1,
+    Heart = 2,
+    Diamond = 3,
 }
 
 pub type Rank = u8;

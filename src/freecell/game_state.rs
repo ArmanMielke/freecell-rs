@@ -11,9 +11,15 @@ const NUM_FREECELLS: usize = 4;
 
 #[derive(Debug, PartialEq)]
 pub struct GameState {
+    // TODO document
     pub cascades: [Cascade; NUM_CASCADES],
+
+    /// The position of the Foundation in the array determines which suit it holds.
+    /// Eg. `foundations[1]` may only hold spade cards, since Suit::Spade equals 1.
     pub foundations: [Foundation; NUM_FOUNDATIONS],
-    // TODO introduce freecell type
+
+    // TODO replace with vector of fixed length (eg. crate arrayvec)
+    // TODO document
     pub freecells: [Option<Card>; NUM_FREECELLS],
 }
 
@@ -23,9 +29,9 @@ impl GameState {
     }
 
     pub fn is_won(&self) -> bool {
-        self.foundations[0].cards.len() == 13 &&
-        self.foundations[1].cards.len() == 13 &&
-        self.foundations[2].cards.len() == 13 &&
-        self.foundations[3].cards.len() == 13
+        self.foundations[0].len() == 13 &&
+        self.foundations[1].len() == 13 &&
+        self.foundations[2].len() == 13 &&
+        self.foundations[3].len() == 13
     }
 }

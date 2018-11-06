@@ -1,11 +1,6 @@
-use super::card::{Card, Suit};
+use super::card::Card;
 
 const FOUNDATION_MAX_SIZE: usize = 13;
 
-/// Contains cards of one suit, ordered from Ace updwards
-#[derive(Debug, PartialEq)]
-pub struct Foundation {
-    /// All cards on this foundation must be of this suit
-    pub suit: Suit,
-    pub cards: Vec<Card>,
-}
+/// May only contain cards of one suit, ordered from Ace upwards (this is not enforced).
+pub type Foundation = Vec<Card>;

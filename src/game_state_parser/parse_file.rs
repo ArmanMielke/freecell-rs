@@ -36,15 +36,8 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
         };
 
         match first_token_in_line {
-            FOUNDATIONS => foundations.push(
-                Foundation {
-                    suit: Suit::Club, // TODO: insert actual suit
-                    cards: parse_cards(token_iterator)?,
-                }
-            ),
-            CASCADE => cascades.push(
-                parse_cards(token_iterator)?
-            ),
+            FOUNDATIONS => foundations.push(parse_cards(token_iterator)?),
+            CASCADE => cascades.push(parse_cards(token_iterator)?),
             FREECELLS => freecells = parse_cards(token_iterator)?,
             _ => warn_invalid_first_token!(first_token_in_line),
         };

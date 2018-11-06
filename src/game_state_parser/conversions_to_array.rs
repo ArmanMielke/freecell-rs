@@ -35,22 +35,10 @@ pub fn foundations_vec_to_array(mut foundations: Vec<Foundation>) -> Result<[Fou
         ])
     } else if foundations.len() == 0 {
         Ok ([
-            Foundation {
-                suit: Club,
-                cards: Vec::new(),
-            },
-            Foundation {
-                suit: Spade,
-                cards: Vec::new(),
-            },
-            Foundation {
-                suit: Heart,
-                cards: Vec::new(),
-            },
-            Foundation {
-                suit: Diamond,
-                cards: Vec::new(),
-            },
+            Vec::new(),
+            Vec::new(),
+            Vec::new(),
+            Vec::new(),
         ])
     } else if foundations.len() > 4 {
         Err(String::from(ERR_TOO_MANY_FOUNDATIONS))
