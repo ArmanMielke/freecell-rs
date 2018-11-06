@@ -9,12 +9,13 @@ fn test_easy_10_instead_of_t() {
     assert_eq!(actual, expected);
 }
 
-//#[test]
+#[test]
 fn test_easy_duplicate_card() {
-    // TODO
+    /*
     let actual = parse_file("example-inputs/invalid/easy-duplicate-card.txt");
     let expected = Err("TODO".to_string());
     assert_eq!(actual, expected);
+    */
 }
 
 #[test]
@@ -38,12 +39,12 @@ fn test_easy_invalid_suit() {
     assert_eq!(actual, expected);
 }
 
-//#[test]
+#[test]
 fn test_easy_missing_card() {
     // TODO
 }
 
-//#[test]
+#[test]
 fn test_easy_missing_card_2() {
     // TODO
 }
