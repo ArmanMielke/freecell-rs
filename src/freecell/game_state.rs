@@ -1,6 +1,7 @@
-use super::card::Card;
-use super::cascade::Cascade;
-use super::foundation::Foundation;
+use super::Card;
+use super::GameMove;
+use super::Cascade;
+use super::Foundation;
 
 
 const NUM_CASCADES: usize = 8;
@@ -15,8 +16,8 @@ pub struct GameState {
 }
 
 impl GameState {
-    pub fn get_legal_moves(&self) -> String {
-        return "not implemented yet".to_string();
+    pub fn get_legal_moves(&self) -> Vec<(GameState, GameMove)> {
+        panic!("not implemented yet");
     }
 
     pub fn is_won(&self) -> bool {
