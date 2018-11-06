@@ -1,4 +1,5 @@
 use freecell::card::*;
+use freecell::card::Suit::*;
 
 
 ///
@@ -60,10 +61,10 @@ fn parse_value(value_char: char) -> Result<Rank, String> {
 
 fn parse_suit(suit_char: char) -> Result<Suit, String> {
     match suit_char {
-        'C' => Ok(Suit::Club),
-        'S' => Ok(Suit::Spade),
-        'H' => Ok(Suit::Heart),
-        'D' => Ok(Suit::Diamond),
+        'C' => Ok(Club),
+        'S' => Ok(Spade),
+        'H' => Ok(Heart),
+        'D' => Ok(Diamond),
         _  => Err(err_could_not_parse_suit!(suit_char)),
     }
 }

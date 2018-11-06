@@ -1,5 +1,5 @@
 use freecell::{Card, Cascade, Foundation};
-use freecell::card::Suit;
+use freecell::card::Suit::*;
 use super::error_messages::{ERR_TOO_MANY_CASCADES, ERR_TOO_MANY_FOUNDATIONS, ERR_TOO_MANY_FREECELLS};
 
 
@@ -36,19 +36,19 @@ pub fn foundations_vec_to_array(mut foundations: Vec<Foundation>) -> Result<[Fou
     } else if foundations.len() == 0 {
         Ok ([
             Foundation {
-                suit: Suit::Club,
+                suit: Club,
                 cards: Vec::new(),
             },
             Foundation {
-                suit: Suit::Spade,
+                suit: Spade,
                 cards: Vec::new(),
             },
             Foundation {
-                suit: Suit::Heart,
+                suit: Heart,
                 cards: Vec::new(),
             },
             Foundation {
-                suit: Suit::Diamond,
+                suit: Diamond,
                 cards: Vec::new(),
             },
         ])
