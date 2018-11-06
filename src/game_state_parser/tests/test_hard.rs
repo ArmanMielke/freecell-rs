@@ -1,4 +1,4 @@
-use freecell::{Cascade, Foundation, GameState};
+use freecell::{Foundation, GameState};
 use freecell::card::*;
 use super::super::parse_file;
 
@@ -7,7 +7,7 @@ use super::super::parse_file;
 fn test_hard() {
     let expected = GameState {
         cascades: [
-            Cascade(vec![
+            vec![
                 Card { suit: Suit::Club, value: Rank(6) },
                 Card { suit: Suit::Club, value: Rank(QUEEN) },
                 Card { suit: Suit::Diamond, value: Rank(5) },
@@ -15,8 +15,8 @@ fn test_hard() {
                 Card { suit: Suit::Club, value: Rank(7) },
                 Card { suit: Suit::Heart, value: Rank(10) },
                 Card { suit: Suit::Spade, value: Rank(4) },
-            ]),
-            Cascade(vec![
+            ],
+            vec![
                 Card { suit: Suit::Club, value: Rank(9) },
                 Card { suit: Suit::Heart, value: Rank(3) },
                 Card { suit: Suit::Spade, value: Rank(KING) },
@@ -24,8 +24,8 @@ fn test_hard() {
                 Card { suit: Suit::Heart, value: Rank(JACK) },
                 Card { suit: Suit::Spade, value: Rank(2) },
                 Card { suit: Suit::Club, value: Rank(JACK) },
-            ]),
-            Cascade(vec![
+            ],
+            vec![
                 Card { suit: Suit::Club, value: Rank(5) },
                 Card { suit: Suit::Heart, value: Rank(7) },
                 Card { suit: Suit::Heart, value: Rank(6) },
@@ -33,8 +33,8 @@ fn test_hard() {
                 Card { suit: Suit::Spade, value: Rank(ACE) },
                 Card { suit: Suit::Heart, value: Rank(ACE) },
                 Card { suit: Suit::Club, value: Rank(KING) },
-            ]),
-            Cascade(vec![
+            ],
+            vec![
                 Card { suit: Suit::Diamond, value: Rank(10) },
                 Card { suit: Suit::Heart, value: Rank(9) },
                 Card { suit: Suit::Heart, value: Rank(5) },
@@ -42,39 +42,39 @@ fn test_hard() {
                 Card { suit: Suit::Diamond, value: Rank(6) },
                 Card { suit: Suit::Spade, value: Rank(6) },
                 Card { suit: Suit::Club, value: Rank(3) },
-            ]),
-            Cascade(vec![
+            ],
+            vec![
                 Card { suit: Suit::Spade, value: Rank(7) },
                 Card { suit: Suit::Spade, value: Rank(JACK) },
                 Card { suit: Suit::Diamond, value: Rank(JACK) },
                 Card { suit: Suit::Club, value: Rank(ACE) },
                 Card { suit: Suit::Diamond, value: Rank(2) },
                 Card { suit: Suit::Spade, value: Rank(3) },
-            ]),
-            Cascade(vec![
+            ],
+            vec![
                 Card { suit: Suit::Diamond, value: Rank(3) },
                 Card { suit: Suit::Club, value: Rank(2) },
                 Card { suit: Suit::Diamond, value: Rank(8) },
                 Card { suit: Suit::Club, value: Rank(8) },
                 Card { suit: Suit::Diamond, value: Rank(KING) },
                 Card { suit: Suit::Diamond, value: Rank(QUEEN) },
-            ]),
-            Cascade(vec![
+            ],
+            vec![
                 Card { suit: Suit::Spade, value: Rank(10) },
                 Card { suit: Suit::Heart, value: Rank(4) },
                 Card { suit: Suit::Heart, value: Rank(2) },
                 Card { suit: Suit::Club, value: Rank(10) },
                 Card { suit: Suit::Club, value: Rank(4) },
                 Card { suit: Suit::Spade, value: Rank(8) },
-            ]),
-            Cascade(vec![
+            ],
+            vec![
                 Card { suit: Suit::Heart, value: Rank(QUEEN) },
                 Card { suit: Suit::Diamond, value: Rank(4) },
                 Card { suit: Suit::Spade, value: Rank(5) },
                 Card { suit: Suit::Diamond, value: Rank(7) },
                 Card { suit: Suit::Diamond, value: Rank(9) },
                 Card { suit: Suit::Heart, value: Rank(KING) },
-            ]),
+            ],
         ],
         foundations: [
             Foundation {

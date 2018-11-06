@@ -43,9 +43,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
                 }
             ),
             CASCADE => cascades.push(
-                Cascade (
-                    parse_cards(token_iterator)?
-                )
+                parse_cards(token_iterator)?
             ),
             FREECELLS => freecells = parse_cards(token_iterator)?,
             _ => warn_invalid_first_token!(first_token_in_line),
