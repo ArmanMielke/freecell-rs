@@ -1,4 +1,4 @@
-use super::card::Card;
+use super::Card;
 
 const CASCADE_MAX_SIZE: usize = 52;
 
