@@ -1,12 +1,32 @@
 use freecell::card::*;
 
 
-pub fn parse_card(card_string: &str) -> Result<Card, String> {
-    if card_string.len() != 2 {
-        return Err(format!("Card code \"{}\" is not of length 2.", card_string))
+///
+/// Parses a card code into a card.
+///
+/// A card code is a &str containing two characters.
+/// The first character denotes the card's rank:
+/// - 'A' -> Ace (alternate form '1' is also allowed)
+/// - '2' -> 2
+/// - ...
+/// - '9' -> 9
+/// - 'T' -> 10 (alternate form '0' is also allowed)
+/// - 'J' -> Jack
+/// - 'Q' -> Queen
+/// - 'K' -> King
+///
+/// The second character denotes the suit:
+/// - 'C' -> Club
+/// - 'S' -> Spade
+/// - 'H' -> Heart
+/// - 'D' -> Diamond
+///
+pub fn parse_card(card_code: &str) -> Result<Card, String> {
+    if card_code.chars().count() != 2 {
+        return Err(format!("Card code \"{}\" is not of length 2.", card_code))
     }
 
-    let mut card_chars = card_string.chars();
+    let mut card_chars = card_code.chars();
     let value_char = card_chars.next().unwrap();
     let suit_char = card_chars.next().unwrap();
 
