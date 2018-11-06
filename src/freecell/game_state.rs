@@ -9,6 +9,7 @@ const NUM_FOUNDATIONS: usize = 4;
 const NUM_FREECELLS: usize = 4;
 
 
+#[derive(Debug, PartialEq)]
 pub struct GameState {
     pub cascades: [Cascade; NUM_CASCADES],
     pub foundations: [Foundation; NUM_FOUNDATIONS],
