@@ -1,5 +1,6 @@
 use freecell::{Card, Cascade, Foundation};
 use freecell::card::Suit;
+use super::error_messages::{ERR_TOO_MANY_CASCADES, ERR_TOO_MANY_FOUNDATIONS, ERR_TOO_MANY_FREECELLS};
 
 
 pub fn cascades_vec_to_array(mut cascades: Vec<Cascade>) -> Result<[Cascade; 8], String> {
@@ -16,9 +17,9 @@ pub fn cascades_vec_to_array(mut cascades: Vec<Cascade>) -> Result<[Cascade; 8],
             cascades.remove(0),
         ])
     } else if cascades.len() > 8 {
-        Err("Too many cascades".to_string())
+        Err(String::from(ERR_TOO_MANY_CASCADES))
     } else {
-        panic!("case cascades.len() < 8 not implemented yet")
+        unimplemented!()
     }
 }
 
@@ -52,9 +53,9 @@ pub fn foundations_vec_to_array(mut foundations: Vec<Foundation>) -> Result<[Fou
             },
         ])
     } else if foundations.len() > 4 {
-        Err("Too many foundations".to_string())
+        Err(String::from(ERR_TOO_MANY_FOUNDATIONS))
     } else {
-        panic!("case 0 < foundations.len() < 4 not implemented yet")
+        unimplemented!()
     }
 }
 
@@ -70,8 +71,8 @@ pub fn freecells_vec_to_array(mut freecells: Vec<Card>) -> Result<[Option<Card>;
     } else if freecells.len() == 0 {
         Ok([None, None, None, None])
     } else if freecells.len() > 4 {
-        Err("Too many freecells".to_string())
+        Err(String::from(ERR_TOO_MANY_FREECELLS))
     } else {
-        panic!("case 0 < freecells.len() < 4 not implemented yet")
+        unimplemented!()
     }
 }

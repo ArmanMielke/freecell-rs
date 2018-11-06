@@ -4,6 +4,7 @@
 //!
 
 mod conversions_to_array;
+mod error_messages;
 mod parse_card;
 mod parse_file;
 

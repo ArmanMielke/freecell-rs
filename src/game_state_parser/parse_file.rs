@@ -2,6 +2,7 @@ use freecell::{Card, Cascade, Foundation, GameState};
 use freecell::card::Suit;
 use super::parse_card::parse_card;
 use super::conversions_to_array::*;
+use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS};
 
 use std::path::Path;
 use std::fs::File;
@@ -13,7 +14,7 @@ const CASCADE: &str = "cascade:";
 const FREECELLS: &str = "freecells:";
 
 
-// TODO add documentation
+// TODO add documentation (use the template explanation in doc/)
 pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
     let lines = read_file_as_lines(file_name)?;
 
@@ -24,7 +25,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
     for line_result in lines {
         let line = match line_result {
             Ok(line) => line,
-            Err(_) => return Err("File contents could not be read".to_string()),
+            Err(_) => return Err(String::from(ERR_COULD_NOT_READ_FILE_CONTENTS)),
         };
 
         let mut token_iterator = line.split_whitespace();
@@ -47,7 +48,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
                 )
             ),
             FREECELLS => freecells = parse_cards(token_iterator)?,
-            _ => eprintln!("Line starts with invalid token: {}", first_token_in_line),
+            _ => warn_invalid_first_token!(first_token_in_line),
         };
     }
 
@@ -63,7 +64,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
 fn read_file_as_lines<P: AsRef<Path>>(file_name: P) -> Result<Lines<BufReader<File>>, String> {
     let file = match File::open(file_name) {
         Ok(file) => file,
-        Err(_) => return Err("File could not be read".to_string()),
+        Err(_) => return Err(String::from(ERR_COULD_NOT_READ_FILE)),
     };
 
     let buffered_reader = BufReader::new(file);

@@ -23,7 +23,7 @@ use freecell::card::*;
 ///
 pub fn parse_card(card_code: &str) -> Result<Card, String> {
     if card_code.chars().count() != 2 {
-        return Err(format!("Card code \"{}\" is not of length 2.", card_code))
+        return Err(err_card_code_not_length_2!(card_code))
     }
 
     let mut card_chars = card_code.chars();
@@ -47,7 +47,7 @@ pub fn parse_card(card_code: &str) -> Result<Card, String> {
         // some alternate forms are allowed
         '1' => Rank(ACE),
         '0' => Rank(10),
-         _  => return Err(format!("Could not parse card value: {}", value_char))
+         _  => return Err(err_could_not_parse_card_value!(value_char))
     };
 
     let suit = match suit_char {
