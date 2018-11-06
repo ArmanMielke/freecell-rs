@@ -1,8 +1,8 @@
 
-pub const JACK: u8 = 11;
-pub const QUEEN: u8 = 12;
-pub const KING: u8 = 13;
-pub const ACE: u8 = 1;
+pub const JACK: Rank = 11;
+pub const QUEEN: Rank = 12;
+pub const KING: Rank = 13;
+pub const ACE: Rank = 1;
 
 #[derive(Debug, PartialEq)]
 pub enum Suit {
@@ -12,9 +12,7 @@ pub enum Suit {
     Diamond,
 }
 
-// TODO use type alias instead?
-#[derive(Debug, PartialEq)]
-pub struct Rank(pub u8);
+pub type Rank = u8;
 
 #[derive(Debug, PartialEq)]
 pub struct Card {
