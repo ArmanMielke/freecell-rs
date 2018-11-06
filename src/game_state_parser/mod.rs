@@ -1,42 +1,7 @@
-use freecell::*;
-use freecell::Suit::*;
+mod parse_card;
+//mod parse_file;
 
-pub fn parse_file(/* TODO: Path to input file */) -> GameState {
+//pub use self::parse_file::parse_file;
 
-    // TODO actually parse this
-    let cascades = [
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-    ];
-
-    // TODO actually parse this
-    let foundations = [
-        Foundation{
-            suit: Club,
-            cards: Vec::new(),
-        },
-        Foundation{
-            suit: Spade,
-            cards: Vec::new(),
-        },
-        Foundation{
-            suit: Heart,
-            cards: Vec::new(),
-        },
-        Foundation{
-            suit: Diamond,
-            cards: Vec::new(),
-        },
-    ];
-
-    // TODO actually parse this
-    let freecells = [None, None, None, None];
-
-    GameState {cascades, foundations, freecells}
-}
+#[cfg(test)]
+mod tests;
