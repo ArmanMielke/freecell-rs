@@ -1,86 +1,82 @@
-use freecell::*;
-use freecell::Suit::*;
+use freecell::{Card, Cascade, Foundation, GameState};
+use freecell::card::Suit;
+use super::parse_card::parse_card;
+use super::conversions_to_array::*;
 
 use std::path::Path;
 use std::fs::File;
-use std::io::Read;
-use std::io::BufReader;
-use std::io::BufRead;
-use std::io::Lines;
+use std::io::{BufReader, BufRead, Lines};
+use std::str::SplitWhitespace;
 
 const FOUNDATIONS: &str = "foundations:";
 const CASCADE: &str = "cascade:";
 const FREECELLS: &str = "freecells:";
 
 
+// TODO add documentation
+pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
+    let lines = read_file_as_lines(file_name)?;
 
-pub fn parse_file<P: AsRef<Path>>(file_name: P) -> GameState {
-    let lines = read_file_as_lines(file_name);
+    let mut cascades: Vec<Cascade> = Vec::new();
+    let mut foundations: Vec<Foundation> = Vec::new();
+    let mut freecells: Vec<Card> = Vec::new();
 
-    for line in lines {
-        let asdf = line?;
+    for line_result in lines {
+        let line = match line_result {
+            Ok(line) => line,
+            Err(_) => return Err("File contents could not be read".to_string()),
+        };
+
+        let mut token_iterator = line.split_whitespace();
+
+        let first_token_in_line = match token_iterator.next() {
+            Some(token) => token,
+            None => continue,
+        };
+
+        match first_token_in_line {
+            FOUNDATIONS => foundations.push(
+                Foundation {
+                    suit: Suit::Club, // TODO: insert actual suit
+                    cards: parse_cards(token_iterator)?,
+                }
+            ),
+            CASCADE => cascades.push(
+                Cascade (
+                    parse_cards(token_iterator)?
+                )
+            ),
+            FREECELLS => freecells = parse_cards(token_iterator)?,
+            _ => eprintln!("Line starts with invalid token: {}", first_token_in_line),
+        };
     }
 
-    // <random code fragment>
 
-    // skip empty lines
-
-    let first_token_in_line = "";
-
-    match first_token_in_line {
-        FOUNDATIONS => println!("parse foundations"),
-        CASCADE => println!("parse cascade"),
-        FREECELLS => println!("parse freecells"),
-        _ => println!("ignore and print warning"),
-    }
-
-    let asdf: Vec<i8> = Vec::new();
-    asdf.
-
-    // </random code fragment>
-
-
-    // TODO actually parse this
-    let cascades = [
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-        Cascade(Vec::new()),
-    ];
-
-    // TODO actually parse this
-    let foundations = [
-        Foundation{
-            suit: Club,
-            cards: Vec::new(),
-        },
-        Foundation{
-            suit: Spade,
-            cards: Vec::new(),
-        },
-        Foundation{
-            suit: Heart,
-            cards: Vec::new(),
-        },
-        Foundation{
-            suit: Diamond,
-            cards: Vec::new(),
-        },
-    ];
-
-    // TODO actually parse this
-    let freecells = [None, None, None, None];
-
-    GameState {cascades, foundations, freecells}
+    Ok(GameState {
+        cascades: cascades_vec_to_array(cascades)?,
+        foundations: foundations_vec_to_array(foundations)?,
+        freecells: freecells_vec_to_array(freecells)?,
+    })
 }
 
-fn read_file_as_lines<P: AsRef<Path>>(file_name: P) -> Lines<BufReader<File>> {
-    // TODO: make sense of the ? operator
-    let mut file = File::open(file_name)?;
+
+fn read_file_as_lines<P: AsRef<Path>>(file_name: P) -> Result<Lines<BufReader<File>>, String> {
+    let file = match File::open(file_name) {
+        Ok(file) => file,
+        Err(_) => return Err("File could not be read".to_string()),
+    };
+
     let buffered_reader = BufReader::new(file);
-    buffered_reader.lines()
+    Ok(buffered_reader.lines())
+}
+
+
+fn parse_cards(card_iterator: SplitWhitespace) -> Result<Vec<Card>, String> {
+    let mut cards = Vec::new();
+
+    for card_code in card_iterator {
+        cards.push(parse_card(card_code)?);
+    }
+
+    Ok(cards)
 }
