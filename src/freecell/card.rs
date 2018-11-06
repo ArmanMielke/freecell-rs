@@ -11,6 +11,7 @@ pub enum Suit {
     Diamond,
 }
 
+// TODO use type alias instead?
 pub struct Rank(pub u8);
 
 pub struct Card {

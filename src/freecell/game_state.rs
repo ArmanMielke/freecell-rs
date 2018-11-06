@@ -12,6 +12,7 @@ const NUM_FREECELLS: usize = 4;
 pub struct GameState {
     pub cascades: [Cascade; NUM_CASCADES],
     pub foundations: [Foundation; NUM_FOUNDATIONS],
+    // TODO introduce freecell type
     pub freecells: [Option<Card>; NUM_FREECELLS],
 }
 
