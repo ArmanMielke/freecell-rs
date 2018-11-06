@@ -97,7 +97,7 @@ fn test_hard() {
         freecells: [None, None, None, None],
     };
 
-    let actual = parse_file(/* TODO: insert file name */);
+    let actual = parse_file("example-inputs/hard.txt").unwrap();
 
     assert_eq!(actual, expected);
 }

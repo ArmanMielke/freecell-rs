@@ -1,1 +1,1 @@
-//mod test_hard;
+mod test_hard;
