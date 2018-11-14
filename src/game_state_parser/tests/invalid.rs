@@ -1,5 +1,9 @@
+use freecell::Card;
+use freecell::card::Suit::{Club, Spade};
+
 use super::super::parse_file;
 use super::super::error_messages::ERR_TOO_MANY_CASCADES;
+
 
 
 #[test]
@@ -11,11 +15,12 @@ fn test_easy_10_instead_of_t() {
 
 #[test]
 fn test_easy_duplicate_card() {
-    /*
     let actual = parse_file("example-inputs/invalid/easy-duplicate-card.txt");
-    let expected = Err("TODO".to_string());
+    let expected = Err(err_invgs_card_does_not_exist_exactly_once!(
+        Card { suit: Club, value: 10 },
+        2
+    ));
     assert_eq!(actual, expected);
-    */
 }
 
 #[test]
@@ -41,12 +46,22 @@ fn test_easy_invalid_suit() {
 
 #[test]
 fn test_easy_missing_card() {
-    // TODO
+    let actual = parse_file("example-inputs/invalid/easy-missing-card.txt");
+    let expected = Err(err_invgs_card_does_not_exist_exactly_once!(
+        Card { suit: Spade, value: 10 },
+        0
+    ));
+    assert_eq!(actual, expected);
 }
 
 #[test]
-fn test_easy_missing_card_2() {
-    // TODO
+fn test_easy_misspelled_cascade() {
+    let actual = parse_file("example-inputs/invalid/easy-misspelled-cascade.txt");
+    let expected = Err(err_invgs_card_does_not_exist_exactly_once!(
+        Card { suit: Club, value: 4 },
+        0
+    ));
+    assert_eq!(actual, expected);
 }
 
 #[test]

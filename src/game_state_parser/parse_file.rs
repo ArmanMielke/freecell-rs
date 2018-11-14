@@ -10,6 +10,9 @@ use std::io::{BufReader, BufRead, Lines};
 use std::str::SplitWhitespace;
 
 
+
+// TODO refactor module
+
 const FOUNDATIONS: &str = "foundations:";
 const CASCADE: &str = "cascade:";
 const FREECELLS: &str = "freecells:";
