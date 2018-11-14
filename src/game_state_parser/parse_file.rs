@@ -1,12 +1,14 @@
 use freecell::{Card, Cascade, Foundation, GameState};
-use super::parse_card::parse_card;
 use super::conversions_to_array::*;
 use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS};
+use super::parse_card::parse_card;
+use super::validate_game_state::validate_game_state;
 
 use std::path::Path;
 use std::fs::File;
 use std::io::{BufReader, BufRead, Lines};
 use std::str::SplitWhitespace;
+
 
 const FOUNDATIONS: &str = "foundations:";
 const CASCADE: &str = "cascade:";
@@ -44,11 +46,15 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
     }
 
 
-    Ok(GameState {
+    let game_state = GameState {
         cascades: cascades_vec_to_array(cascades)?,
         foundations,
         freecells: freecells_vec_to_array(freecells)?,
-    })
+    };
+
+    validate_game_state(&game_state)?;
+
+    Ok(game_state)
 }
 
 
