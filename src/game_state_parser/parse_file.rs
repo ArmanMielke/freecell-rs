@@ -1,5 +1,4 @@
 use freecell::{Card, Cascade, Foundation, GameState};
-use freecell::card::Suit;
 use super::parse_card::parse_card;
 use super::conversions_to_array::*;
 use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS};
@@ -19,7 +18,8 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
     let lines = read_file_as_lines(file_name)?;
 
     let mut cascades: Vec<Cascade> = Vec::new();
-    let mut foundations: Vec<Foundation> = Vec::new();
+    // TODO use constant NUM_FOUNDATIONS instead of a literal 4
+    let mut foundations: [Foundation; 4] = [Vec::new(), Vec::new(), Vec::new(), Vec::new()];
     let mut freecells: Vec<Card> = Vec::new();
 
     for line_result in lines {
@@ -36,7 +36,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
         };
 
         match first_token_in_line {
-            FOUNDATIONS => foundations.push(parse_cards(token_iterator)?),
+            FOUNDATIONS => create_foundations(&mut foundations, parse_cards(token_iterator)?)?,
             CASCADE => cascades.push(parse_cards(token_iterator)?),
             FREECELLS => freecells = parse_cards(token_iterator)?,
             _ => warn_invalid_first_token!(first_token_in_line),
@@ -46,7 +46,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
 
     Ok(GameState {
         cascades: cascades_vec_to_array(cascades)?,
-        foundations: foundations_vec_to_array(foundations)?,
+        foundations,
         freecells: freecells_vec_to_array(freecells)?,
     })
 }
@@ -71,4 +71,31 @@ fn parse_cards(card_iterator: SplitWhitespace) -> Result<Vec<Card>, String> {
     }
 
     Ok(cards)
+}
+
+
+// TODO use constant NUM_FOUNDATIONS instead of a literal 4
+fn create_foundations(foundations: &mut [Foundation; 4], foundation_cards: Vec<Card>) -> Result<(), String> {
+    for foundation_card in foundation_cards  {
+        if foundations[foundation_card.suit as usize].len() > 0 {
+            return Err(err_multiple_foundations_of_suit!(foundation_card.suit))
+        } else {
+            foundations[foundation_card.suit as usize] = card_sequence_up_to(&foundation_card);
+        }
+    }
+
+    Ok(())
+}
+
+fn card_sequence_up_to(card: &Card) -> Vec<Card> {
+    let mut cards = Vec::new();
+
+    for rank in 0..card.value {
+        cards.push(Card{
+            suit: card.suit,
+            value: rank,
+        });
+    }
+
+    cards
 }

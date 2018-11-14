@@ -1,4 +1,4 @@
-use freecell::{Foundation, GameState};
+use freecell::GameState;
 use freecell::card::*;
 use freecell::card::Suit::*;
 use super::super::parse_file;

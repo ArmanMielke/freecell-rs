@@ -4,7 +4,7 @@ pub const QUEEN: Rank = 12;
 pub const KING: Rank = 13;
 pub const ACE: Rank = 1;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Copy, Clone)]
 pub enum Suit {
     Club = 0,
     Spade = 1,
