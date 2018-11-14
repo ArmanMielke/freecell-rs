@@ -26,6 +26,12 @@ macro_rules! err_multiple_foundations_of_suit {
 
 
 // invgs stands for invalid game state
+macro_rules! err_invgs_card_does_not_exist_exactly_once {
+    ($card: expr, $count: expr) => (
+        format!("Card {:?} exists {} times, should exist once", $card, $count)
+    )
+}
+
 macro_rules! err_invgs_foundation_wrong_suit {
     ($foundation_suit: expr, $card_suit: expr, $card: expr) => (
         format!(
