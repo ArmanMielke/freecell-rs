@@ -48,3 +48,8 @@ fn test_easy_missing_card() {
 fn test_easy_missing_card_2() {
     // TODO
 }
+
+#[test]
+fn test_easy_duplicate_foundation() {
+    // TODO (test file does not exist yet)
+}
