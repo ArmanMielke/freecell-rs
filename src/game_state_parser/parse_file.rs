@@ -90,7 +90,7 @@ fn create_foundations(foundations: &mut [Foundation; 4], foundation_cards: Vec<C
 fn card_sequence_up_to(card: &Card) -> Vec<Card> {
     let mut cards = Vec::new();
 
-    for rank in 0..card.value {
+    for rank in 1..card.value+1 {
         cards.push(Card{
             suit: card.suit,
             value: rank,
