@@ -3,6 +3,9 @@ use freecell::card::*;
 use freecell::card::Suit::*;
 use super::super::parse_file;
 
+use arrayvec::ArrayVec;
+
+
 
 #[test]
 fn test_hard_solved_to_6() {
@@ -87,7 +90,7 @@ fn test_hard_solved_to_6() {
                 Card { suit: Diamond, value: 6 },
             ],
         ],
-        freecells: [None, None, None, None],
+        freecells: ArrayVec::new(),
     };
 
     let actual = parse_file("example-inputs/hard-solved-to-6.txt").unwrap();

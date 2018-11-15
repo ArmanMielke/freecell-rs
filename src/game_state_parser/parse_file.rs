@@ -1,6 +1,6 @@
 use freecell::{Card, Cascade, Foundation, GameState};
 use super::conversions_to_array::*;
-use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS};
+use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS, ERR_TOO_MANY_FREECELLS};
 use super::parse_card::parse_card;
 use super::validate_game_state::validate_game_state;
 
@@ -8,6 +8,8 @@ use std::path::Path;
 use std::fs::File;
 use std::io::{BufReader, BufRead, Lines};
 use std::str::SplitWhitespace;
+
+use arrayvec::ArrayVec;
 
 
 
@@ -25,7 +27,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
     let mut cascades: Vec<Cascade> = Vec::new();
     // TODO use constant NUM_FOUNDATIONS instead of a literal 4
     let mut foundations: [Foundation; 4] = [Vec::new(), Vec::new(), Vec::new(), Vec::new()];
-    let mut freecells: Vec<Card> = Vec::new();
+    let mut freecells = ArrayVec::new();
 
     for line_result in lines {
         let line = match line_result {
@@ -41,9 +43,15 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
         };
 
         match first_token_in_line {
-            FOUNDATIONS => create_foundations(&mut foundations, parse_cards(token_iterator)?)?,
+            FOUNDATIONS => create_foundations(
+                &mut foundations,
+                parse_cards(token_iterator)?
+            )?,
             CASCADE => cascades.push(parse_cards(token_iterator)?),
-            FREECELLS => freecells = parse_cards(token_iterator)?,
+            FREECELLS => create_freecells(
+                &mut freecells,
+                parse_cards(token_iterator)?
+            )?,
             _ => warn_invalid_first_token!(first_token_in_line),
         };
     }
@@ -52,7 +60,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
     let game_state = GameState {
         cascades: cascades_vec_to_array(cascades)?,
         foundations,
-        freecells: freecells_vec_to_array(freecells)?,
+        freecells,
     };
 
     validate_game_state(&game_state)?;
@@ -85,11 +93,11 @@ fn parse_cards(card_iterator: SplitWhitespace) -> Result<Vec<Card>, String> {
 
 // TODO use constant NUM_FOUNDATIONS instead of a literal 4
 fn create_foundations(foundations: &mut [Foundation; 4], foundation_cards: Vec<Card>) -> Result<(), String> {
-    for foundation_card in foundation_cards  {
-        if foundations[foundation_card.suit as usize].len() > 0 {
-            return Err(err_multiple_foundations_of_suit!(foundation_card.suit))
+    for card in foundation_cards  {
+        if foundations[card.suit as usize].len() > 0 {
+            return Err(err_multiple_foundations_of_suit!(card.suit))
         } else {
-            foundations[foundation_card.suit as usize] = card_sequence_up_to(&foundation_card);
+            foundations[card.suit as usize] = card_sequence_up_to(&card);
         }
     }
 
@@ -107,4 +115,16 @@ fn card_sequence_up_to(card: &Card) -> Vec<Card> {
     }
 
     cards
+}
+
+
+// TODO use constant NUM_FREECELLS instead of a literal 4
+fn create_freecells(freecells: &mut ArrayVec<[Card; 4]>, freecell_cards: Vec<Card>) -> Result<(), String> {
+    for card in freecell_cards {
+        if let Err(_) = freecells.try_push(card) {
+            return Err(String::from(ERR_TOO_MANY_FREECELLS))
+        }
+    }
+
+    Ok(())
 }

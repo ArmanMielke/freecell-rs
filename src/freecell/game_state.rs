@@ -3,6 +3,9 @@ use super::GameMove;
 use super::Cascade;
 use super::Foundation;
 
+use arrayvec::ArrayVec;
+
+
 
 const NUM_CASCADES: usize = 8;
 const NUM_FOUNDATIONS: usize = 4;
@@ -18,9 +21,8 @@ pub struct GameState {
     /// Eg. `foundations[1]` may only hold spade cards, since Suit::Spade equals 1.
     pub foundations: [Foundation; NUM_FOUNDATIONS],
 
-    // TODO replace with vector of fixed length (eg. crate arrayvec)
-    // TODO document
-    pub freecells: [Option<Card>; NUM_FREECELLS],
+    /// The freecells can hold up to four arbitrary cards.
+    pub freecells: ArrayVec<[Card; NUM_FREECELLS]>,
 }
 
 impl GameState {
@@ -28,7 +30,7 @@ impl GameState {
         panic!("not implemented yet");
     }
 
-    pub fn is_won(&self) -> bool {
+    pub fn is_solved(&self) -> bool {
         self.foundations[0].len() == 13 &&
         self.foundations[1].len() == 13 &&
         self.foundations[2].len() == 13 &&

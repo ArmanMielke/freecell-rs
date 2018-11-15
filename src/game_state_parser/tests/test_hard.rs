@@ -3,6 +3,9 @@ use freecell::card::*;
 use freecell::card::Suit::*;
 use super::super::parse_file;
 
+use arrayvec::ArrayVec;
+
+
 
 #[test]
 fn test_hard() {
@@ -83,7 +86,7 @@ fn test_hard() {
             Vec::new(),
             Vec::new(),
         ],
-        freecells: [None, None, None, None],
+        freecells: ArrayVec::new(),
     };
 
     let actual = parse_file("example-inputs/hard.txt").unwrap();

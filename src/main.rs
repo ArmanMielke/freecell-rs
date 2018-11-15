@@ -1,4 +1,5 @@
 extern crate petgraph;
+extern crate arrayvec;
 
 mod freecell;
 mod game_state_parser;
