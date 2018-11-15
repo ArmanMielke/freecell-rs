@@ -1,4 +1,4 @@
-use freecell::{Card, Cascade, Foundation, GameState};
+use freecell::{Card, Cascade, Cascades, Foundation, Foundations, Freecells, GameState};
 use super::conversions_to_array::*;
 use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS, ERR_TOO_MANY_FREECELLS};
 use super::parse_card::parse_card;
@@ -25,8 +25,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
     let lines = read_file_as_lines(file_name)?;
 
     let mut cascades: Vec<Cascade> = Vec::new();
-    // TODO use constant NUM_FOUNDATIONS instead of a literal 4
-    let mut foundations: [Foundation; 4] = [Vec::new(), Vec::new(), Vec::new(), Vec::new()];
+    let mut foundations = [Vec::new(), Vec::new(), Vec::new(), Vec::new()];
     let mut freecells = ArrayVec::new();
 
     for line_result in lines {
@@ -91,8 +90,7 @@ fn parse_cards(card_iterator: SplitWhitespace) -> Result<Vec<Card>, String> {
 }
 
 
-// TODO use constant NUM_FOUNDATIONS instead of a literal 4
-fn create_foundations(foundations: &mut [Foundation; 4], foundation_cards: Vec<Card>) -> Result<(), String> {
+fn create_foundations(foundations: &mut Foundations, foundation_cards: Vec<Card>) -> Result<(), String> {
     for card in foundation_cards  {
         if foundations[card.suit as usize].len() > 0 {
             return Err(err_multiple_foundations_of_suit!(card.suit))
@@ -118,8 +116,7 @@ fn card_sequence_up_to(card: &Card) -> Vec<Card> {
 }
 
 
-// TODO use constant NUM_FREECELLS instead of a literal 4
-fn create_freecells(freecells: &mut ArrayVec<[Card; 4]>, freecell_cards: Vec<Card>) -> Result<(), String> {
+fn create_freecells(freecells: &mut Freecells, freecell_cards: Vec<Card>) -> Result<(), String> {
     for card in freecell_cards {
         if let Err(_) = freecells.try_push(card) {
             return Err(String::from(ERR_TOO_MANY_FREECELLS))
