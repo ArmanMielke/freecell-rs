@@ -1,11 +1,6 @@
 use super::{Card, GameMove, Cascades, Foundations};
 
-use arrayvec::ArrayVec;
 
-
-
-/// May hold up to four arbitrary cards
-pub type Freecells = ArrayVec<[Card; 4]>;
 
 
 #[derive(Debug, PartialEq)]
