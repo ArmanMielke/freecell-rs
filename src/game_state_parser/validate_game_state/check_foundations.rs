@@ -1,4 +1,4 @@
-use freecell::{Foundation, GameState};
+use freecell::{Foundation, FoundationsTrait, GameState};
 use freecell::card::Suit;
 use freecell::card::Suit::*;
 
@@ -8,7 +8,7 @@ use freecell::card::Suit::*;
 /// correct.
 pub fn check_foundations(game_state: &GameState) -> Result<(), String> {
     for suit in [Club, Spade, Heart, Diamond].iter() {
-        check_foundation(&game_state.foundations[*suit as usize], *suit)?;
+        check_foundation(&game_state.foundations.get_foundation(*suit), *suit)?;
     }
     Ok(())
 }

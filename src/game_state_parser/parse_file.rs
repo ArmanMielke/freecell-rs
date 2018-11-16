@@ -1,4 +1,4 @@
-use freecell::{Card, Cascade, Cascades, Foundation, Foundations, Freecells, GameState};
+use freecell::{Card, Cascade, Foundations, FoundationsTrait, Freecells, GameState};
 use super::conversions_to_array::*;
 use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS, ERR_TOO_MANY_FREECELLS};
 use super::parse_card::parse_card;
@@ -92,10 +92,11 @@ fn parse_cards(card_iterator: SplitWhitespace) -> Result<Vec<Card>, String> {
 
 fn create_foundations(foundations: &mut Foundations, foundation_cards: Vec<Card>) -> Result<(), String> {
     for card in foundation_cards  {
-        if foundations[card.suit as usize].len() > 0 {
+        if foundations.get_foundation(card.suit).len() > 0 {
             return Err(err_multiple_foundations_of_suit!(card.suit))
         } else {
             foundations[card.suit as usize] = card_sequence_up_to(&card);
+//            *foundations.get_foundation(card.suit) = card_sequence_up_to(&card);
         }
     }
 
