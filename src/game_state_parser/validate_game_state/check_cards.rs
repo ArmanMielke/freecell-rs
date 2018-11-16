@@ -56,7 +56,7 @@ fn card_from_index(index: usize) -> Card {
             1 => Spade,
             2 => Heart,
             3 => Diamond,
-            _ => panic!("invalid card index: {}", index)
+            _ => unreachable!("invalid card index: {}", index)
         },
         value: (index % 13) as u8 + 1,
     }
