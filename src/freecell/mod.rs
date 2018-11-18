@@ -6,6 +6,7 @@ mod foundation;
 mod freecells;
 mod game_move;
 mod game_state;
+mod position;
 
 pub use self::card_collection::CardCollection;
 pub use self::card::Card;
