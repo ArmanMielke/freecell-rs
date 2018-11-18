@@ -21,21 +21,21 @@ macro_rules! err_could_not_parse_suit {
 }
 
 macro_rules! err_multiple_foundations_of_suit {
-    ($suit: expr) => (format!("Multiple foundations of suit {:?} specified", $suit))
+    ($suit: expr) => (format!("Multiple foundations of suit {} specified", $suit))
 }
 
 
 // invgs stands for invalid game state
 macro_rules! err_invgs_card_does_not_exist_exactly_once {
     ($card: expr, $count: expr) => (
-        format!("Card {:?} exists {} times, should exist once", $card, $count)
+        format!("Card {} exists {} times, should exist once", $card, $count)
     )
 }
 
 macro_rules! err_invgs_foundation_wrong_suit {
     ($foundation_suit: expr, $card_suit: expr, $card: expr) => (
         format!(
-            "Foundation of suit {:?} contains card of suit {:?}: {:?}",
+            "Foundation of suit {} contains card of suit {}: {}",
             $foundation_suit, $card_suit, $card
         )
     )
@@ -44,7 +44,7 @@ macro_rules! err_invgs_foundation_wrong_suit {
 macro_rules! err_invgs_foundation_wrong_order {
     ($foundation_suit: expr, $card_rank: expr, $position: expr) => (
         format!(
-            "Foundation of suit {:?} contains card of rank {} in position {}",
+            "Foundation of suit {} contains card of rank {} in position {}",
             $foundation_suit, $card_rank, $position
         )
     )

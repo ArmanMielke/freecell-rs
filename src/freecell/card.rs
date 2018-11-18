@@ -1,3 +1,4 @@
+use std::fmt::{Display, Formatter, Result};
 
 
 #[derive(Debug, PartialEq, Copy, Clone)]
@@ -19,6 +20,19 @@ impl Suit {
     }
 }
 
+impl Display for Suit {
+    fn fmt(&self, f: &mut Formatter) -> Result {
+        let name = match self {
+            Suit::Club => "Club",
+            Suit::Spade => "Spade",
+            Suit::Heart => "Heart",
+            Suit::Diamond => "Diamond",
+        };
+        write!(f, "{}", name)
+    }
+}
+
+
 #[derive(PartialEq)]
 pub enum Colour {
     Black, Red
@@ -39,4 +53,17 @@ pub type Rank = u8;
 pub struct Card {
     pub suit: Suit,
     pub value: Rank,
+}
+
+impl Display for Card {
+    fn fmt(&self, f: &mut Formatter) -> Result {
+        let value_string = match self.value {
+            JACK => String::from("Jack"),
+            QUEEN => String::from("Queen"),
+            KING => String::from("King"),
+            ACE => String::from("Ace"),
+            _ => format!("{}", self.value),
+        };
+        write!(f, "{} of {}s", value_string, self.suit)
+    }
 }
