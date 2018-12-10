@@ -28,8 +28,8 @@ impl FoundationsTrait for Foundations {
 impl CardCollection for Foundations {
 
     fn add_card(&self, card: Card) -> Result<Self, ()> {
-            // Aces can only be put on empty foundations
-        if  card.value == ACE && !self.get_foundation(card.suit).is_empty() ||
+            // Aces can only be put on empty foundations and only aces can be put there (^ is xor)
+        if  (card.value == ACE) ^ self.get_foundation(card.suit).is_empty() ||
             // Other cards can only be put on a foundation if it is one rank higher than the
             // currently topmost card on the foundation
             self.get_foundation(card.suit).last().unwrap().value != card.value + 1 {
