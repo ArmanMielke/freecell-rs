@@ -89,7 +89,7 @@ fn test_hard() {
         freecells: ArrayVec::new(),
     };
 
-    let actual = parse_file("example-inputs/hard.txt").unwrap();
+    let actual = parse_file("test-inputs/hard.txt").unwrap();
 
     assert_eq!(actual, expected);
 }

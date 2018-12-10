@@ -93,7 +93,7 @@ fn test_hard_solved_to_6() {
         freecells: ArrayVec::new(),
     };
 
-    let actual = parse_file("example-inputs/hard-solved-to-6.txt").unwrap();
+    let actual = parse_file("test-inputs/hard-solved-to-6.txt").unwrap();
 
     assert_eq!(actual, expected);
 }
