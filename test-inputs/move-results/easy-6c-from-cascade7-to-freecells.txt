@@ -1,0 +1,10 @@
+cascade: 3S 8S AD 2D AS 4C TS
+cascade: QD 8H KS 6S JC 7S 6H
+cascade: 7C 7D 8D 7H 9S 3C KD
+cascade: 2H 4H JH JS AC 3D TD
+cascade: 4D 8C 9C TH 3H QH
+cascade: KC AH KH QS JD 4S
+cascade: 6D 9H QC 5H 2S 2C
+cascade: 9D 5C 5S TC 5D
+
+freecells: 6C

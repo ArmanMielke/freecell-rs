@@ -5,6 +5,7 @@ use std::fmt::{Display, Formatter, Result};
 
 
 
+#[derive(PartialEq)]
 pub struct Move {
     pub card: Card,
     pub from: Position,
