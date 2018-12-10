@@ -28,6 +28,17 @@ pub fn cascades_vec_to_array(mut cascades: Vec<Cascade>) -> Result<Cascades, Str
             cascades.remove(0),
             Vec::new(),
         ])
+    } else if cascades.len() == 0 {
+        Ok([
+            Vec::new(),
+            Vec::new(),
+            Vec::new(),
+            Vec::new(),
+            Vec::new(),
+            Vec::new(),
+            Vec::new(),
+            Vec::new(),
+        ])
     } else {
         unimplemented!()
     }
