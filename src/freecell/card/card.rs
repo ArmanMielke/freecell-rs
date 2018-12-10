@@ -4,7 +4,7 @@ use std::fmt::{Display, Formatter, Result};
 
 
 
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Copy, Clone)]
 pub struct Card {
     pub suit: Suit,
     pub value: Rank,

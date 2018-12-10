@@ -3,7 +3,7 @@ use std::fmt::{Display, Formatter, Result};
 
 
 pub enum Position {
-    Cascade(u8),
+    Cascade(usize),
     Foundations,
     Freecells
 }
