@@ -28,7 +28,7 @@ fn test_easy() {
     let actual = game_state.get_legal_moves();
     let expected = vec![
         (
-            parse_file("test-inputs/move-results/easy-ts-from-cascade0-to-freecells.txt").unwrap(),
+            parse_file("test-inputs/move-results/easy/ts-from-cascade0-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Spade, value: 10 },
                 from: Position::Cascade(0),
@@ -36,7 +36,7 @@ fn test_easy() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/easy-6h-from-cascade1-to-freecells.txt").unwrap(),
+            parse_file("test-inputs/move-results/easy/6h-from-cascade1-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Heart, value: 6 },
                 from: Position::Cascade(1),
@@ -44,7 +44,7 @@ fn test_easy() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/easy-kd-from-cascade2-to-freecells.txt").unwrap(),
+            parse_file("test-inputs/move-results/easy/kd-from-cascade2-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Diamond, value: KING },
                 from: Position::Cascade(2),
@@ -52,7 +52,7 @@ fn test_easy() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/easy-td-from-cascade3-to-freecells.txt").unwrap(),
+            parse_file("test-inputs/move-results/easy/td-from-cascade3-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Diamond, value: 10 },
                 from: Position::Cascade(3),
@@ -60,7 +60,7 @@ fn test_easy() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/easy-qh-from-cascade4-to-freecells.txt").unwrap(),
+            parse_file("test-inputs/move-results/easy/qh-from-cascade4-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Heart, value: QUEEN },
                 from: Position::Cascade(4),
@@ -68,7 +68,7 @@ fn test_easy() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/easy-4s-from-cascade5-to-freecells.txt").unwrap(),
+            parse_file("test-inputs/move-results/easy/4s-from-cascade5-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Spade, value: 4 },
                 from: Position::Cascade(5),
@@ -76,7 +76,7 @@ fn test_easy() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/easy-2c-from-cascade6-to-freecells.txt").unwrap(),
+            parse_file("test-inputs/move-results/easy/2c-from-cascade6-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Club, value: 2 },
                 from: Position::Cascade(6),
@@ -84,7 +84,7 @@ fn test_easy() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/easy-6c-from-cascade7-to-freecells.txt").unwrap(),
+            parse_file("test-inputs/move-results/easy/6c-from-cascade7-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Club, value: 6 },
                 from: Position::Cascade(7),
