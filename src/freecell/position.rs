@@ -2,7 +2,7 @@ use std::fmt::{Display, Formatter, Result};
 
 
 
-#[derive(PartialEq)]
+#[derive(PartialEq, Debug)]
 pub enum Position {
     Cascade(usize),
     Foundations,
