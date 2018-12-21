@@ -1,0 +1,12 @@
+foundations: AD
+
+cascade: 3S 8S 2D AS 4C TS
+cascade: QD 8H KS 6S JC 7S
+cascade: 7C 7D 8D 7H 9S 3C KD
+cascade: 2H 4H JH JS 3D TC
+cascade: 4D 8C 9C TH 3H QH
+cascade: KC AH KH QS JD 4S
+cascade: 6D 9H QC 5H 2S 2C
+cascade: 5C 5S TD 5D 6C
+
+freecells: AC 9D 6H
