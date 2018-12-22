@@ -1,5 +1,6 @@
 use super::CardCollection;
 use super::Card;
+use super::card::ACE;
 
 
 
@@ -18,6 +19,12 @@ fn fits_on_top_of(lower_card: &Card, higher_card: &Card) -> bool {
 
 impl CardCollection for Cascade {
     fn add_card(&self, card: Card) -> Result<Cascade, ()> {
+        // optimisation: aces cannot be put on cascades
+        // this is technically a legal move, just not a very good one
+        if card.value == ACE {
+            return Err(())
+        }
+
         match self.last() {
 
             // the cascade contains at least one card
