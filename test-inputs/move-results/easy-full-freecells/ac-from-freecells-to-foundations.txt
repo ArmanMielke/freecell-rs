@@ -9,4 +9,4 @@ cascade: KC AH KH QS JD 4S
 cascade: 6D 9H QC 5H 2S 2C
 cascade: 5C 5S TD 5D 6C
 
-freecells: AD 9D 6H
+freecells: AD 6H 9D
