@@ -2,6 +2,9 @@ use super::{CardCollection, Cascades, Foundations, Freecells, Move};
 use super::position::Position;
 
 
+// TODO choose something reasonable
+pub type GameStateId = String;
+
 
 #[derive(Debug, PartialEq)]
 pub struct GameState {
@@ -141,5 +144,10 @@ impl GameState {
         self.foundations[1].len() == 13 &&
         self.foundations[2].len() == 13 &&
         self.foundations[3].len() == 13
+    }
+
+    pub fn generate_id(&self) -> GameStateId {
+        // TODO
+        unimplemented!()
     }
 }
