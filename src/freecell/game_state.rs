@@ -3,7 +3,7 @@ use super::position::Position;
 
 
 // TODO choose something reasonable
-pub type GameStateId = String;
+pub type GameStateId = i32;
 
 
 #[derive(Debug, PartialEq)]

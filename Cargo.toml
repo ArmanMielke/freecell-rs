@@ -4,5 +4,5 @@ version = "0.1.0"
 authors = ["- <@>"]
 
 [dependencies]
-petgraph = "0.4.13"
 arrayvec = "0.4.7"
+priority-queue = "0.6.0"
