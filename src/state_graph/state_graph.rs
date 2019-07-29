@@ -3,7 +3,7 @@ use super::node::Node;
 
 use std::cell::RefCell;
 use std::cmp::Reverse;
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use priority_queue::PriorityQueue;
 
 
@@ -45,41 +45,44 @@ impl StateGraph {
     pub fn dijkstra(&self) -> Option<Vec<Move>> {
         let nodes = self.nodes.borrow();
 
-        // stores visited node as well as their predecessor in the shortest path (predecessor is None for the first node)
-        let mut visited: HashMap<GameStateId, Option<GameStateId>> = HashMap::new();
-        // stores unvisited nodes with their tentative predecessor and distance
-        let mut priority_queue: PriorityQueue<(GameStateId, Option<GameStateId>), Distance> = PriorityQueue::new();
-        priority_queue.push((self.initial_node_id, None), Reverse(0));
+        let mut visited: HashSet<GameStateId> = HashSet::new();
+        // stores unvisited nodes. the nodes with the lowest tentative distance have the highest priority
+        let mut priority_queue: PriorityQueue<GameStateId, Distance> = PriorityQueue::new();
+        // stores tentative predecessors for each node
+        // all nodes that are either in visited or in the priority queue must have a predecessor
+        let mut predecessors: HashMap<GameStateId, GameStateId> = HashMap::new();
 
-        while let Some(((game_state_id, predecessor_id), distance)) = priority_queue.pop() {
-            visited.insert(game_state_id, predecessor_id);
+        priority_queue.push(self.initial_node_id, Reverse(0));
+
+        while let Some((game_state_id, distance)) = priority_queue.pop() {
+            visited.insert(game_state_id);
 
             let node = nodes.get(&game_state_id).unwrap();
 
             if node.is_goal_state() {
-                return Some(self.construct_solution_path(visited, node.id));
+                return Some(self.construct_solution_path(predecessors, node.id));
             }
 
-
             for (_, neighbour_id) in node.get_edges(&self).iter() {
-                unimplemented!()
+                let neighbours_current_distance = priority_queue.get_priority(neighbour_id);
+                let distance_via_current_node = Reverse(distance.0 + 1);
+                if neighbours_current_distance.is_none() || neighbours_current_distance.unwrap() > &distance_via_current_node {
+                    priority_queue.push(*neighbour_id, distance_via_current_node);
+                    predecessors.insert(*neighbour_id, game_state_id);
+                }
             }
         }
 
         None
     }
 
-    /// # Parameters
-    /// - visited: A map with each visited node and their predecessor in the shortest path.
-    ///            The predecessor is None for the starting node. All GameStateIds must be in self.nodes
-    /// - goal_node_id: The GameStateId of the last node. This must be a key in visited.
-    fn construct_solution_path(&self, visited: HashMap<GameStateId, Option<GameStateId>>, goal_node_id: GameStateId) -> Vec<Move> {
+    fn construct_solution_path(&self, predecessors: HashMap<GameStateId, GameStateId>, goal_node_id: GameStateId) -> Vec<Move> {
         print!("Solution found!");
         let nodes = self.nodes.borrow();
         let mut moves = Vec::new();
         let mut current_node = nodes.get(&goal_node_id).unwrap();
 
-        while let Some(predecessor_id) = visited.get(&current_node.id).unwrap() {
+        while let Some(predecessor_id) = predecessors.get(&current_node.id) {
             let predecessor = nodes.get(predecessor_id).unwrap();
 
             // find the edge that goes from the predecessor to the current node
