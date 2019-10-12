@@ -1,12 +1,16 @@
 use super::{CardCollection, Cascades, Foundations, Freecells, Move};
 use super::position::Position;
 
+use std::collections::hash_map::DefaultHasher;
+use std::hash::{Hash, Hasher};
+
+
 
 // TODO choose something reasonable
-pub type GameStateId = i32;
+pub type GameStateId = u64;
 
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Hash)]
 pub struct GameState {
     pub cascades: Cascades,
     pub foundations: Foundations,
@@ -147,7 +151,8 @@ impl GameState {
     }
 
     pub fn generate_id(&self) -> GameStateId {
-        // TODO
-        unimplemented!()
+        let mut hasher = DefaultHasher::new();
+        self.hash(&mut hasher);
+        hasher.finish()
     }
 }

@@ -2,7 +2,7 @@ use std::fmt::{Display, Formatter, Result};
 
 
 
-#[derive(Debug, PartialEq, Copy, Clone)]
+#[derive(Debug, PartialEq, Copy, Clone, Hash)]
 pub enum Suit {
     Club = 0,
     Spade = 1,

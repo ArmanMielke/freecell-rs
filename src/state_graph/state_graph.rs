@@ -36,7 +36,9 @@ impl StateGraph {
 
     pub(super) fn add_node(&self, game_state: GameState) {
         // only add the node if it has not been added before
-        if !self.nodes.borrow().contains_key(&game_state.generate_id()) {
+        let mut node_has_been_added_before = false;
+        { node_has_been_added_before = self.nodes.borrow().contains_key(&game_state.generate_id()) }
+        if !node_has_been_added_before {
             let node = Node::new(game_state);
             self.nodes.borrow_mut().insert(node.id, node);
         }
