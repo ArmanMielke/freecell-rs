@@ -1,7 +1,6 @@
 use freecell::{Move, GameState, GameStateId};
 use super::node::Node;
 
-use std::cell::RefCell;
 use std::cmp::Reverse;
 use std::collections::{HashMap, HashSet};
 use priority_queue::PriorityQueue;
@@ -15,7 +14,7 @@ pub struct StateGraph {
     initial_node_id: GameStateId,
     // nodes should only be added, they should never be removed
     // => a node that has been added once stays here forever
-    nodes: RefCell<HashMap<GameStateId, Node>>,
+    nodes: HashMap<GameStateId, Node>,
 }
 
 
@@ -30,23 +29,21 @@ impl StateGraph {
 
         StateGraph {
             initial_node_id,
-            nodes: RefCell::new(nodes),
+            nodes,
         }
     }
 
-    pub(super) fn add_node(&self, game_state: GameState) {
+    pub(super) fn add_node(&mut self, game_state: GameState) {
         // only add the node if it has not been added before
         let mut node_has_been_added_before = false;
-        { node_has_been_added_before = self.nodes.borrow().contains_key(&game_state.generate_id()) }
+        { node_has_been_added_before = self.nodes.contains_key(&game_state.generate_id()) }
         if !node_has_been_added_before {
             let node = Node::new(game_state);
-            self.nodes.borrow_mut().insert(node.id, node);
+            self.nodes.insert(node.id, node);
         }
     }
 
-    pub fn dijkstra(&self) -> Option<Vec<Move>> {
-        let nodes = self.nodes.borrow();
-
+    pub fn dijkstra(&mut self) -> Option<Vec<Move>> {
         let mut visited: HashSet<GameStateId> = HashSet::new();
         // stores unvisited nodes. the nodes with the lowest tentative distance have the highest priority
         let mut priority_queue: PriorityQueue<GameStateId, Distance> = PriorityQueue::new();
@@ -59,13 +56,14 @@ impl StateGraph {
         while let Some((game_state_id, distance)) = priority_queue.pop() {
             visited.insert(game_state_id);
 
-            let node = nodes.get(&game_state_id).unwrap();
+            // extract the node temporarily
+            let node = self.nodes.remove(&game_state_id).unwrap();
 
             if node.is_goal_state() {
                 return Some(self.construct_solution_path(predecessors, node.id));
             }
 
-            for (_, neighbour_id) in node.get_edges(&self).iter() {
+            for (_, neighbour_id) in node.get_edges(self).iter() {
                 let neighbours_current_distance = priority_queue.get_priority(neighbour_id);
                 let distance_via_current_node = Reverse(distance.0 + 1);
                 if neighbours_current_distance.is_none() || neighbours_current_distance.unwrap() > &distance_via_current_node {
@@ -73,29 +71,34 @@ impl StateGraph {
                     predecessors.insert(*neighbour_id, game_state_id);
                 }
             }
+
+            // re-insert the node
+            self.nodes.insert(node.id, node);
         }
 
         None
     }
 
-    fn construct_solution_path(&self, predecessors: HashMap<GameStateId, GameStateId>, goal_node_id: GameStateId) -> Vec<Move> {
+    // this removes nodes from the graph and thus destroys it (could probably be fixed if necessary)
+    fn construct_solution_path(&mut self, predecessors: HashMap<GameStateId, GameStateId>, goal_node_id: GameStateId) -> Vec<Move> {
         print!("Solution found!");
-        let nodes = self.nodes.borrow();
         let mut moves = Vec::new();
-        let mut current_node = nodes.get(&goal_node_id).unwrap();
+        let mut current_node = self.nodes.remove(&goal_node_id).unwrap();
 
         while let Some(predecessor_id) = predecessors.get(&current_node.id) {
-            let predecessor = nodes.get(predecessor_id).unwrap();
+            let predecessor = self.nodes.remove(predecessor_id).unwrap();
 
-            // find the edge that goes from the predecessor to the current node
-            let predecessor_edges = predecessor.get_edges(self);
-            let edge = predecessor_edges.iter().find(
-                // predicate is true for edges that end in current_node
-                |&&(_, node_id)| node_id == current_node.id
-            ).unwrap();
+            {
+                // find the edge that goes from the predecessor to the current node
+                let predecessor_edges = predecessor.get_edges(self);
+                let edge = predecessor_edges.iter().find(
+                    // predicate is true for edges that end in current_node
+                    |&&(_, node_id)| node_id == current_node.id
+                ).unwrap();
 
-            // prepend the move from that edge to the list of moves
-            moves.insert(0, edge.0.clone());
+                // prepend the move from that edge to the list of moves
+                moves.insert(0, edge.0.clone());
+            }
 
             current_node = predecessor;
         }

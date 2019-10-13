@@ -31,6 +31,6 @@ fn main() {
 
 fn solve<P: AsRef<Path>>(file_name: P) -> Option<Vec<Move>> {
     let initial_state = game_state_parser::parse_file(file_name).unwrap();
-    let state_graph = StateGraph::new(initial_state);
+    let mut state_graph = StateGraph::new(initial_state);
     state_graph.dijkstra()
 }

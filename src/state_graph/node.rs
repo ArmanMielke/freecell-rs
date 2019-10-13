@@ -24,7 +24,7 @@ impl Node {
 
     /// Expands the node if it has not been expanded yet, potentially adding new nodes to the graph.
     /// It then returns outgoing edges.
-    pub fn get_edges(&self, graph: &StateGraph /*TODO is there a solution where I don't need to pass the Graph?*/) -> Ref<Vec<(Move, GameStateId)>> {
+    pub fn get_edges(&self, graph: &mut StateGraph /*TODO is there a solution where I don't need to pass the Graph?*/) -> Ref<Vec<(Move, GameStateId)>> {
 
         // "if self.expanded = false {...}". in either case, set the value to true
         if !self.expanded.replace(true) {
