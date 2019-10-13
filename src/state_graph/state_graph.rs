@@ -57,7 +57,7 @@ impl StateGraph {
             visited.insert(game_state_id);
 
             // extract the node temporarily
-            let node = self.nodes.remove(&game_state_id).unwrap();
+            let mut node = self.nodes.remove(&game_state_id).unwrap();
 
             if node.is_goal_state() {
                 return Some(self.construct_solution_path(predecessors, node.id));
@@ -86,7 +86,7 @@ impl StateGraph {
         let mut current_node = self.nodes.remove(&goal_node_id).unwrap();
 
         while let Some(predecessor_id) = predecessors.get(&current_node.id) {
-            let predecessor = self.nodes.remove(predecessor_id).unwrap();
+            let mut predecessor = self.nodes.remove(predecessor_id).unwrap();
 
             {
                 // find the edge that goes from the predecessor to the current node
