@@ -1,0 +1,12 @@
+foundations: QC KS KH KD
+
+cascade:
+cascade:
+cascade:
+cascade:
+cascade:
+cascade:
+cascade:
+cascade:
+
+freecells: KC
