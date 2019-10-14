@@ -60,7 +60,7 @@ impl StateGraph {
             let mut node = self.nodes.remove(&game_state_id).unwrap();
 
             if node.is_goal_state() {
-                return Some(self.construct_solution_path(predecessors, node.id));
+                return Some(self.construct_solution_path(predecessors, node));
             }
 
             for (_, neighbour_id) in node.get_edges(self).iter() {
@@ -80,10 +80,10 @@ impl StateGraph {
     }
 
     // this removes nodes from the graph and thus destroys it (could probably be fixed if necessary)
-    fn construct_solution_path(&mut self, predecessors: HashMap<GameStateId, GameStateId>, goal_node_id: GameStateId) -> Vec<Move> {
-        print!("Solution found!");
+    fn construct_solution_path(&mut self, predecessors: HashMap<GameStateId, GameStateId>, goal_node: Node) -> Vec<Move> {
+        println!("Solution found!");
         let mut moves = Vec::new();
-        let mut current_node = self.nodes.remove(&goal_node_id).unwrap();
+        let mut current_node = goal_node;
 
         while let Some(predecessor_id) = predecessors.get(&current_node.id) {
             let mut predecessor = self.nodes.remove(predecessor_id).unwrap();
