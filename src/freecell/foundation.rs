@@ -39,7 +39,7 @@ impl CardCollection for Foundations {
             card.value == ACE ||
             // Other cards can only be put on a foundation if it is one rank higher than the
             // currently topmost card on the foundation
-            self.get_foundation(card.suit).last().unwrap().value != card.value + 1
+            self.get_foundation(card.suit).last().unwrap().value + 1 != card.value
         {
             return Err(())
         }
