@@ -10,7 +10,7 @@ use std::hash::{Hash, Hasher};
 pub type GameStateId = u64;
 
 
-#[derive(Debug, PartialEq, Hash)]
+#[derive(Debug, PartialEq, Hash, Clone)]
 pub struct GameState {
     pub cascades: Cascades,
     pub foundations: Foundations,

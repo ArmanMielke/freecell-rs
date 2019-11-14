@@ -13,14 +13,14 @@ mod tests;
 
 
 use state_graph::StateGraph;
-use freecell::Move;
+use freecell::{GameState, Move};
 
-use std::path::Path;
 
 
 fn main() {
     let file_name = "TODO"; // TODO take file name from input
-    let solution = solve(file_name);
+    let initial_state = game_state_parser::parse_file(file_name).unwrap();
+    let solution = solve(initial_state);
     match solution {
         Some(moves) => moves.iter().for_each(
             |game_move| print!("{}", game_move)
@@ -29,8 +29,7 @@ fn main() {
     };
 }
 
-fn solve<P: AsRef<Path>>(file_name: P) -> Option<Vec<Move>> {
-    let initial_state = game_state_parser::parse_file(file_name).unwrap();
+fn solve(initial_state: GameState) -> Option<Vec<Move>> {
     let mut state_graph = StateGraph::new(initial_state);
     state_graph.dijkstra()
 }
