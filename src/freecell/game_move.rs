@@ -1,11 +1,14 @@
 use super::Card;
 use super::position::Position;
 
-use std::fmt::{Display, Debug, Formatter, Result};
+use std::fmt::{Display, Formatter, Result};
+#[cfg(test)]
+use std::fmt::Debug;
 
 
 
-#[derive(PartialEq, Clone)]
+#[derive(Clone)]
+#[cfg_attr(test, derive(PartialEq))]
 pub struct Move {
     pub card: Card,
     pub from: Position,

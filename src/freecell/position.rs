@@ -2,7 +2,8 @@ use std::fmt::{Display, Formatter, Result};
 
 
 
-#[derive(PartialEq, Clone)]
+#[derive(Clone)]
+#[cfg_attr(test, derive(PartialEq))]
 pub enum Position {
     Cascade(usize),
     Foundations,
