@@ -125,7 +125,7 @@ fn test_illegal_move() {
         },
         Move{
             card: Card { suit: Heart, value: KING },
-            from: Position::Cascade(1), // the card is actually in cascade 7
+            from: Position::Cascade(0), // the card is actually in cascade 8 (index 7)
             to: Position::Foundations,
         },
     ];

@@ -14,7 +14,7 @@ pub enum Position {
 impl Display for Position {
     fn fmt(&self, f: &mut Formatter) -> Result {
         match self {
-            Position::Cascade(pos) => write!(f, "Cascade {}", pos),
+            Position::Cascade(pos) => write!(f, "Cascade {}", pos + 1),
             Position::Foundations => write!(f, "the Foundations"),
             Position::Freecells => write!(f, "the Freecells"),
         }
