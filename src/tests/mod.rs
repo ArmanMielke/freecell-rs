@@ -1,2 +1,2 @@
-mod test_hard_solved_to_q;
+mod test_solve;
 mod check_solution;
