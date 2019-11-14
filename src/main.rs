@@ -19,6 +19,7 @@ use std::env;
 
 
 
+// TODO test main()
 fn main() {
     // TODO handle Ctrl+C: https://rust-lang-nursery.github.io/cli-wg/in-depth/signals.html (not sure whether this is necessary)
 
@@ -31,8 +32,6 @@ fn main() {
     let input_file_name = args.into_iter().nth(1).unwrap();
 
     // parse input file
-    // TODO print the problem instead of this message
-    println!("Reading problem from file \"{}\"", input_file_name);
     let initial_state = match game_state_parser::parse_file(input_file_name) {
         Ok(game_state) => game_state,
         Err(msg) => {
@@ -40,6 +39,8 @@ fn main() {
             return;
         },
     };
+    println!("{}", initial_state);
+    println!();
 
     // solve problem
     let solution = solve(initial_state);
