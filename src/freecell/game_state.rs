@@ -1,4 +1,4 @@
-use super::{Card, CardCollection, Cascades, Foundations, Freecells, Move};
+use super::{CardCollection, Cascades, Foundations, Freecells, Move};
 use super::position::Position;
 
 use std::collections::hash_map::DefaultHasher;
@@ -171,17 +171,17 @@ impl Display for GameState {
                 format!("Up to {}", foundation.last().unwrap().to_string())
             }
         ).collect();
-        writeln!(f, "Foundations: {}", foundation_strings.join(", "));
-        writeln!(f);
+        writeln!(f, "Foundations: {}", foundation_strings.join(", "))?;
+        writeln!(f)?;
 
         // cascades
         for (i, cascade) in self.cascades.iter().enumerate() {
             let cascade_cards: Vec<String> = cascade.iter().map(
                 |card| card.to_string()
             ).collect();
-            writeln!(f, "Cascade {}: {}", i + 1, cascade_cards.join(", "));
+            writeln!(f, "Cascade {}: {}", i + 1, cascade_cards.join(", "))?;
         }
-        writeln!(f);
+        writeln!(f)?;
 
         // freecells
         let freecell_cards: Vec<String> = self.freecells.iter().map(
