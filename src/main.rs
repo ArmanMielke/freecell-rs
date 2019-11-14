@@ -21,6 +21,8 @@ fn main() {
     let file_name = "TODO"; // TODO take file name from input
     let initial_state = game_state_parser::parse_file(file_name).unwrap();
     let solution = solve(initial_state);
+
+    // print solution
     match solution {
         Some(moves) => moves.iter().for_each(
             |game_move| print!("{}", game_move)

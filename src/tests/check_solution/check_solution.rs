@@ -2,6 +2,8 @@ use freecell::{GameState, Move};
 
 
 
+/// Checks whether the solution has the correct length and whether it's a valid sequence of moves
+/// that leads from the initial state to the solved state.
 pub fn check_solution(solution: Vec<Move>, initial_state: GameState, correct_length: usize) {
     check_solution_length(&solution, correct_length);
     check_solution_correctness(solution, initial_state)
