@@ -18,7 +18,6 @@ pub struct StateGraph {
 }
 
 
-// TODO replace uses of GameStateIds with references to Nodes as much as possible
 impl StateGraph {
 
     pub fn new(initial_state: GameState) -> StateGraph {
@@ -66,7 +65,7 @@ impl StateGraph {
             for (_, neighbour_id) in node.get_edges(self).iter() {
                 let neighbours_current_distance = priority_queue.get_priority(neighbour_id);
                 let distance_via_current_node = Reverse(distance.0 + 1);
-                if neighbours_current_distance.is_none() || neighbours_current_distance.unwrap() > &distance_via_current_node {
+                if neighbours_current_distance.is_none() || neighbours_current_distance.unwrap() < &distance_via_current_node {
                     priority_queue.push(*neighbour_id, distance_via_current_node);
                     predecessors.insert(*neighbour_id, game_state_id);
                 }
