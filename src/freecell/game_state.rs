@@ -7,7 +7,6 @@ use std::fmt::{Display, Formatter, Result};
 
 
 
-// TODO choose something reasonable
 pub type GameStateId = u64;
 
 
@@ -21,8 +20,8 @@ pub struct GameState {
 
 impl GameState {
 
-    // TODO possible optimisation: if there are multiple empty cascades, only allow to move to one
-    // of them
+    // TODO possible optimisation: if there are multiple empty cascades, only allow to move to one of them
+    // TODO deduplicate code
     pub fn get_legal_moves(&self) -> Vec<(GameState, Move)> {
         // This is a temporary implementation.
         // My attempts to implement this nicely have been thwarted by rust's rules for creating

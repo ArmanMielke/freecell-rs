@@ -6,7 +6,6 @@ pub fn assert_eq_ignore_order<T: PartialEq + Debug>(actual: Vec<T>, expected: Ve
     let expected_len = expected.len();
 
     for e in expected {
-        // TODO game states that only differ in the order of freecell cards should be treated as identical
         if !actual.contains(&e) {
             panic!("actual does not contain {:?}", e)
         }
