@@ -5,7 +5,8 @@ use super::card::{ACE, Suit};
 
 
 
-/// May only contain cards of one suit, ordered from Ace upwards (TODO: enforce this).
+/// May only contain cards of one suit, ordered from Ace upwards.
+// TODO does this need to be public?
 pub type Foundation = Vec<Card>;
 
 /// The position of the Foundation in the array determines which suit it holds.
@@ -13,7 +14,10 @@ pub type Foundation = Vec<Card>;
 pub type Foundations = [Foundation; 4];
 
 
+// TODO Use the trait everywhere where the type Foundations is used. Rename the trait to Foundations and rename the type to something else.
+// TODO This includes implementing CardCollection for the Foundations trait. See https://stackoverflow.com/questions/31082179/is-there-a-way-to-implement-a-trait-on-top-of-another-trait
 pub trait FoundationsTrait {
+    // TODO rename to foundation()
     fn get_foundation(&self, suit: Suit) -> &Foundation;
 }
 

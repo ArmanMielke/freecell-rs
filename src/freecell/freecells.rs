@@ -8,7 +8,6 @@ use arrayvec::ArrayVec;
 pub type Freecells = ArrayVec<[Card; 4]>;
 
 
-// TODO the order of the cards shouldn't matter, e.g. {QH, TC, 9D} and {9D, QH, TC} should be equivalent. Possible solutions: Use set-like data structure or always sort array
 impl CardCollection for Freecells {
 
     fn add_card(&self, card: Card) -> Result<Self, ()> {

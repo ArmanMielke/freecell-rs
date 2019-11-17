@@ -8,7 +8,7 @@ use super::card::ACE;
 
 
 /// A stack of arbitrary cards.
-/// May only be used as a queue (TODO: enforce this).
+/// May only be used as a stack (TODO: enforce this).
 pub type Cascade = Vec<Card>;
 
 

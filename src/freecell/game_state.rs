@@ -6,6 +6,7 @@ use std::hash::{Hash, Hasher};
 use std::fmt::{Display, Formatter, Result};
 
 
+// TODO split into separate files
 
 pub type GameStateId = u64;
 
@@ -22,6 +23,7 @@ impl GameState {
 
     // TODO possible optimisation: if there are multiple empty cascades, only allow to move to one of them
     // TODO deduplicate code
+    // TODO rename to legal_moves() to adhere to https://rust-lang.github.io/api-guidelines/naming.html#c-getter
     pub fn get_legal_moves(&self) -> Vec<(GameState, Move)> {
         // This is a temporary implementation.
         // My attempts to implement this nicely have been thwarted by rust's rules for creating
@@ -151,6 +153,7 @@ impl GameState {
         self.foundations[3].len() == 13
     }
 
+    // TODO rename to id()
     pub fn generate_id(&self) -> GameStateId {
         let mut hasher = DefaultHasher::new();
         self.hash(&mut hasher);
@@ -189,3 +192,7 @@ impl Display for GameState {
         writeln!(f, "Freecells: {}", freecell_cards.join(", "))
     }
 }
+
+
+// TODO implement Debug. It should output in the same format that game_state_parser uses.
+// TODO implement Eq. Order of cascades and order of cards in freecells should not matter.
