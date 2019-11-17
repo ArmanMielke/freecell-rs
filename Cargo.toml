@@ -1,7 +1,23 @@
 [package]
-name = "freecell-rust"
+name = "freecell"
 version = "0.1.0"
 authors = ["- <@>"]
+# description = "TODO"
+# documentation = "TODO link"
+# repository = "TODO link"
+readme = "README.md"
+# keywords = ["TODO1", "TODO2"]
+# categories = ["TODO1", "TODO2"]
+# license = "TODO"
+# edition = '2018'  # TODO uncomment this line
+# TODO there might be more that needs to go here
+
+[[bin]]
+name = "freecell"
+test = false
+
+[lib]
+doctest = false
 
 [dependencies]
 arrayvec = "0.4.7"
