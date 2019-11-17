@@ -1,6 +1,3 @@
-extern crate freecell;
-
-
 use freecell::solve;
 use freecell::game_state_parser;
 

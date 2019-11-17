@@ -1,4 +1,4 @@
-use freecell::{GameState, Move};
+use crate::freecell::{GameState, Move};
 
 
 

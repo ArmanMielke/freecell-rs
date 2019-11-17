@@ -1,4 +1,4 @@
-use game_state_parser::parse_file;
+use crate::game_state_parser::parse_file;
 use super::utils::assert_eq_ignore_order;
 use super::super::super::Move;
 use super::super::super::card::*;

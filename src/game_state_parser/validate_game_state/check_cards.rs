@@ -1,5 +1,5 @@
-use freecell::{Card, GameState};
-use freecell::card::Suit::*;
+use crate::freecell::{Card, GameState};
+use crate::freecell::card::Suit::*;
 
 
 

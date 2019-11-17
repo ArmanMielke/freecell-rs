@@ -1,4 +1,4 @@
-use freecell::{Cascade, Cascades};
+use crate::freecell::{Cascade, Cascades};
 use super::error_messages::ERR_TOO_MANY_CASCADES;
 
 

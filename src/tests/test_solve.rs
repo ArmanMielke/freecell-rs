@@ -1,5 +1,5 @@
-use game_state_parser::parse_file;
-use solve;
+use crate::game_state_parser::parse_file;
+use crate::solve;
 use super::check_solution::check_solution;
 
 use std::path::Path;

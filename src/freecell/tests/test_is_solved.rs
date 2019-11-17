@@ -1,4 +1,4 @@
-use game_state_parser::parse_file;
+use crate::game_state_parser::parse_file;
 
 
 

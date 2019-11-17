@@ -1,6 +1,6 @@
-use freecell::GameState;
-use freecell::card::*;
-use freecell::card::Suit::*;
+use crate::freecell::GameState;
+use crate::freecell::card::*;
+use crate::freecell::card::Suit::*;
 use super::super::parse_file;
 
 use arrayvec::ArrayVec;

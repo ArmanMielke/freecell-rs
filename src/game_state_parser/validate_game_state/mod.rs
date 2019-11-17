@@ -2,7 +2,7 @@ mod check_cards;
 mod check_foundations;
 
 
-use freecell::GameState;
+use crate::freecell::GameState;
 
 
 

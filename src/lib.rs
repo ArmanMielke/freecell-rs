@@ -1,6 +1,4 @@
-// TODO there is some way to get rid of the extern crate declarations in rust 2018 edition
-extern crate arrayvec;
-extern crate priority_queue; // TODO: see https://github.com/garro95/priority-queue for tips on speeding it up
+// TODO: see https://github.com/garro95/priority-queue for tips on speeding the priority-queue up
 
 
 pub mod game_state_parser;
@@ -13,8 +11,8 @@ mod tests;
 
 
 
-use state_graph::StateGraph;
-use freecell::{GameState, Move};
+use crate::state_graph::StateGraph;
+use crate::freecell::{GameState, Move};
 
 
 

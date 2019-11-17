@@ -1,4 +1,4 @@
-use freecell::{Move, GameState, GameStateId};
+use crate::freecell::{Move, GameState, GameStateId};
 use super::StateGraph;
 
 

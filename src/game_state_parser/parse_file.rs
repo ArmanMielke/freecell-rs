@@ -1,4 +1,4 @@
-use freecell::{Card, Cascade, Foundations, FoundationsTrait, Freecells, GameState};
+use crate::freecell::{Card, Cascade, Foundations, FoundationsTrait, Freecells, GameState};
 use super::conversions_to_array::*;
 use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS, ERR_TOO_MANY_FREECELLS};
 use super::parse_card::parse_card;

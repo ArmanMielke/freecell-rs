@@ -1,5 +1,5 @@
-use freecell::card::*;
-use freecell::card::Suit::*;
+use crate::freecell::card::*;
+use crate::freecell::card::Suit::*;
 
 
 ///

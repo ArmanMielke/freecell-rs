@@ -1,6 +1,6 @@
-use freecell::{Foundation, FoundationsTrait, GameState};
-use freecell::card::Suit;
-use freecell::card::Suit::*;
+use crate::freecell::{Foundation, FoundationsTrait, GameState};
+use crate::freecell::card::Suit;
+use crate::freecell::card::Suit::*;
 
 
 
