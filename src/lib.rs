@@ -10,10 +10,10 @@ mod state_graph;
 mod tests;
 
 
-// TODO expose contents of the freecell module
+pub use crate::freecell::*;
 
 
-use crate::freecell::{GameState, Move};
+
 use crate::state_graph::StateGraph;
 
 
