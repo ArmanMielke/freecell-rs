@@ -1,8 +1,8 @@
 use crate::game_state_parser;
-use super::super::super::card::{Card, KING};
-use super::super::super::card::Suit::Club;
-use super::super::super::Move;
-use super::super::super::position::Position;
+use super::super::super::super::card::{Card, KING};
+use super::super::super::super::card::Suit::Club;
+use super::super::super::super::Move;
+use super::super::super::super::position::Position;
 use super::utils;
 
 
