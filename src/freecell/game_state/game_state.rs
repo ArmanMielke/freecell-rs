@@ -24,8 +24,7 @@ impl GameState {
         self.foundations[3].len() == 13
     }
 
-    // TODO rename to id()
-    pub fn generate_id(&self) -> GameStateId {
+    pub fn id(&self) -> GameStateId {
         let mut hasher = DefaultHasher::new();
         self.hash(&mut hasher);
         hasher.finish()
