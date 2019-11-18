@@ -15,7 +15,6 @@ pub use self::foundation::{Foundation, Foundations, FoundationsTrait};
 pub use self::freecells::Freecells;
 pub use self::game_move::Move;
 pub use self::game_state::{GameState, GameStateId};
-#[cfg(test)]
 pub use self::position::Position;
 
 #[cfg(test)]

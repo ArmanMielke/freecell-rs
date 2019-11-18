@@ -1,7 +1,6 @@
 use std::fmt::{Debug, Display, Formatter, Result};
 
-use super::Card;
-use super::position::Position;
+use super::{Card, Position};
 
 
 

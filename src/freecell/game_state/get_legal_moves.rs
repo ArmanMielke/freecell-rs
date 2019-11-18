@@ -1,5 +1,4 @@
-use super::super::{CardCollection, Move};
-use super::super::position::Position;
+use super::super::{CardCollection, Move, Position};
 use super::GameState;
 
 
