@@ -8,7 +8,7 @@ use super::super::{Cascades, Foundations, Freecells};
 pub type GameStateId = u64;
 
 
-#[derive(Clone, Debug, Eq, PartialEq, Hash)]
+#[derive(Clone, Eq, PartialEq, Hash)]
 pub struct GameState {
     pub cascades: Cascades,
     pub foundations: Foundations,
