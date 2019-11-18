@@ -19,8 +19,6 @@ A Freecell solver written in Rust
 
 Some relevant items include:
 
-- Types eagerly implement common traits
-    - https://rust-lang.github.io/api-guidelines/interoperability.html#c-common-traits
 - Data structures implement Serde's Serialize, Deserialize
     - https://rust-lang.github.io/api-guidelines/interoperability.html#c-serde
     - GameState is probably a data structure

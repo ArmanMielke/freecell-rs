@@ -11,8 +11,7 @@ use super::position::Position;
 pub type GameStateId = u64;
 
 
-#[derive(Hash)]
-#[cfg_attr(test, derive(Clone, Debug, PartialEq))]
+#[derive(Clone, Debug, Eq, PartialEq, Hash)]
 pub struct GameState {
     pub cascades: Cascades,
     pub foundations: Foundations,

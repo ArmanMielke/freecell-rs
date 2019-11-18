@@ -2,8 +2,7 @@ use std::fmt::{Display, Formatter, Result};
 
 
 
-#[derive(PartialEq, Copy, Clone, Hash)]
-#[cfg_attr(test, derive(Debug))]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
 pub enum Suit {
     Club = 0,
     Spade = 1,
@@ -37,7 +36,17 @@ impl Display for Suit {
 }
 
 
-#[derive(PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
 pub enum Colour {
     Black, Red
+}
+
+
+impl Display for Colour {
+    fn fmt(&self, f: &mut Formatter) -> Result {
+        match self {
+            Colour::Black => write!(f, "black"),
+            Colour::Red => write!(f, "red"),
+        }
+    }
 }

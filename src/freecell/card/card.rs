@@ -1,15 +1,11 @@
-use std::fmt::{Display, Formatter, Result};
-#[cfg(test)]
-use std::fmt::Debug;
+use std::fmt::{Debug, Display, Formatter, Result};
 
 use super::{Rank, Suit, ACE, JACK, KING, QUEEN};
-#[cfg(test)]
 use super::Suit::{Club, Diamond, Heart, Spade};
 
 
 
-#[derive(Copy, Clone, Hash)]
-#[cfg_attr(test, derive(PartialEq))]
+#[derive(Clone, Copy, Eq, PartialEq, Hash)]
 pub struct Card {
     pub suit: Suit,
     pub value: Rank,
@@ -29,7 +25,6 @@ impl Display for Card {
     }
 }
 
-#[cfg(test)]
 impl Debug for Card {
     fn fmt(&self, f: &mut Formatter) -> Result {
         let value_string = match self.value {

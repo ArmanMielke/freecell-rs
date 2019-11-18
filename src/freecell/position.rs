@@ -2,8 +2,9 @@ use std::fmt::{Display, Formatter, Result};
 
 
 
-#[derive(Clone)]
-#[cfg_attr(test, derive(PartialEq))]
+/// Indicates the position of a card.
+/// The cascades are numbered from 0 to 7.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
 pub enum Position {
     Cascade(usize),
     Foundations,

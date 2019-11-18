@@ -1,14 +1,12 @@
-use std::fmt::{Display, Formatter, Result};
-#[cfg(test)]
-use std::fmt::Debug;
+use std::fmt::{Debug, Display, Formatter, Result};
 
 use super::Card;
 use super::position::Position;
 
 
 
-#[derive(Clone)]
-#[cfg_attr(test, derive(PartialEq))]
+/// Represents one step in the game, where a card is moved from one position to another.
+#[derive(Clone, Eq, PartialEq, Hash)]
 pub struct Move {
     pub card: Card,
     pub from: Position,
@@ -23,7 +21,6 @@ impl Display for Move {
 }
 
 
-#[cfg(test)]
 impl Debug for Move {
     fn fmt(&self, f: &mut Formatter) -> Result {
         write!(f, "Move {:?} from {} to {}", self.card, self.from, self.to)
