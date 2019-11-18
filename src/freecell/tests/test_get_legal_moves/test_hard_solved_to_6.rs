@@ -1,19 +1,19 @@
-use crate::game_state_parser::parse_file;
-use super::utils::assert_eq_ignore_order;
+use crate::game_state_parser;
+use super::super::super::card::{Card, JACK, KING, QUEEN};
+use super::super::super::card::Suit::{Club, Diamond, Heart, Spade};
 use super::super::super::Move;
-use super::super::super::card::*;
-use super::super::super::card::Suit::*;
 use super::super::super::position::Position;
+use super::utils;
 
 
 
 #[test]
 fn test_hard_solved_to_6() {
-    let game_state = parse_file("test-inputs/hard-solved-to-6.txt").unwrap();
+    let game_state = game_state_parser::parse_file("test-inputs/hard-solved-to-6.txt").unwrap();
     let actual = game_state.get_legal_moves();
     let expected = vec![
         (
-            parse_file("test-inputs/move-results/hard-solved-to-6/8s-from-cascade6-to-freecells.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/hard-solved-to-6/8s-from-cascade6-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Spade, value: 8 },
                 from: Position::Cascade(6),
@@ -21,7 +21,7 @@ fn test_hard_solved_to_6() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/hard-solved-to-6/9s-from-cascade3-to-cascade0.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/hard-solved-to-6/9s-from-cascade3-to-cascade0.txt").unwrap(),
             Move {
                 card: Card { suit: Spade, value: 9 },
                 from: Position::Cascade(3),
@@ -29,7 +29,7 @@ fn test_hard_solved_to_6() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/hard-solved-to-6/9s-from-cascade3-to-freecells.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/hard-solved-to-6/9s-from-cascade3-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Spade, value: 9 },
                 from: Position::Cascade(3),
@@ -37,7 +37,7 @@ fn test_hard_solved_to_6() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/hard-solved-to-6/jc-from-cascade1-to-cascade5.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/hard-solved-to-6/jc-from-cascade1-to-cascade5.txt").unwrap(),
             Move {
                 card: Card { suit: Club, value: JACK },
                 from: Position::Cascade(1),
@@ -45,7 +45,7 @@ fn test_hard_solved_to_6() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/hard-solved-to-6/jc-from-cascade1-to-freecells.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/hard-solved-to-6/jc-from-cascade1-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Club, value: JACK },
                 from: Position::Cascade(1),
@@ -53,7 +53,7 @@ fn test_hard_solved_to_6() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/hard-solved-to-6/jd-from-cascade4-to-freecells.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/hard-solved-to-6/jd-from-cascade4-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Diamond, value: JACK },
                 from: Position::Cascade(4),
@@ -61,7 +61,7 @@ fn test_hard_solved_to_6() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/hard-solved-to-6/kc-from-cascade2-to-freecells.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/hard-solved-to-6/kc-from-cascade2-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Club, value: KING },
                 from: Position::Cascade(2),
@@ -69,7 +69,7 @@ fn test_hard_solved_to_6() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/hard-solved-to-6/kh-from-cascade7-to-freecells.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/hard-solved-to-6/kh-from-cascade7-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Heart, value: KING },
                 from: Position::Cascade(7),
@@ -77,7 +77,7 @@ fn test_hard_solved_to_6() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/hard-solved-to-6/qd-from-cascade5-to-cascade2.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/hard-solved-to-6/qd-from-cascade5-to-cascade2.txt").unwrap(),
             Move {
                 card: Card { suit: Diamond, value: QUEEN },
                 from: Position::Cascade(5),
@@ -85,7 +85,7 @@ fn test_hard_solved_to_6() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/hard-solved-to-6/qd-from-cascade5-to-freecells.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/hard-solved-to-6/qd-from-cascade5-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Diamond, value: QUEEN },
                 from: Position::Cascade(5),
@@ -93,7 +93,7 @@ fn test_hard_solved_to_6() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/hard-solved-to-6/th-from-cascade0-to-cascade1.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/hard-solved-to-6/th-from-cascade0-to-cascade1.txt").unwrap(),
             Move {
                 card: Card { suit: Heart, value: 10 },
                 from: Position::Cascade(0),
@@ -101,7 +101,7 @@ fn test_hard_solved_to_6() {
             }
         ),
         (
-            parse_file("test-inputs/move-results/hard-solved-to-6/th-from-cascade0-to-freecells.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/hard-solved-to-6/th-from-cascade0-to-freecells.txt").unwrap(),
             Move {
                 card: Card { suit: Heart, value: 10 },
                 from: Position::Cascade(0),
@@ -110,5 +110,5 @@ fn test_hard_solved_to_6() {
         ),
     ];
 
-    assert_eq_ignore_order(actual, expected);
+    utils::assert_eq_ignore_order(actual, expected);
 }

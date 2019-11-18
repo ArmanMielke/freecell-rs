@@ -1,15 +1,15 @@
-use crate::freecell::{Card, Cascade, Foundations, FoundationsTrait, Freecells, GameState};
-use super::conversions_to_array::*;
-use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS, ERR_TOO_MANY_FREECELLS};
-use super::parse_card::parse_card;
-use super::validate_game_state::validate_game_state;
+use arrayvec::ArrayVec;
 
-use std::path::Path;
 use std::fs::File;
 use std::io::{BufReader, BufRead, Lines};
+use std::path::Path;
 use std::str::SplitWhitespace;
 
-use arrayvec::ArrayVec;
+use super::conversions_to_array;
+use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS, ERR_TOO_MANY_FREECELLS};
+use crate::freecell::{Card, Cascade, Foundations, FoundationsTrait, Freecells, GameState};
+use super::parse_card::parse_card;
+use super::validate_game_state::validate_game_state;
 
 
 
@@ -57,7 +57,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
 
 
     let game_state = GameState {
-        cascades: cascades_vec_to_array(cascades)?,
+        cascades: conversions_to_array::cascades_vec_to_array(cascades)?,
         foundations,
         freecells,
     };

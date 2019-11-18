@@ -1,6 +1,5 @@
 use crate::freecell::Card;
 use crate::freecell::card::Suit::{Club, Spade};
-
 use super::super::parse_file;
 use super::super::error_messages::ERR_TOO_MANY_CASCADES;
 

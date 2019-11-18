@@ -1,6 +1,6 @@
-use super::Card;
-
 use std::marker::Sized;
+
+use super::Card;
 
 
 

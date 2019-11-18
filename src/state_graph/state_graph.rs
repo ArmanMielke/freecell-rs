@@ -1,9 +1,11 @@
-use crate::freecell::{Move, GameState, GameStateId};
-use super::node::Node;
+use priority_queue::PriorityQueue;
 
 use std::cmp::Reverse;
 use std::collections::{HashMap, HashSet};
-use priority_queue::PriorityQueue;
+
+use crate::freecell::{Move, GameState, GameStateId};
+use super::node::Node;
+
 
 
 type Distance = Reverse<i32>;

@@ -43,8 +43,6 @@ Some relevant items include:
 ### Style Guide
 
 - [**Imports**](https://doc.rust-lang.org/1.0.0/style/style/imports.html)
-    - Order of imports: external imports before local ones
-    - Avoid importing with *
     - Prefer fully importing types/traits while module-qualifying functions
 - [Notes on doc comments](https://doc.rust-lang.org/1.0.0/style/style/comments.html#doc-comments)
 - [Apparently there should be at most 99 characters in each line](https://doc.rust-lang.org/1.0.0/style/style/whitespace.html)

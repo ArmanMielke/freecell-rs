@@ -1,5 +1,4 @@
-use super::CardCollection;
-use super::Card;
+use super::{Card, CardCollection};
 use super::card::ACE;
 
 

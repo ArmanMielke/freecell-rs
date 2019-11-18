@@ -1,9 +1,9 @@
+use std::collections::hash_map::DefaultHasher;
+use std::fmt::{Display, Formatter, Result};
+use std::hash::{Hash, Hasher};
+
 use super::{CardCollection, Cascades, Foundations, Freecells, Move};
 use super::position::Position;
-
-use std::collections::hash_map::DefaultHasher;
-use std::hash::{Hash, Hasher};
-use std::fmt::{Display, Formatter, Result};
 
 
 // TODO split into separate files

@@ -1,13 +1,13 @@
-use crate::game_state_parser::parse_file;
-use crate::solve;
-use super::check_solution::check_solution;
-
 use std::path::Path;
+
+use crate::solve;
+use crate::game_state_parser;
+use super::check_solution::check_solution;
 
 
 
 fn solve_and_check_file<P: AsRef<Path>>(file_name: P, correct_length: usize) {
-    let initial_state = parse_file(file_name).unwrap();
+    let initial_state = game_state_parser::parse_file(file_name).unwrap();
     let solution = solve(initial_state.clone()).unwrap();
     check_solution(solution, initial_state, correct_length);
 }

@@ -1,6 +1,6 @@
-use super::{Card, CardCollection};
-
 use arrayvec::ArrayVec;
+
+use super::{Card, CardCollection};
 
 
 

@@ -1,10 +1,10 @@
-use super::{Rank, Suit, ACE, JACK, KING, QUEEN};
-#[cfg(test)]
-use super::Suit::*;
-
 use std::fmt::{Display, Formatter, Result};
 #[cfg(test)]
 use std::fmt::Debug;
+
+use super::{Rank, Suit, ACE, JACK, KING, QUEEN};
+#[cfg(test)]
+use super::Suit::{Club, Diamond, Heart, Spade};
 
 
 

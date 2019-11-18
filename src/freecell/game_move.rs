@@ -1,9 +1,9 @@
-use super::Card;
-use super::position::Position;
-
 use std::fmt::{Display, Formatter, Result};
 #[cfg(test)]
 use std::fmt::Debug;
+
+use super::Card;
+use super::position::Position;
 
 
 

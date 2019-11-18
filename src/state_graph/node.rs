@@ -2,6 +2,7 @@ use crate::freecell::{Move, GameState, GameStateId};
 use super::StateGraph;
 
 
+
 pub struct Node {
     pub id: GameStateId, // TODO this can be mutable, but shouldn't (use getter or something like that) is this field even necessary?
     game_state: GameState,

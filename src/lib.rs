@@ -11,8 +11,8 @@ mod tests;
 
 
 
-use crate::state_graph::StateGraph;
 use crate::freecell::{GameState, Move};
+use crate::state_graph::StateGraph;
 
 
 

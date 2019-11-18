@@ -1,5 +1,5 @@
 use super::{Card, CardCollection};
-use super::card::{ACE, Suit};
+use super::card::{Suit, ACE};
 
 //const FOUNDATION_MAX_SIZE: usize = 13;
 

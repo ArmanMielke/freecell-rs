@@ -1,6 +1,6 @@
 use crate::freecell::{Card, Move, Position};
 use crate::freecell::card::KING;
-use crate::freecell::card::Suit::*;
+use crate::freecell::card::Suit::{Club, Diamond, Heart, Spade};
 use crate::game_state_parser::parse_file;
 use super::check_solution;
 

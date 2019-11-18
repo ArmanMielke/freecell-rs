@@ -1,9 +1,9 @@
-use crate::freecell::GameState;
-use crate::freecell::card::*;
-use crate::freecell::card::Suit::*;
-use super::super::parse_file;
-
 use arrayvec::ArrayVec;
+
+use crate::freecell::GameState;
+use crate::freecell::card::{Card, ACE, JACK, KING, QUEEN};
+use crate::freecell::card::Suit::{Club, Diamond, Heart, Spade};
+use super::super::parse_file;
 
 
 
