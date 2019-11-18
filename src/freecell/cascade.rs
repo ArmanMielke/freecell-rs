@@ -7,7 +7,15 @@ use super::card::ACE;
 
 
 /// A stack of arbitrary cards.
-/// May only be used as a stack (TODO: enforce this).
+///
+/// ## Rules
+///
+/// Adding cards:
+/// A card can be put on a cascade iff its value is 1 lower than the top card of the cascade and it
+/// has a different colour than the top card of the cascade.
+///
+/// Removing cards:
+/// Only the top card of the cascade can be removed.
 pub type Cascade = Vec<Card>;
 
 

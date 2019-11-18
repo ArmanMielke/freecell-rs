@@ -20,6 +20,9 @@ const CASCADE: &str = "cascade:";
 const FREECELLS: &str = "freecells:";
 
 
+// TODO add fn parse_string, similar to parse_file but takes the contents directly as string
+
+
 // TODO add documentation (use the template explanation in doc/)
 pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
     let lines = read_file_as_lines(file_name)?;
