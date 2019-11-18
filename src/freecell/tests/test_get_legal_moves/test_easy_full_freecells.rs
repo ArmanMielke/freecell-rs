@@ -11,7 +11,7 @@ use super::utils;
 #[test]
 fn test_easy_full_freecells() {
     let game_state = game_state_parser::parse_file("test-inputs/easy-full-freecells.txt").unwrap();
-    let actual = game_state.get_legal_moves();
+    let actual = game_state.legal_moves();
     let expected = vec![
         (
             game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/6h-from-freecells-to-cascade1.txt").unwrap(),

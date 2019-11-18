@@ -29,7 +29,7 @@ impl Node {
             self.expanded = true;
 
             // expand node, i.e. generate edges and add neighbours to the graph
-            let moves = self.game_state.get_legal_moves();
+            let moves = self.game_state.legal_moves();
             for (game_state, game_move) in moves {
                 let id = game_state.generate_id();
                 graph.add_node(game_state);

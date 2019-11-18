@@ -10,7 +10,7 @@ use super::utils;
 #[test]
 fn test_one_card_left() {
     let game_state = game_state_parser::parse_file("test-inputs/one-card-left.txt").unwrap();
-    let actual = game_state.get_legal_moves();
+    let actual = game_state.legal_moves();
     let expected = vec![
         (
             game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-cascade0.txt").unwrap(),

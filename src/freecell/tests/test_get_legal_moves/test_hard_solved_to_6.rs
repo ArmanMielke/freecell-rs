@@ -10,7 +10,7 @@ use super::utils;
 #[test]
 fn test_hard_solved_to_6() {
     let game_state = game_state_parser::parse_file("test-inputs/hard-solved-to-6.txt").unwrap();
-    let actual = game_state.get_legal_moves();
+    let actual = game_state.legal_moves();
     let expected = vec![
         (
             game_state_parser::parse_file("test-inputs/move-results/hard-solved-to-6/8s-from-cascade6-to-freecells.txt").unwrap(),

@@ -23,7 +23,7 @@ fn check_solution_correctness(solution: Vec<Move>, initial_state: GameState) {
     for (move_number, solution_move) in solution.iter().enumerate() {
         let mut next_state = None;
 
-        for (resulting_state, legal_move) in current_state.get_legal_moves() {
+        for (resulting_state, legal_move) in current_state.legal_moves() {
             if solution_move.eq(&legal_move) {
                 next_state = Some(resulting_state);
                 break;
