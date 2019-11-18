@@ -7,7 +7,6 @@ A Freecell solver written in Rust
 
 ## TODO
 
-- split project into lib and bin
 - measure and visualize performance
     - https://bheisler.github.io/criterion.rs/book/criterion_rs.html
     - https://github.com/ferrous-systems/flamegraph

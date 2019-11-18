@@ -1,22 +1,8 @@
-use std::collections::hash_map::DefaultHasher;
-use std::fmt::{Display, Formatter, Result};
-use std::hash::{Hash, Hasher};
-
-use super::{CardCollection, Cascades, Foundations, Freecells, Move};
-use super::position::Position;
+use super::super::{CardCollection, Move};
+use super::super::position::Position;
+use super::GameState;
 
 
-// TODO split into separate files
-
-pub type GameStateId = u64;
-
-
-#[derive(Clone, Debug, Eq, PartialEq, Hash)]
-pub struct GameState {
-    pub cascades: Cascades,
-    pub foundations: Foundations,
-    pub freecells: Freecells,
-}
 
 impl GameState {
 
@@ -145,53 +131,4 @@ impl GameState {
         legal_moves
     }
 
-    pub fn is_solved(&self) -> bool {
-        self.foundations[0].len() == 13 &&
-        self.foundations[1].len() == 13 &&
-        self.foundations[2].len() == 13 &&
-        self.foundations[3].len() == 13
-    }
-
-    // TODO rename to id()
-    pub fn generate_id(&self) -> GameStateId {
-        let mut hasher = DefaultHasher::new();
-        self.hash(&mut hasher);
-        hasher.finish()
-    }
 }
-
-
-impl Display for GameState {
-    fn fmt(&self, f: &mut Formatter) -> Result {
-        // foundations
-        let foundation_strings: Vec<String> = self.foundations.iter().map(
-            |foundation|
-            if foundation.is_empty() {
-                "Empty".to_string()
-            } else {
-                format!("Up to {}", foundation.last().unwrap().to_string())
-            }
-        ).collect();
-        writeln!(f, "Foundations: {}", foundation_strings.join(", "))?;
-        writeln!(f)?;
-
-        // cascades
-        for (i, cascade) in self.cascades.iter().enumerate() {
-            let cascade_cards: Vec<String> = cascade.iter().map(
-                |card| card.to_string()
-            ).collect();
-            writeln!(f, "Cascade {}: {}", i + 1, cascade_cards.join(", "))?;
-        }
-        writeln!(f)?;
-
-        // freecells
-        let freecell_cards: Vec<String> = self.freecells.iter().map(
-            |card| card.to_string()
-        ).collect();
-        writeln!(f, "Freecells: {}", freecell_cards.join(", "))
-    }
-}
-
-
-// TODO implement Debug. It should output in the same format that game_state_parser uses.
-// TODO implement Eq. Order of cascades and order of cards in freecells should not matter.
