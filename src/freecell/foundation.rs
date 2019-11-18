@@ -1,8 +1,8 @@
-use super::{Card, CardCollection};
-use super::card::{Suit, ACE};
+use super::{Card, CardCollection, Suit, ACE};
+
+
 
 //const FOUNDATION_MAX_SIZE: usize = 13;
-
 
 
 /// May only contain cards of one suit, ordered from Ace upwards.

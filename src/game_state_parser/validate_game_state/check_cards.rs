@@ -1,5 +1,5 @@
 use crate::freecell::{Card, GameState};
-use crate::freecell::card::Suit::{Club, Diamond, Heart, Spade};
+use crate::freecell::Suit::{Club, Diamond, Heart, Spade};
 
 
 

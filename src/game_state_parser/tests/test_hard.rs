@@ -1,8 +1,7 @@
 use arrayvec::ArrayVec;
 
-use crate::freecell::GameState;
-use crate::freecell::card::{Card, ACE, JACK, KING, QUEEN};
-use crate::freecell::card::Suit::{Club, Diamond, Heart, Spade};
+use crate::freecell::{Card, GameState, ACE, JACK, KING, QUEEN};
+use crate::freecell::Suit::{Club, Diamond, Heart, Spade};
 use super::super::parse_file;
 
 

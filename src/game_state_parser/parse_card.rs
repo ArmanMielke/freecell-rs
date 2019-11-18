@@ -1,6 +1,5 @@
-use crate::freecell::card::{Card, Rank, ACE, JACK, KING, QUEEN};
-use crate::freecell::card::Suit;
-use crate::freecell::card::Suit::{Club, Diamond, Heart, Spade};
+use crate::freecell::{Card, Rank, Suit, ACE, JACK, KING, QUEEN};
+use crate::freecell::Suit::{Club, Diamond, Heart, Spade};
 
 
 

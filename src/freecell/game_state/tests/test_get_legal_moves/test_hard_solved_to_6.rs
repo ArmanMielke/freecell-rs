@@ -1,7 +1,6 @@
 use crate::game_state_parser;
-use super::super::super::super::card::{Card, JACK, KING, QUEEN};
-use super::super::super::super::card::Suit::{Club, Diamond, Heart, Spade};
-use super::super::super::super::{Move, Position};
+use super::super::super::super::{Card, Move, Position, JACK, KING, QUEEN};
+use super::super::super::super::Suit::{Club, Diamond, Heart, Spade};
 use super::utils;
 
 

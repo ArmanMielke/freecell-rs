@@ -1,5 +1,4 @@
-pub mod card;
-
+mod card;
 mod card_collection;
 mod cascade;
 mod foundation;
@@ -9,7 +8,7 @@ mod game_state;
 mod position;
 
 pub use self::card_collection::CardCollection;
-pub use self::card::Card;
+pub use self::card::{Card, Rank, Suit, ACE, JACK, KING, QUEEN};
 pub use self::cascade::{Cascade, Cascades};
 pub use self::foundation::{Foundation, Foundations, FoundationsTrait};
 pub use self::freecells::Freecells;
