@@ -40,6 +40,7 @@ pub fn rank_from_string(string: String) -> Result<Rank, String> {
     match string.to_lowercase().trim() {
         "ace" => Ok(ACE),
         "a" => Ok(ACE),
+        "t" => Ok(10),
         "jack" => Ok(JACK),
         "j" => Ok(JACK),
         "queen" => Ok(QUEEN),

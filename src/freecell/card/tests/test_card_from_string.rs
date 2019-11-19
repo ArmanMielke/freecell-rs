@@ -7,7 +7,7 @@ use super::super::Suit::{Club, Diamond, Heart, Spade};
 
 #[test]
 fn test_long_representation() {
-    // need to test all named ranks, since they are not tested elsewhere
+    // named ranks
     assert_eq!(
         Ok(Card { suit: Spade, rank: ACE }),
         Card::try_from(String::from("Ace of Spades"))
@@ -42,7 +42,7 @@ fn test_long_representation() {
 
 #[test]
 fn test_short_representation() {
-    // need to test all named ranks, since they are not tested elsewhere
+    // named ranks
     assert_eq!(
         Ok(Card { suit: Diamond, rank: ACE }),
         Card::try_from(String::from("AD"))

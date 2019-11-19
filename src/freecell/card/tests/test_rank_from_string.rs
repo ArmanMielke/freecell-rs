@@ -7,6 +7,7 @@ use super::super::{ACE, JACK, KING, QUEEN};
 fn test_word_aliases() {
     assert_eq!(Ok(ACE), rank_from_string(String::from("Ace")));
     assert_eq!(Ok(ACE), rank_from_string(String::from("A")));
+    assert_eq!(Ok(10), rank_from_string(String::from("T")));
     assert_eq!(Ok(JACK), rank_from_string(String::from("Jack")));
     assert_eq!(Ok(JACK), rank_from_string(String::from("J")));
     assert_eq!(Ok(QUEEN), rank_from_string(String::from("Queen")));
@@ -19,6 +20,7 @@ fn test_word_aliases() {
 fn test_valid_number() {
     assert_eq!(Ok(ACE), rank_from_string(String::from("1")));
     assert_eq!(Ok(8), rank_from_string(String::from("8")));
+    assert_eq!(Ok(10), rank_from_string(String::from("10")));
     assert_eq!(Ok(KING), rank_from_string(String::from("13")));
 }
 
