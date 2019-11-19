@@ -43,6 +43,10 @@ impl Debug for Card {
 }
 
 
+// TODO is there a solution for this:
+// would like this to be
+// impl<S: Into<String>> TryFrom<S> for Card
+// but this doesn't work because of https://github.com/rust-lang/rust/issues/50133
 impl TryFrom<String> for Card {
     type Error = String;
 
@@ -53,14 +57,14 @@ impl TryFrom<String> for Card {
         if string.len() == 2 {
             // string uses the short Debug format
             // the first character is the rank, the second character is the suit
-            let suit = Suit::try_from((&string[1..2]).to_string())?;
+            let suit = Suit::try_from(&string[1..2])?;
             let rank = rank_from_string(&string[0..1])?;
             Ok(Card { suit, rank })
         } else {
             // string seems to use the long Display format
             // the first word is the rank, the second word is the suit
             let string: Vec<&str> = string.split(' ').collect();
-            let suit = Suit::try_from(string.last().unwrap().to_string())?;
+            let suit = Suit::try_from(*string.last().unwrap())?;
             let rank = rank_from_string(string[0])?;
             Ok(Card { suit, rank })
         }

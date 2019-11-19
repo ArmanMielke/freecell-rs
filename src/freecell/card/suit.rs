@@ -97,13 +97,20 @@ impl Debug for Suit {
 }
 
 
+// TODO is there a solution for this:
+// would like this to be
+// impl<S: Into<String>> TryFrom<S> for Suit
+// but this doesn't work because of https://github.com/rust-lang/rust/issues/50133
 impl TryFrom<String> for Suit {
     type Error = String;
 
     /// Converts a String to a Suit.
     ///
     /// The string must be one of the following:
-    /// "Club", "C", "Spade", "S", "Heart", "H", "Diamond" or "D".
+    /// "Club", "Clubs", "C",
+    /// "Spade", "Spades", "S",
+    /// "Heart", "Hearts", "H",
+    /// "Diamond", "Diamonds" or "D".
     /// These strings are case-insensitive.
     ///
     /// # Examples
@@ -134,5 +141,34 @@ impl TryFrom<String> for Suit {
             "d" => Ok(Suit::Diamond),
             _ => Err(format!("Suit \"{}\" does not match any of \"C[lub[s]]\", \"S[pade[s]]\", \"H[eart[s]]\", \"D[iamond[s]]\" (case-insensitive)", string)),
         }
+    }
+}
+
+impl TryFrom<&str> for Suit {
+    type Error = String;
+
+    /// Converts a String to a Suit.
+    ///
+    /// The string must be one of the following:
+    /// "Club", "Clubs", "C",
+    /// "Spade", "Spades", "S",
+    /// "Heart", "Hearts", "H",
+    /// "Diamond", "Diamonds" or "D".
+    /// These strings are case-insensitive.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use std::convert::TryFrom;
+    /// # use freecell::Suit;
+    /// assert_eq!(Ok(Suit::Club), Suit::try_from("Club"));
+    /// assert_eq!(Ok(Suit::Club), Suit::try_from("Clubs"));
+    /// assert_eq!(Ok(Suit::Club), Suit::try_from("C"));
+    /// assert_eq!(Ok(Suit::Heart), Suit::try_from("heart"));
+    /// assert_eq!(Ok(Suit::Heart), Suit::try_from("hearts"));
+    /// assert_eq!(Ok(Suit::Heart), Suit::try_from("h"));
+    /// ```
+    fn try_from(string: &str) -> Result<Suit, Self::Error> {
+        return Suit::try_from(string.to_string())
     }
 }
