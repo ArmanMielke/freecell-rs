@@ -1,7 +1,6 @@
 use std::fmt::{Debug, Display, Formatter, Result};
 
 use super::{Rank, Suit, ACE, JACK, KING, QUEEN};
-use super::Suit::{Club, Diamond, Heart, Spade};
 
 
 
@@ -37,13 +36,6 @@ impl Debug for Card {
             _ => format!("{}", self.value),
         };
 
-        let suit_string = match self.suit {
-            Club => String::from("C"),
-            Spade => String::from("S"),
-            Heart => String::from("H"),
-            Diamond => String::from("D"),
-        };
-
-        write!(f, "{}{}", value_string, suit_string)
+        write!(f, "{}{:?}", value_string, self.suit)
     }
 }
