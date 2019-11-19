@@ -2,7 +2,7 @@ use std::convert::TryFrom;
 use std::fmt;
 use std::fmt::{Display, Debug, Formatter};
 
-use super::Colour;
+use super::{Color, Colour};
 
 
 
@@ -44,6 +44,14 @@ impl Suit {
     /// Returns the colour of this suit.
     ///
     /// Club and Spade are black, Heart and Diamond are red.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use freecell::{Colour, Suit};
+    /// assert_eq!(Colour::Black, Suit::Club.colour());
+    /// assert_eq!(Colour::Red, Suit::Heart.colour());
+    /// ```
     pub fn colour(&self) -> Colour {
         match self {
             Suit::Club => Colour::Black,
@@ -51,6 +59,13 @@ impl Suit {
             Suit::Heart => Colour::Red,
             Suit::Diamond => Colour::Red,
         }
+    }
+
+    /// Returns the color of this suit.
+    ///
+    /// This is an alias of `colour()`
+    pub fn color(&self) -> Color {
+        self.colour()
     }
 }
 
