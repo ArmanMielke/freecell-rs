@@ -21,7 +21,8 @@ pub type Rank = u8;
 /// Converts a String to a Rank.
 ///
 /// The string should be either the rank as number between 1 and 13 or one of these strings that
-/// represent the named cards: "Ace", "A", "Jack", "J", "Queen", "Q", "King" or "K".
+/// represent the named cards:
+/// "Ace", "A", "Jack", "J", "Queen", "Q", "King", "K" or "T", which represents 10.
 /// The strings are case-insensitive.
 ///
 /// # Examples
@@ -31,6 +32,7 @@ pub type Rank = u8;
 ///
 /// assert_eq!(Ok(ACE), rank_from_string(String::from("ace")));
 /// assert_eq!(Ok(JACK), rank_from_string(String::from("J")));
+/// assert_eq!(Ok(10), rank_from_string(String::from("t")));
 /// assert_eq!(Ok(8), rank_from_string(String::from("8")));
 /// assert_eq!(Ok(KING), rank_from_string(String::from("13")));
 /// assert!(rank_from_string(String::from("0")).is_err());
