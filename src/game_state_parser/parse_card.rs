@@ -29,17 +29,17 @@ pub fn parse_card(card_code: &str) -> Result<Card, String> {
     }
 
     let mut card_chars = card_code.chars();
-    let value_char = card_chars.next().unwrap();
+    let rank_char = card_chars.next().unwrap();
     let suit_char = card_chars.next().unwrap();
 
     Ok(Card {
         suit: parse_suit(suit_char)?,
-        value: parse_value(value_char)?,
+        rank: parse_rank(rank_char)?,
     })
 }
 
-fn parse_value(value_char: char) -> Result<Rank, String> {
-    match value_char {
+fn parse_rank(rank_char: char) -> Result<Rank, String> {
+    match rank_char {
         'A' => Ok(ACE),
         '2' => Ok(2),
         '3' => Ok(3),
@@ -56,7 +56,7 @@ fn parse_value(value_char: char) -> Result<Rank, String> {
         // some alternate forms are allowed
         '1' => Ok(ACE),
         '0' => Ok(10),
-        _  => Err(err_could_not_parse_card_value!(value_char))
+        _  => Err(err_could_not_parse_card_rank!(rank_char))
     }
 }
 

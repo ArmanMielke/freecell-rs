@@ -45,7 +45,7 @@ fn count_cards(game_state: &GameState) -> [i32; 52] {
 
 
 fn card_index(card: &Card) -> usize {
-    card.suit as usize * 13 + card.value as usize - 1
+    card.suit as usize * 13 + card.rank as usize - 1
 }
 
 
@@ -58,6 +58,6 @@ fn card_from_index(index: usize) -> Card {
             3 => Diamond,
             _ => unreachable!("invalid card index: {}", index)
         },
-        value: (index % 13) as u8 + 1,
+        rank: (index % 13) as u8 + 1,
     }
 }

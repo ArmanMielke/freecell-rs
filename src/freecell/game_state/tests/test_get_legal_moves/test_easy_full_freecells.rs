@@ -14,7 +14,7 @@ fn test_easy_full_freecells() {
         (
             game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/6h-from-freecells-to-cascade1.txt").unwrap(),
             Move {
-                card: Card { suit: Heart, value: 6 },
+                card: Card { suit: Heart, rank: 6 },
                 from: Position::Freecells,
                 to: Position::Cascade(1),
             }
@@ -22,7 +22,7 @@ fn test_easy_full_freecells() {
         (
             game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/9d-from-freecells-to-cascade0.txt").unwrap(),
             Move {
-                card: Card { suit: Diamond, value: 9 },
+                card: Card { suit: Diamond, rank: 9 },
                 from: Position::Freecells,
                 to: Position::Cascade(0),
             }
@@ -30,7 +30,7 @@ fn test_easy_full_freecells() {
         (
             game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/9d-from-freecells-to-cascade3.txt").unwrap(),
             Move {
-                card: Card { suit: Diamond, value: 9 },
+                card: Card { suit: Diamond, rank: 9 },
                 from: Position::Freecells,
                 to: Position::Cascade(3),
             }
@@ -38,7 +38,7 @@ fn test_easy_full_freecells() {
         (
             game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/ac-from-freecells-to-foundations.txt").unwrap(),
             Move {
-                card: Card { suit: Club, value: ACE },
+                card: Card { suit: Club, rank: ACE },
                 from: Position::Freecells,
                 to: Position::Foundations,
             }
@@ -46,7 +46,7 @@ fn test_easy_full_freecells() {
         (
             game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/ad-from-freecells-to-foundations.txt").unwrap(),
             Move {
-                card: Card { suit: Diamond, value: ACE },
+                card: Card { suit: Diamond, rank: ACE },
                 from: Position::Freecells,
                 to: Position::Foundations,
             }

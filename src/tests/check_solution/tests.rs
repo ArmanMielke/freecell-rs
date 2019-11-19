@@ -11,22 +11,22 @@ fn test_correct_solution_a() {
 
     let solution = vec![
         Move{
-            card: Card { suit: Spade, value: KING },
+            card: Card { suit: Spade, rank: KING },
             from: Position::Cascade(1),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Club, value: KING },
+            card: Card { suit: Club, rank: KING },
             from: Position::Cascade(2),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Diamond, value: KING },
+            card: Card { suit: Diamond, rank: KING },
             from: Position::Cascade(5),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Heart, value: KING },
+            card: Card { suit: Heart, rank: KING },
             from: Position::Cascade(7),
             to: Position::Foundations,
         },
@@ -41,22 +41,22 @@ fn test_correct_solution_b() {
 
     let solution = vec![
         Move{
-            card: Card { suit: Heart, value: KING },
+            card: Card { suit: Heart, rank: KING },
             from: Position::Cascade(7),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Diamond, value: KING },
+            card: Card { suit: Diamond, rank: KING },
             from: Position::Cascade(5),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Club, value: KING },
+            card: Card { suit: Club, rank: KING },
             from: Position::Cascade(2),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Spade, value: KING },
+            card: Card { suit: Spade, rank: KING },
             from: Position::Cascade(1),
             to: Position::Foundations,
         },
@@ -72,28 +72,28 @@ fn test_wrong_length() {
 
     let solution = vec![
         Move{
-            card: Card { suit: Spade, value: KING },
+            card: Card { suit: Spade, rank: KING },
             from: Position::Cascade(1),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Club, value: KING },
+            card: Card { suit: Club, rank: KING },
             from: Position::Cascade(2),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Diamond, value: KING },
+            card: Card { suit: Diamond, rank: KING },
             from: Position::Cascade(5),
             to: Position::Foundations,
         },
         // suboptimal move
         Move{
-            card: Card { suit: Heart, value: KING },
+            card: Card { suit: Heart, rank: KING },
             from: Position::Cascade(7),
             to: Position::Freecells,
         },
         Move{
-            card: Card { suit: Heart, value: KING },
+            card: Card { suit: Heart, rank: KING },
             from: Position::Freecells,
             to: Position::Foundations,
         },
@@ -108,22 +108,22 @@ fn test_illegal_move() {
     let initial_state = parse_file("test-inputs/hard-solved-to-Q.txt").unwrap();
     let solution = vec![
         Move{
-            card: Card { suit: Spade, value: KING },
+            card: Card { suit: Spade, rank: KING },
             from: Position::Cascade(1),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Club, value: KING },
+            card: Card { suit: Club, rank: KING },
             from: Position::Cascade(2),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Diamond, value: KING },
+            card: Card { suit: Diamond, rank: KING },
             from: Position::Cascade(5),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Heart, value: KING },
+            card: Card { suit: Heart, rank: KING },
             from: Position::Cascade(0), // the card is actually in cascade 8 (index 7)
             to: Position::Foundations,
         },
@@ -139,22 +139,22 @@ fn test_does_not_lead_to_solved_state() {
 
     let solution = vec![
         Move{
-            card: Card { suit: Spade, value: KING },
+            card: Card { suit: Spade, rank: KING },
             from: Position::Cascade(1),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Club, value: KING },
+            card: Card { suit: Club, rank: KING },
             from: Position::Cascade(2),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Diamond, value: KING },
+            card: Card { suit: Diamond, rank: KING },
             from: Position::Cascade(5),
             to: Position::Foundations,
         },
         Move{
-            card: Card { suit: Heart, value: KING },
+            card: Card { suit: Heart, rank: KING },
             from: Position::Cascade(7),
             to: Position::Freecells, // the game is not solved yet
         },

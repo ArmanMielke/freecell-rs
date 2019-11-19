@@ -19,8 +19,8 @@ fn check_foundation(foundation: &Foundation, suit: Suit) -> Result<(), String> {
         if card.suit != suit {
             return Err(err_invgs_foundation_wrong_suit!(suit, card.suit, card))
         }
-        if card.value != 1 + i as u8 {
-            return Err(err_invgs_foundation_wrong_order!(suit, card.value, i + 1))
+        if card.rank != 1 + i as u8 {
+            return Err(err_invgs_foundation_wrong_order!(suit, card.rank, i + 1))
         }
     }
     Ok(())

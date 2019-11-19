@@ -10,8 +10,8 @@ use super::{Card, CardCollection, ACE};
 /// # Rules
 ///
 /// Adding cards:
-/// A card can be put on a cascade iff its value is 1 lower than the top card of the cascade and it
-/// has a different colour than the top card of the cascade.
+/// A card can be put on a cascade iff its rank is 1 lower than that of the top card of the cascade
+/// and it has a different colour than the top card of the cascade.
 ///
 /// Removing cards:
 /// Only the top card of the cascade can be removed.
@@ -24,14 +24,14 @@ pub type Cascade = Vec<Card>;
 
 fn fits_on_top_of(lower_card: &Card, higher_card: &Card) -> bool {
     lower_card.suit.colour() != higher_card.suit.colour() &&
-    lower_card.value + 1 == higher_card.value
+    lower_card.rank + 1 == higher_card.rank
 }
 
 impl CardCollection for Cascade {
     fn add_card(&self, card: Card) -> Result<Cascade, ()> {
         // optimisation: aces cannot be put on cascades
         // this is technically a legal move, just not a very good one
-        if card.value == ACE {
+        if card.rank == ACE {
             return Err(())
         }
 

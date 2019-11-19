@@ -11,10 +11,10 @@ use std::fmt::{Display, Formatter, Result};
 /// ```
 /// use freecell::{Card, Colour, Suit, ACE, KING};
 ///
-/// let black_card = Card {suit: Suit::Spade, value: ACE};
+/// let black_card = Card {suit: Suit::Spade, rank: ACE};
 /// assert_eq!(Colour::Black, black_card.suit.colour());
 ///
-/// let red_card = Card {suit: Suit::Heart, value: KING};
+/// let red_card = Card {suit: Suit::Heart, rank: KING};
 /// assert_eq!(Colour::Red, red_card.suit.colour());
 /// ```
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]

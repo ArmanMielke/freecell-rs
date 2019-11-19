@@ -35,15 +35,15 @@ impl CardCollection for Foundations {
         // check whether the card can be put on any foundation
         if self.get_foundation(card.suit).is_empty() {
             // only Aces can be put on an empty foundation
-            if card.value != ACE {
+            if card.rank != ACE {
                 return Err(())
             }
         } else if
             // Aces can only be put on an empty foundation
-            card.value == ACE ||
+            card.rank == ACE ||
             // Other cards can only be put on a foundation if it is one rank higher than the
             // currently topmost card on the foundation
-            self.get_foundation(card.suit).last().unwrap().value + 1 != card.value
+            self.get_foundation(card.suit).last().unwrap().rank + 1 != card.rank
         {
             return Err(())
         }
