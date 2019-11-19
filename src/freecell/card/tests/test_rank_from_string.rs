@@ -5,21 +5,21 @@ use super::super::{ACE, JACK, KING, QUEEN};
 
 #[test]
 fn test_word_aliases() {
-    assert_eq!(ACE, rank_from_string(String::from("Ace")).unwrap());
-    assert_eq!(ACE, rank_from_string(String::from("A")).unwrap());
-    assert_eq!(JACK, rank_from_string(String::from("Jack")).unwrap());
-    assert_eq!(JACK, rank_from_string(String::from("J")).unwrap());
-    assert_eq!(QUEEN, rank_from_string(String::from("Queen")).unwrap());
-    assert_eq!(QUEEN, rank_from_string(String::from("Q")).unwrap());
-    assert_eq!(KING, rank_from_string(String::from("King")).unwrap());
-    assert_eq!(KING, rank_from_string(String::from("K")).unwrap());
+    assert_eq!(Ok(ACE), rank_from_string(String::from("Ace")));
+    assert_eq!(Ok(ACE), rank_from_string(String::from("A")));
+    assert_eq!(Ok(JACK), rank_from_string(String::from("Jack")));
+    assert_eq!(Ok(JACK), rank_from_string(String::from("J")));
+    assert_eq!(Ok(QUEEN), rank_from_string(String::from("Queen")));
+    assert_eq!(Ok(QUEEN), rank_from_string(String::from("Q")));
+    assert_eq!(Ok(KING), rank_from_string(String::from("King")));
+    assert_eq!(Ok(KING), rank_from_string(String::from("K")));
 }
 
 #[test]
 fn test_valid_number() {
-    assert_eq!(ACE, rank_from_string(String::from("1")).unwrap());
-    assert_eq!(8, rank_from_string(String::from("8")).unwrap());
-    assert_eq!(KING, rank_from_string(String::from("13")).unwrap());
+    assert_eq!(Ok(ACE), rank_from_string(String::from("1")));
+    assert_eq!(Ok(8), rank_from_string(String::from("8")));
+    assert_eq!(Ok(KING), rank_from_string(String::from("13")));
 }
 
 #[test]

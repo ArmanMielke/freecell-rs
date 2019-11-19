@@ -8,7 +8,7 @@ mod game_state;
 mod position;
 
 pub use self::card_collection::CardCollection;
-pub use self::card::{Card, Colour, Rank, Suit, ACE, JACK, KING, QUEEN};
+pub use self::card::{Card, Colour, Rank, Suit, rank_from_string, ACE, JACK, KING, QUEEN};
 pub use self::cascade::{Cascade, Cascades};
 pub use self::foundation::{Foundation, Foundations, FoundationsTrait};
 pub use self::freecells::Freecells;
