@@ -82,7 +82,7 @@ impl Debug for Suit {
 
 
 impl TryFrom<String> for Suit {
-    type Error = &'static str;
+    type Error = String;
 
     /// Converts a String to a Suit.
     ///
@@ -110,7 +110,7 @@ impl TryFrom<String> for Suit {
             "h" => Ok(Suit::Heart),
             "diamond" => Ok(Suit::Diamond),
             "d" => Ok(Suit::Diamond),
-            _ => Err("Only the following values are accepted: \"Club\", \"C\", \"Spade\", \"S\", \"Heart\", \"H\", \"Diamond\" and \"D\" (case-insensitive)"),
+            _ => Err(format!("Suit \"{}\" does not match any of \"Club\", \"C\", \"Spade\", \"S\", \"Heart\", \"H\", \"Diamond\" or \"D\" (case-insensitive)", string)),
         }
     }
 }

@@ -36,7 +36,7 @@ pub type Rank = u8;
 /// assert!(rank_from_string(String::from("0")).is_err());
 /// assert!(rank_from_string(String::from("14")).is_err());
 /// ```
-pub fn rank_from_string(string: String) -> Result<Rank, &'static str> {
+pub fn rank_from_string(string: String) -> Result<Rank, String> {
     match string.to_lowercase().trim() {
         "ace" => Ok(ACE),
         "a" => Ok(ACE),
@@ -49,13 +49,13 @@ pub fn rank_from_string(string: String) -> Result<Rank, &'static str> {
 
         // rank is not a word => try to parse it as u8
         _ => match string.trim().parse::<u8>() {
-            Err(_) => return Err("Could not parse integer"),
+            Err(_) => return Err(format!("Could not parse integer {}", string)),
 
             // successfully parsed number => check whether it is in the correct range
             Ok(rank) => match rank {
-                0 => Err("Rank cannot be 0"),
+                0 => Err("Rank cannot be 0".to_string()),
                 1...13 => Ok(rank),
-                _ => Err("Rank cannot be greater than 13"),
+                _ => Err(format!("Rank cannot be greater than 13 (rank is {})", rank)),
             }
         }
     }
