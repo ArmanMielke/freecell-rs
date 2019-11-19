@@ -1,3 +1,4 @@
+use std::convert::TryFrom;
 use std::fmt;
 use std::fmt::{Display, Debug, Formatter};
 
@@ -49,5 +50,24 @@ impl Debug for Suit {
             Suit::Diamond => "D",
         };
         write!(f, "{}", name)
+    }
+}
+
+
+impl TryFrom<String> for Suit {
+    type Error = &'static str;
+
+    fn try_from(string: String) -> Result<Suit, Self::Error> {
+        match string.trim().to_lowercase().as_ref() {
+            "club" => Ok(Suit::Club),
+            "c" => Ok(Suit::Club),
+            "spade" => Ok(Suit::Spade),
+            "s" => Ok(Suit::Spade),
+            "heart" => Ok(Suit::Heart),
+            "h" => Ok(Suit::Heart),
+            "diamond" => Ok(Suit::Diamond),
+            "d" => Ok(Suit::Diamond),
+            _ => Err("Only the following values are accepted: \"Club\", \"C\", \"Spade\", \"S\", \"Heart\", \"H\", \"Diamond\" and \"D\" (case-insensitive)"),
+        }
     }
 }
