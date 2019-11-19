@@ -37,7 +37,7 @@ pub type Rank = u8;
 /// assert!(rank_from_string(String::from("14")).is_err());
 /// ```
 pub fn rank_from_string(string: String) -> Result<Rank, &'static str> {
-    match string.trim().to_lowercase().as_ref() {
+    match string.to_lowercase().trim() {
         "ace" => Ok(ACE),
         "a" => Ok(ACE),
         "jack" => Ok(JACK),

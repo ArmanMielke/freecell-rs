@@ -101,7 +101,7 @@ impl TryFrom<String> for Suit {
     /// assert_eq!(Ok(Suit::Heart), Suit::try_from(String::from("h")));
     /// ```
     fn try_from(string: String) -> Result<Suit, Self::Error> {
-        match string.trim().to_lowercase().as_ref() {
+        match string.to_lowercase().trim() {
             "club" => Ok(Suit::Club),
             "c" => Ok(Suit::Club),
             "spade" => Ok(Suit::Spade),
