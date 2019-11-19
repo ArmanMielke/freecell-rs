@@ -9,7 +9,8 @@ use std::fmt::{Display, Formatter, Result};
 /// # Examples
 ///
 /// ```
-/// # use freecell::{Card, Suit, ACE, KING, Colour};
+/// use freecell::{Card, Colour, Suit, ACE, KING};
+///
 /// let black_card = Card {suit: Suit::Spade, value: ACE};
 /// assert_eq!(Colour::Black, black_card.suit.colour());
 ///
@@ -20,6 +21,10 @@ use std::fmt::{Display, Formatter, Result};
 pub enum Colour {
     Black, Red
 }
+
+
+/// Alias for the American spelling of Colour.
+pub type Color = Colour;
 
 
 impl Display for Colour {
