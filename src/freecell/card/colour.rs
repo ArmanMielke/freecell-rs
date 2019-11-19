@@ -2,6 +2,20 @@ use std::fmt::{Display, Formatter, Result};
 
 
 
+/// Indicates the colour of a card.
+///
+/// The suits Club and Spade are black, whereas Heart and Diamond are red.
+///
+/// # Examples
+///
+/// ```
+/// # use freecell::{Card, Suit, ACE, KING, Colour};
+/// let black_card = Card {suit: Suit::Spade, value: ACE};
+/// assert_eq!(Colour::Black, black_card.suit.colour());
+///
+/// let red_card = Card {suit: Suit::Heart, value: KING};
+/// assert_eq!(Colour::Red, red_card.suit.colour());
+/// ```
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
 pub enum Colour {
     Black, Red

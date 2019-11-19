@@ -4,6 +4,7 @@ use super::Colour;
 
 
 
+/// Indicates the suit of a card.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
 pub enum Suit {
     Club = 0,

@@ -5,6 +5,7 @@ use super::Suit::{Club, Diamond, Heart, Spade};
 
 
 
+/// Represents one card in the game.
 #[derive(Clone, Copy, Eq, PartialEq, Hash)]
 pub struct Card {
     pub suit: Suit,

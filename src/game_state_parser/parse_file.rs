@@ -21,6 +21,7 @@ const FREECELLS: &str = "freecells:";
 
 
 // TODO add fn parse_string, similar to parse_file but takes the contents directly as string
+// TODO make all the parsing case-insensitive
 
 
 // TODO add documentation (use the template explanation in doc/)

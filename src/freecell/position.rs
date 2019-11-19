@@ -3,6 +3,7 @@ use std::fmt::{Display, Formatter, Result};
 
 
 /// Indicates the position of a card.
+///
 /// The cascades are numbered from 0 to 7.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
 pub enum Position {

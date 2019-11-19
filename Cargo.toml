@@ -16,9 +16,6 @@ edition = '2018'  # TODO uncomment this line
 name = "freecell"
 test = false
 
-[lib]
-doctest = false
-
 [dependencies]
 arrayvec = "0.4.7"
 priority-queue = "0.6.0"
