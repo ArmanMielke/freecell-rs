@@ -9,6 +9,7 @@ use super::Colour;
 /// Indicates the suit of a card.
 ///
 /// Suits can be converted from Strings.
+/// The formats for this are the same formats used by Display and Debug.
 ///
 /// # Examples
 ///
@@ -19,6 +20,16 @@ use super::Colour;
 /// assert_eq!(Ok(Suit::Spade), Suit::try_from(String::from("spade")));
 /// assert_eq!(Ok(Suit::Heart), Suit::try_from(String::from("H")));
 /// assert_eq!(Ok(Suit::Diamond), Suit::try_from(String::from("d")));
+///
+/// // The formatted suit can be converted back to the original suit
+/// assert_eq!(
+///     Ok(Suit::Club),
+///     Suit::try_from(Suit::Club.to_string())  // format using Display
+/// );
+/// assert_eq!(
+///     Ok(Suit::Club),
+///     Suit::try_from(format!("{:?}", Suit::Club))  // format using Debug
+/// );
 /// ```
 #[derive(Clone, Copy, Eq, PartialEq, Hash)]
 pub enum Suit {
@@ -30,6 +41,9 @@ pub enum Suit {
 
 
 impl Suit {
+    /// Returns the colour of this suit.
+    ///
+    /// Club and Spade are black, Heart and Diamond are red.
     pub fn colour(&self) -> Colour {
         match self {
             Suit::Club => Colour::Black,
