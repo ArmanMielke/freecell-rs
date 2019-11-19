@@ -6,7 +6,7 @@ use super::super::Suit::{Club, Diamond, Heart, Spade};
 
 
 #[test]
-fn test_correct_name() {
+fn test_valid_name() {
     assert_eq!(Ok(Club), Suit::try_from(String::from("Club")));
     assert_eq!(Ok(Club), Suit::try_from(String::from("C")));
     assert_eq!(Ok(Spade), Suit::try_from(String::from("Spade")));
@@ -18,6 +18,6 @@ fn test_correct_name() {
 }
 
 #[test]
-fn test_incorrect_name() {
+fn test_invalid_name() {
     assert!(Suit::try_from(String::from("Not A Suit")).is_err());
 }
