@@ -17,6 +17,7 @@ use super::{Color, Colour};
 /// # use std::convert::TryFrom;
 /// # use freecell::Suit;
 /// assert_eq!(Ok(Suit::Club), Suit::try_from(String::from("Club")));
+/// assert_eq!(Ok(Suit::Club), Suit::try_from(String::from("Clubs")));
 /// assert_eq!(Ok(Suit::Spade), Suit::try_from(String::from("spade")));
 /// assert_eq!(Ok(Suit::Heart), Suit::try_from(String::from("H")));
 /// assert_eq!(Ok(Suit::Diamond), Suit::try_from(String::from("d")));
@@ -111,21 +112,27 @@ impl TryFrom<String> for Suit {
     /// # use std::convert::TryFrom;
     /// # use freecell::Suit;
     /// assert_eq!(Ok(Suit::Club), Suit::try_from(String::from("Club")));
+    /// assert_eq!(Ok(Suit::Club), Suit::try_from(String::from("Clubs")));
     /// assert_eq!(Ok(Suit::Club), Suit::try_from(String::from("C")));
     /// assert_eq!(Ok(Suit::Heart), Suit::try_from(String::from("heart")));
+    /// assert_eq!(Ok(Suit::Heart), Suit::try_from(String::from("hearts")));
     /// assert_eq!(Ok(Suit::Heart), Suit::try_from(String::from("h")));
     /// ```
     fn try_from(string: String) -> Result<Suit, Self::Error> {
         match string.to_lowercase().trim() {
             "club" => Ok(Suit::Club),
+            "clubs" => Ok(Suit::Club),
             "c" => Ok(Suit::Club),
             "spade" => Ok(Suit::Spade),
+            "spades" => Ok(Suit::Spade),
             "s" => Ok(Suit::Spade),
             "heart" => Ok(Suit::Heart),
+            "hearts" => Ok(Suit::Heart),
             "h" => Ok(Suit::Heart),
             "diamond" => Ok(Suit::Diamond),
+            "diamonds" => Ok(Suit::Diamond),
             "d" => Ok(Suit::Diamond),
-            _ => Err(format!("Suit \"{}\" does not match any of \"Club\", \"C\", \"Spade\", \"S\", \"Heart\", \"H\", \"Diamond\" or \"D\" (case-insensitive)", string)),
+            _ => Err(format!("Suit \"{}\" does not match any of \"C[lub[s]]\", \"S[pade[s]]\", \"H[eart[s]]\", \"D[iamond[s]]\" (case-insensitive)", string)),
         }
     }
 }
