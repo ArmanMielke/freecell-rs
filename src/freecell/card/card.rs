@@ -54,14 +54,14 @@ impl TryFrom<String> for Card {
             // string uses the short Debug format
             // the first character is the rank, the second character is the suit
             let suit = Suit::try_from((&string[1..2]).to_string())?;
-            let rank = rank_from_string((&string[0..1]).to_string())?;
+            let rank = rank_from_string(&string[0..1])?;
             Ok(Card { suit, rank })
         } else {
             // string seems to use the long Display format
             // the first word is the rank, the second word is the suit
             let string: Vec<&str> = string.split(' ').collect();
             let suit = Suit::try_from(string.last().unwrap().to_string())?;
-            let rank = rank_from_string(string[0].to_string())?;
+            let rank = rank_from_string(string[0])?;
             Ok(Card { suit, rank })
         }
     }

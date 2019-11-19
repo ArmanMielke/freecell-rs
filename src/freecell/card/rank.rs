@@ -30,15 +30,16 @@ pub type Rank = u8;
 /// ```
 /// use freecell::{rank_from_string, ACE, JACK, KING};
 ///
-/// assert_eq!(Ok(ACE), rank_from_string(String::from("ace")));
-/// assert_eq!(Ok(JACK), rank_from_string(String::from("J")));
-/// assert_eq!(Ok(10), rank_from_string(String::from("t")));
-/// assert_eq!(Ok(8), rank_from_string(String::from("8")));
-/// assert_eq!(Ok(KING), rank_from_string(String::from("13")));
-/// assert!(rank_from_string(String::from("0")).is_err());
-/// assert!(rank_from_string(String::from("14")).is_err());
+/// assert_eq!(Ok(ACE), rank_from_string("ace"));
+/// assert_eq!(Ok(JACK), rank_from_string("J"));
+/// assert_eq!(Ok(10), rank_from_string("t"));
+/// assert_eq!(Ok(8), rank_from_string("8"));
+/// assert_eq!(Ok(KING), rank_from_string("13"));
+/// assert!(rank_from_string("0").is_err());
+/// assert!(rank_from_string("14").is_err());
 /// ```
-pub fn rank_from_string(string: String) -> Result<Rank, String> {
+pub fn rank_from_string<S: Into<String>>(string: S) -> Result<Rank, String> {
+    let string = string.into();
     match string.to_lowercase().trim() {
         "ace" => Ok(ACE),
         "a" => Ok(ACE),
