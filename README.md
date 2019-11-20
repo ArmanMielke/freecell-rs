@@ -8,7 +8,7 @@ A Freecell solver written in Rust
 
 Each card can be described using a card code, a string of two characters.
 The first character denotes the card's rank:
-- 'A' -> Ace (alternate form '1' is also allowed)
+- 'A' or '1' -> Ace
 - '2' -> 2
 - ...
 - '9' -> 9
@@ -41,9 +41,10 @@ Some relevant items include:
 
 - Data structures implement Serde's Serialize, Deserialize
     - https://rust-lang.github.io/api-guidelines/interoperability.html#c-serde
-    - GameState is probably a data structure
+    - e.g. GameState should be serializable
     - "If a crate does not already depend on Serde for other reasons, it may wish to gate Serde impls behind a Cargo cfg."
     - The link includes a tutorial
+    - example for how to document this: https://docs.rs/splines/0.2.3/splines/#features-and-customization
 - All checklist items regarding documentation
 - Caller decides where to copy and place data
     - https://rust-lang.github.io/api-guidelines/flexibility.html#c-caller-control
