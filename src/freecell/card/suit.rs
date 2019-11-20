@@ -8,29 +8,32 @@ use super::{Color, Colour};
 
 /// Indicates the suit of a card.
 ///
-/// Suits can be converted from Strings.
+/// Suits can be converted from Strings or `&str`s.
 /// The formats for this are the same formats used by Display and Debug.
+/// See the descriptions for `TryFrom<String>` and `TryFrom<&str>` below for details.
 ///
 /// # Examples
 ///
+/// Parsing suits from strings:
+/// ```
+/// use std::convert::TryFrom;
+/// # use freecell::Suit;
+///
+/// assert_eq!(Ok(Suit::Club), Suit::try_from("Club"));
+/// assert_eq!(Ok(Suit::Club), Suit::try_from("Clubs"));
+/// assert_eq!(Ok(Suit::Spade), Suit::try_from("spade"));
+/// assert_eq!(Ok(Suit::Heart), Suit::try_from("H"));
+/// assert_eq!(Ok(Suit::Diamond), Suit::try_from("d"));
+/// ```
+///
+/// A formatted suit can be converted back to the original suit:
 /// ```
 /// # use std::convert::TryFrom;
 /// # use freecell::Suit;
-/// assert_eq!(Ok(Suit::Club), Suit::try_from(String::from("Club")));
-/// assert_eq!(Ok(Suit::Club), Suit::try_from(String::from("Clubs")));
-/// assert_eq!(Ok(Suit::Spade), Suit::try_from(String::from("spade")));
-/// assert_eq!(Ok(Suit::Heart), Suit::try_from(String::from("H")));
-/// assert_eq!(Ok(Suit::Diamond), Suit::try_from(String::from("d")));
-///
-/// // The formatted suit can be converted back to the original suit
-/// assert_eq!(
-///     Ok(Suit::Club),
-///     Suit::try_from(Suit::Club.to_string())  // format using Display
-/// );
-/// assert_eq!(
-///     Ok(Suit::Club),
-///     Suit::try_from(format!("{:?}", Suit::Club))  // format using Debug
-/// );
+/// // Formatted using Display
+/// assert_eq!(Ok(Suit::Club), Suit::try_from(Suit::Club.to_string()));
+/// // Formatted using Debug
+/// assert_eq!(Ok(Suit::Club), Suit::try_from(format!("{:?}", Suit::Club)));
 /// ```
 #[derive(Clone, Copy, Eq, PartialEq, Hash)]
 pub enum Suit {
@@ -49,7 +52,9 @@ impl Suit {
     /// # Examples
     ///
     /// ```
-    /// # use freecell::{Colour, Suit};
+    /// use freecell::Colour;
+    /// # use freecell::Suit;
+    ///
     /// assert_eq!(Colour::Black, Suit::Club.colour());
     /// assert_eq!(Colour::Red, Suit::Heart.colour());
     /// ```
@@ -126,6 +131,7 @@ impl TryFrom<String> for Suit {
     /// assert_eq!(Ok(Suit::Heart), Suit::try_from(String::from("h")));
     /// ```
     fn try_from(string: String) -> Result<Suit, Self::Error> {
+        // TODO use regex
         match string.to_lowercase().trim() {
             "club" => Ok(Suit::Club),
             "clubs" => Ok(Suit::Club),
@@ -147,27 +153,9 @@ impl TryFrom<String> for Suit {
 impl TryFrom<&str> for Suit {
     type Error = String;
 
-    /// Converts a String to a Suit.
+    /// Converts a `&str` to a Suit.
     ///
-    /// The string must be one of the following:
-    /// "Club", "Clubs", "C",
-    /// "Spade", "Spades", "S",
-    /// "Heart", "Hearts", "H",
-    /// "Diamond", "Diamonds" or "D".
-    /// These strings are case-insensitive.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// # use std::convert::TryFrom;
-    /// # use freecell::Suit;
-    /// assert_eq!(Ok(Suit::Club), Suit::try_from("Club"));
-    /// assert_eq!(Ok(Suit::Club), Suit::try_from("Clubs"));
-    /// assert_eq!(Ok(Suit::Club), Suit::try_from("C"));
-    /// assert_eq!(Ok(Suit::Heart), Suit::try_from("heart"));
-    /// assert_eq!(Ok(Suit::Heart), Suit::try_from("hearts"));
-    /// assert_eq!(Ok(Suit::Heart), Suit::try_from("h"));
-    /// ```
+    /// See the description of `TryFrom<String>` for details.
     fn try_from(string: &str) -> Result<Suit, Self::Error> {
         return Suit::try_from(string.to_string())
     }
