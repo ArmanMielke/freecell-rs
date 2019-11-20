@@ -1,5 +1,6 @@
-use crate::freecell::{Foundation, FoundationsTrait, GameState, Suit};
+use crate::freecell::{Foundation, FoundationsTrait, Suit};
 use crate::freecell::Suit::{Club, Diamond, Heart, Spade};
+use super::super::GameState;
 
 
 
@@ -17,10 +18,16 @@ pub fn check_foundations(game_state: &GameState) -> Result<(), String> {
 fn check_foundation(foundation: &Foundation, suit: Suit) -> Result<(), String> {
     for (i, card) in foundation.iter().enumerate() {
         if card.suit != suit {
-            return Err(err_invgs_foundation_wrong_suit!(suit, card.suit, card))
+            return Err(format!(
+                "Foundation of suit {} contains card of suit {}: {}",
+                suit, card.suit, card
+            ));
         }
         if card.rank != 1 + i as u8 {
-            return Err(err_invgs_foundation_wrong_order!(suit, card.rank, i + 1))
+            return Err(format!(
+                "Foundation of suit {} contains card of rank {} at position {}",
+                suit, card.rank, i + 1
+            ));
         }
     }
     Ok(())

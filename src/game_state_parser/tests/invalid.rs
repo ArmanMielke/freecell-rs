@@ -14,9 +14,9 @@ fn test_easy_10_instead_of_t() {
 #[test]
 fn test_easy_duplicate_card() {
     let actual = parse_file("test-inputs/invalid/easy-duplicate-card.txt");
-    let expected = Err(err_invgs_card_does_not_exist_exactly_once!(
-        Card { suit: Club, rank: 10 },
-        2
+    let expected = Err(format!(
+        "Card {} exists {} times, should exist once",
+        Card { suit: Club, rank: 10 }, 2
     ));
     assert_eq!(actual, expected);
 }
@@ -45,9 +45,9 @@ fn test_easy_invalid_suit() {
 #[test]
 fn test_easy_missing_card() {
     let actual = parse_file("test-inputs/invalid/easy-missing-card.txt");
-    let expected = Err(err_invgs_card_does_not_exist_exactly_once!(
-        Card { suit: Spade, rank: 10 },
-        0
+    let expected = Err(format!(
+        "Card {} exists {} times, should exist once",
+        Card { suit: Spade, rank: 10 }, 0
     ));
     assert_eq!(actual, expected);
 }
@@ -55,9 +55,9 @@ fn test_easy_missing_card() {
 #[test]
 fn test_easy_misspelled_cascade() {
     let actual = parse_file("test-inputs/invalid/easy-misspelled-cascade.txt");
-    let expected = Err(err_invgs_card_does_not_exist_exactly_once!(
-        Card { suit: Club, rank: 4 },
-        0
+    let expected = Err(format!(
+        "Card {} exists {} times, should exist once",
+        Card { suit: Club, rank: 4 }, 0
     ));
     assert_eq!(actual, expected);
 }

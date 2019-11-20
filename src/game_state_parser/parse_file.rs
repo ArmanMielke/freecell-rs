@@ -9,7 +9,6 @@ use std::str::SplitWhitespace;
 use super::conversions_to_array;
 use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS, ERR_TOO_MANY_FREECELLS};
 use crate::freecell::{Card, Cascade, Foundations, FoundationsTrait, Freecells, GameState};
-use super::validate_game_state::validate_game_state;
 
 
 
@@ -66,7 +65,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
         freecells,
     };
 
-    validate_game_state(&game_state)?;
+    game_state.validate()?;
 
     Ok(game_state)
 }

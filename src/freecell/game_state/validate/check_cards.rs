@@ -1,5 +1,6 @@
-use crate::freecell::{Card, GameState};
+use crate::freecell::Card;
 use crate::freecell::Suit::{Club, Diamond, Heart, Spade};
+use super::super::GameState;
 
 
 
@@ -9,10 +10,10 @@ pub fn check_cards(game_state: &GameState) -> Result<(), String> {
 
     for card_index in 0..card_count.len() {
         if card_count[card_index] != 1 {
-            return Err(err_invgs_card_does_not_exist_exactly_once!(
-                card_from_index(card_index),
-                card_count[card_index]
-            ))
+            return Err(format!(
+                "Card {} exists {} times, should exist once",
+                card_from_index(card_index), card_count[card_index]
+            ));
         }
     }
 
