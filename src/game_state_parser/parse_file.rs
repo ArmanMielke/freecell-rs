@@ -1,5 +1,6 @@
 use arrayvec::ArrayVec;
 
+use std::convert::TryFrom;
 use std::fs::File;
 use std::io::{BufReader, BufRead, Lines};
 use std::path::Path;
@@ -8,7 +9,6 @@ use std::str::SplitWhitespace;
 use super::conversions_to_array;
 use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS, ERR_TOO_MANY_FREECELLS};
 use crate::freecell::{Card, Cascade, Foundations, FoundationsTrait, Freecells, GameState};
-use super::parse_card::parse_card;
 use super::validate_game_state::validate_game_state;
 
 
@@ -88,7 +88,7 @@ fn parse_cards(card_iterator: SplitWhitespace) -> Result<Vec<Card>, String> {
     let mut cards = Vec::new();
 
     for card_code in card_iterator {
-        cards.push(parse_card(card_code)?);
+        cards.push(Card::try_from(card_code)?);
     }
 
     Ok(cards)

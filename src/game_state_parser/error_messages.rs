@@ -8,18 +8,6 @@ pub const ERR_TOO_MANY_FREECELLS: &str = "Too many freecells";
 
 
 // error messages that use formatting
-macro_rules! err_card_code_not_length_2 {
-    ($card_code: expr) => (format!("Card code \"{}\" is not of length 2", $card_code))
-}
-
-macro_rules! err_could_not_parse_card_rank {
-    ($rank: expr) => (format!("Could not parse card rank: {}", $rank))
-}
-
-macro_rules! err_could_not_parse_suit {
-    ($suit_code: expr) => (format!("Could not parse suit: {}", $suit_code))
-}
-
 macro_rules! err_multiple_foundations_of_suit {
     ($suit: expr) => (format!("Multiple foundations of suit {} specified", $suit))
 }
