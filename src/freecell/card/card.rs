@@ -70,3 +70,12 @@ impl TryFrom<String> for Card {
         }
     }
 }
+
+impl TryFrom<&str> for Card {
+    type Error = String;
+
+    // TODO document
+    fn try_from(string: &str) -> Result<Card, Self::Error> {
+        return Card::try_from(string.to_string())
+    }
+}
