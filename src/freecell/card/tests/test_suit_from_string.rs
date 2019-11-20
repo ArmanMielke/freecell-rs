@@ -9,16 +9,16 @@ use super::super::Suit::{Club, Diamond, Heart, Spade};
 fn test_valid_name() {
     assert_eq!(Ok(Club), Suit::try_from("Club"));
     assert_eq!(Ok(Club), Suit::try_from("Clubs"));
-    assert_eq!(Ok(Club), Suit::try_from("C"));
+    assert_eq!(Ok(Club), Suit::try_from("c"));
     assert_eq!(Ok(Spade), Suit::try_from("Spade"));
-    assert_eq!(Ok(Spade), Suit::try_from("Spades"));
+    assert_eq!(Ok(Spade), Suit::try_from("SPADES"));
     assert_eq!(Ok(Spade), Suit::try_from("S"));
     assert_eq!(Ok(Heart), Suit::try_from("Heart"));
-    assert_eq!(Ok(Heart), Suit::try_from("Hearts"));
+    assert_eq!(Ok(Heart), Suit::try_from("hearts"));
     assert_eq!(Ok(Heart), Suit::try_from("H"));
     assert_eq!(Ok(Diamond), Suit::try_from("Diamond"));
     assert_eq!(Ok(Diamond), Suit::try_from("Diamonds"));
-    assert_eq!(Ok(Diamond), Suit::try_from("D"));
+    assert_eq!(Ok(Diamond), Suit::try_from("d"));
 }
 
 #[test]

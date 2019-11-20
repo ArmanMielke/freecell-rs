@@ -9,11 +9,11 @@ fn test_word_aliases() {
     assert_eq!(Ok(ACE), rank_from_string("A"));
     assert_eq!(Ok(10), rank_from_string("T"));
     assert_eq!(Ok(JACK), rank_from_string("Jack"));
-    assert_eq!(Ok(JACK), rank_from_string("J"));
+    assert_eq!(Ok(JACK), rank_from_string("j"));
     assert_eq!(Ok(QUEEN), rank_from_string("Queen"));
     assert_eq!(Ok(QUEEN), rank_from_string("Q"));
     assert_eq!(Ok(KING), rank_from_string("King"));
-    assert_eq!(Ok(KING), rank_from_string("K"));
+    assert_eq!(Ok(KING), rank_from_string("k"));
 }
 
 #[test]

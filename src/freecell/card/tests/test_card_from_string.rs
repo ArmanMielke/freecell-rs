@@ -45,7 +45,7 @@ fn test_short_representation() {
     // named ranks
     assert_eq!(
         Ok(Card { suit: Diamond, rank: ACE }),
-        Card::try_from("AD")
+        Card::try_from("ad")
     );
     // 10 is a named rank in the short representation
     assert_eq!(
@@ -58,11 +58,11 @@ fn test_short_representation() {
     );
     assert_eq!(
         Ok(Card { suit: Spade, rank: QUEEN }),
-        Card::try_from("QS")
+        Card::try_from("qS")
     );
     assert_eq!(
         Ok(Card { suit: Heart, rank: KING }),
-        Card::try_from("KH")
+        Card::try_from("Kh")
     );
 
     // number as rank
