@@ -6,11 +6,9 @@ use super::super::error_messages::ERR_TOO_MANY_CASCADES;
 
 
 #[test]
-#[ignore]
 fn test_easy_10_instead_of_t() {
-    let actual = parse_file("test-inputs/invalid/easy-10-instead-of-T.txt");
-    let expected = Err("".to_string()); // Err(err_card_code_not_length_2!("10S"));
-    assert_eq!(actual, expected);
+    // TODO test for exact error message
+    assert!(parse_file("test-inputs/invalid/easy-10-instead-of-T.txt").is_err());
 }
 
 #[test]
@@ -31,18 +29,16 @@ fn test_easy_extra_cascade() {
 }
 
 #[test]
-#[ignore]
 fn test_easy_invalid_card_rank() {
     let actual = parse_file("test-inputs/invalid/easy-invalid-card-rank.txt");
-    let expected = Err("".to_string()); // Err(err_could_not_parse_card_rank!('X'));
+    let expected = Err("Rank is neither named rank nor integer: \"X\"".to_string());
     assert_eq!(actual, expected);
 }
 
 #[test]
-#[ignore]
 fn test_easy_invalid_suit() {
     let actual = parse_file("test-inputs/invalid/easy-invalid-suit.txt");
-    let expected = Err("".to_string()); // Err(err_could_not_parse_suit!('X'));
+    let expected = Err("Suit \"X\" does not match any of \"C[lub[s]]\", \"S[pade[s]]\", \"H[eart[s]]\", \"D[iamond[s]]\" (case-insensitive)".to_string());
     assert_eq!(actual, expected);
 }
 
