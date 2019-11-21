@@ -8,7 +8,7 @@ use std::str::SplitWhitespace;
 
 use super::conversions_to_array;
 use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS, ERR_TOO_MANY_FREECELLS};
-use crate::freecell::{Card, Cascade, Foundations, FoundationsTrait, Freecells, GameState};
+use crate::freecell::{Card, Cascade, Foundations, Freecells, GameState};
 
 
 
@@ -28,7 +28,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
     let lines = read_file_as_lines(file_name)?;
 
     let mut cascades: Vec<Cascade> = Vec::new();
-    let mut foundations = [Vec::new(), Vec::new(), Vec::new(), Vec::new()];
+    let mut foundations = Foundations::new();
     let mut freecells = ArrayVec::new();
 
     for line_result in lines {
@@ -99,7 +99,7 @@ fn create_foundations(foundations: &mut Foundations, foundation_cards: Vec<Card>
         if foundations.get_foundation(card.suit).len() > 0 {
             return Err(err_multiple_foundations_of_suit!(card.suit))
         } else {
-            foundations[card.suit as usize] = card_sequence_up_to(&card);
+            foundations.0[card.suit as usize] = card_sequence_up_to(&card);
 //            *foundations.get_foundation(card.suit) = card_sequence_up_to(&card);
         }
     }

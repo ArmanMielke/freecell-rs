@@ -5,27 +5,55 @@ use super::{Card, CardCollection, Suit, ACE};
 //const FOUNDATION_MAX_SIZE: usize = 13;
 
 
-/// May only contain cards of one suit, ordered from Ace upwards.
-// TODO does this need to be public?
+/// A stack of cards of one suit, ordered from Ace upwards.
+///
+/// # Rules
+///
+/// TODO
+///
+/// # Examples
+///
+/// ```
+/// // TODO
+/// ```
 pub type Foundation = Vec<Card>;
 
+
+/// Four stacks of cards, where each stack contains only cards of one suit, going from Ace upwards.
+///
+/// # Rules
+///
+/// TODO
+///
+/// # Usage
+///
 /// The position of the Foundation in the array determines which suit it holds.
 /// Eg. `foundations[1]` may only hold spade cards, since Suit::Spade equals 1.
-pub type Foundations = [Foundation; 4];
+/// TODO explain more thoroughly
+///
+/// # Examples
+///
+/// ```
+/// // TODO
+/// ```
+// TODO #[derive(Default)]
+#[derive(Clone, Eq, Hash, PartialEq)]
+pub struct Foundations(pub [Foundation; 4]);
 
 
-// TODO Use the trait everywhere where the type Foundations is used. Rename the trait to Foundations and rename the type to something else.
-// TODO This includes implementing CardCollection for the Foundations trait. See https://stackoverflow.com/questions/31082179/is-there-a-way-to-implement-a-trait-on-top-of-another-trait
-pub trait FoundationsTrait {
-    // TODO rename to foundation()
-    fn get_foundation(&self, suit: Suit) -> &Foundation;
-}
+impl Foundations {
 
-impl FoundationsTrait for Foundations {
-    /// returns the foundation of the given suit
-    fn get_foundation(&self, suit: Suit) -> &Foundation {
-        &self[suit as usize]
+    /// Creates empty foundations
+    pub fn new() -> Foundations {
+        Foundations([Vec::new(), Vec::new(), Vec::new(), Vec::new()])
     }
+
+    /// Returns the foundation of the given suit
+    // TODO rename to foundation()
+    pub fn get_foundation(&self, suit: Suit) -> &Foundation {
+        &self.0[suit as usize]
+    }
+
 }
 
 
@@ -49,7 +77,7 @@ impl CardCollection for Foundations {
         }
 
         let mut clone = self.clone();
-        clone[card.suit as usize].push(card);
+        clone.0[card.suit as usize].push(card);
         Ok(clone)
     }
 

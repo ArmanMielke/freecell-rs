@@ -31,7 +31,7 @@ fn count_cards(game_state: &GameState) -> [i32; 52] {
         }
     }
 
-    for foundation in game_state.foundations.iter() {
+    for foundation in game_state.foundations.0.iter() {
         for card in foundation {
             card_count[card_index(card)] += 1;
         }

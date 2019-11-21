@@ -5,7 +5,7 @@ use super::super::Suit::{Club, Diamond, Heart, Spade};
 
 
 
-static CARDS: &'static [Card] = &[
+const CARDS: &'static [Card] = &[
     Card { suit: Heart, rank: ACE},
     Card { suit: Diamond, rank: 5},
     Card { suit: Spade, rank: 10},

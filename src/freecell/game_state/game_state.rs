@@ -18,10 +18,10 @@ pub struct GameState {
 impl GameState {
 
     pub fn is_solved(&self) -> bool {
-        self.foundations[0].len() == 13 &&
-        self.foundations[1].len() == 13 &&
-        self.foundations[2].len() == 13 &&
-        self.foundations[3].len() == 13
+        self.foundations.0[0].len() == 13 &&
+        self.foundations.0[1].len() == 13 &&
+        self.foundations.0[2].len() == 13 &&
+        self.foundations.0[3].len() == 13
     }
 
     pub fn id(&self) -> GameStateId {

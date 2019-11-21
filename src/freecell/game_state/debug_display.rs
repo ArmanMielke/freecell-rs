@@ -7,7 +7,7 @@ use super::GameState;
 impl Display for GameState {
     fn fmt(&self, f: &mut Formatter) -> Result {
         // foundations
-        let foundation_strings: Vec<String> = self.foundations.iter().map(
+        let foundation_strings: Vec<String> = self.foundations.0.iter().map(
             |foundation|
                 if foundation.is_empty() {
                     "Empty".to_string()
@@ -42,7 +42,7 @@ impl Debug for GameState {
     fn fmt(&self, f: &mut Formatter) -> Result {
         // foundations
         write!(f, "foundations:")?;
-        for foundation in &self.foundations {
+        for foundation in &self.foundations.0 {
             if !foundation.is_empty() {
                 write!(f, " {:?}", foundation.last().unwrap())?;
             }

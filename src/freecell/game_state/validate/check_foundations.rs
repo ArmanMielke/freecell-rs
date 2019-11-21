@@ -1,4 +1,4 @@
-use crate::freecell::{Foundation, FoundationsTrait, Suit};
+use crate::freecell::{Foundation, Suit};
 use crate::freecell::Suit::{Club, Diamond, Heart, Spade};
 use super::super::GameState;
 

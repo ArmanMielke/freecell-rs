@@ -1,6 +1,6 @@
 use arrayvec::ArrayVec;
 
-use crate::freecell::{Card, GameState, ACE, JACK, KING, QUEEN};
+use crate::freecell::{Card, Foundations, GameState, ACE, JACK, KING, QUEEN};
 use crate::freecell::Suit::{Club, Diamond, Heart, Spade};
 use super::super::parse_file;
 
@@ -55,7 +55,7 @@ fn test_hard_solved_to_6() {
                 Card { suit: Heart, rank: KING },
             ],
         ],
-        foundations: [
+        foundations: Foundations([
             vec![
                 Card { suit: Club, rank: ACE },
                 Card { suit: Club, rank: 2 },
@@ -88,7 +88,7 @@ fn test_hard_solved_to_6() {
                 Card { suit: Diamond, rank: 5 },
                 Card { suit: Diamond, rank: 6 },
             ],
-        ],
+        ]),
         freecells: ArrayVec::new(),
     };
 
