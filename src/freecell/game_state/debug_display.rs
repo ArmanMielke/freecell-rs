@@ -7,16 +7,7 @@ use super::GameState;
 impl Display for GameState {
     fn fmt(&self, f: &mut Formatter) -> Result {
         // foundations
-        let foundation_strings: Vec<String> = self.foundations.0.iter().map(
-            |foundation|
-                if foundation.is_empty() {
-                    "Empty".to_string()
-                } else {
-                    format!("Up to {}", foundation.last().unwrap().to_string())
-                }
-        ).collect();
-        writeln!(f, "Foundations: {}", foundation_strings.join(", "))?;
-        writeln!(f)?;
+        writeln!(f, "{}\n", self.foundations)?;
 
         // cascades
         for (i, cascade) in self.cascades.iter().enumerate() {
@@ -41,18 +32,11 @@ impl Display for GameState {
 impl Debug for GameState {
     fn fmt(&self, f: &mut Formatter) -> Result {
         // foundations
-        write!(f, "foundations:")?;
-        for foundation in &self.foundations.0 {
-            if !foundation.is_empty() {
-                write!(f, " {:?}", foundation.last().unwrap())?;
-            }
-        }
-        writeln!(f)?;
-        writeln!(f)?;
+        writeln!(f, "{:?}\n", self.foundations)?;
 
         // cascades
         for cascade in &self.cascades {
-            write!(f, "cascade:")?;
+            write!(f, "Cascade:")?;
             for card in cascade {
                 write!(f, " {:?}", card)?;
             }
@@ -61,7 +45,7 @@ impl Debug for GameState {
         writeln!(f)?;
 
         // freecells
-        write!(f, "freecells:")?;
+        write!(f, "Freecells:")?;
         for card in &self.freecells {
             write!(f, " {:?}", card)?;
         }

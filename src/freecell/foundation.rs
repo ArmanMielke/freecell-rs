@@ -1,3 +1,5 @@
+use std::fmt::{Debug, Display, Formatter, Error};
+
 use super::{Card, CardCollection, Suit, ACE};
 
 
@@ -85,4 +87,32 @@ impl CardCollection for Foundations {
         Vec::new()
     }
 
+}
+
+
+impl Display for Foundations {
+    fn fmt(&self, f: &mut Formatter) -> Result<(), Error> {
+        let foundation_strings: Vec<String> = self.0.iter().map(
+            |foundation|
+                if foundation.is_empty() {
+                    "Empty".to_string()
+                } else {
+                    format!("Up to {}", foundation.last().unwrap().to_string())
+                }
+        ).collect();
+        write!(f, "Foundations: {}", foundation_strings.join(", "))
+    }
+}
+
+
+impl Debug for Foundations {
+    fn fmt(&self, f: &mut Formatter) -> Result<(), Error> {
+        write!(f, "Foundations:")?;
+        for foundation in &self.0 {
+            if !foundation.is_empty() {
+                write!(f, " {:?}", foundation.last().unwrap())?;
+            }
+        }
+        Ok(())
+    }
 }
