@@ -8,7 +8,7 @@ use super::super::GameState;
 /// correct.
 pub fn check_foundations(game_state: &GameState) -> Result<(), String> {
     for suit in [Club, Spade, Heart, Diamond].iter() {
-        check_foundation(&game_state.foundations.get_foundation(*suit), *suit)?;
+        check_foundation(&game_state.foundations.foundation(*suit), *suit)?;
     }
     Ok(())
 }

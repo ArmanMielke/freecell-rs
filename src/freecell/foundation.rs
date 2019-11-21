@@ -49,8 +49,7 @@ impl Foundations {
     }
 
     /// Returns the foundation of the given suit
-    // TODO rename to foundation()
-    pub fn get_foundation(&self, suit: Suit) -> &Foundation {
+    pub fn foundation(&self, suit: Suit) -> &Foundation {
         &self.0[suit as usize]
     }
 
@@ -61,7 +60,7 @@ impl CardCollection for Foundations {
 
     fn add_card(&self, card: Card) -> Result<Self, ()> {
         // check whether the card can be put on any foundation
-        if self.get_foundation(card.suit).is_empty() {
+        if self.foundation(card.suit).is_empty() {
             // only Aces can be put on an empty foundation
             if card.rank != ACE {
                 return Err(())
@@ -71,7 +70,7 @@ impl CardCollection for Foundations {
             card.rank == ACE ||
             // Other cards can only be put on a foundation if it is one rank higher than the
             // currently topmost card on the foundation
-            self.get_foundation(card.suit).last().unwrap().rank + 1 != card.rank
+            self.foundation(card.suit).last().unwrap().rank + 1 != card.rank
         {
             return Err(())
         }

@@ -96,7 +96,7 @@ fn parse_cards(card_iterator: SplitWhitespace) -> Result<Vec<Card>, String> {
 
 fn create_foundations(foundations: &mut Foundations, foundation_cards: Vec<Card>) -> Result<(), String> {
     for card in foundation_cards  {
-        if foundations.get_foundation(card.suit).len() > 0 {
+        if foundations.foundation(card.suit).len() > 0 {
             return Err(err_multiple_foundations_of_suit!(card.suit))
         } else {
             foundations.0[card.suit as usize] = card_sequence_up_to(&card);
