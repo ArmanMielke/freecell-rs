@@ -15,3 +15,6 @@ pub use self::freecells::Freecells;
 pub use self::game_move::Move;
 pub use self::game_state::{GameState, GameStateId};
 pub use self::position::Position;
+
+#[cfg(test)]
+mod tests;

@@ -38,8 +38,7 @@ pub type Foundation = Vec<Card>;
 /// ```
 /// // TODO
 /// ```
-// TODO #[derive(Default)]
-#[derive(Clone, Eq, Hash, PartialEq)]
+#[derive(Clone, Default, Eq, Hash, PartialEq)]
 pub struct Foundations(pub [Foundation; 4]);
 
 
