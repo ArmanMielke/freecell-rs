@@ -1,6 +1,6 @@
 # Freecell
 
-![](https://github.com/Arman-Mielke/freecell-rs/workflows/tests/badge.svg)
+[![tests](https://github.com/Arman-Mielke/freecell-rs/workflows/tests/badge.svg)](https://github.com/Arman-Mielke/freecell-rs/actions)
 [![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/clippy.svg)](#license)
 
 
