@@ -1,0 +1,8 @@
+foundations: TC TS TH TD
+
+cascade: QC QS
+cascade: KS JH JC
+cascade: KC
+cascade: JS JD
+cascade: KD QD
+cascade: QH KH
