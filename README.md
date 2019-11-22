@@ -1,6 +1,7 @@
 # Freecell
 
 [![tests](https://github.com/Arman-Mielke/freecell-rs/workflows/tests/badge.svg)](https://github.com/Arman-Mielke/freecell-rs/actions)
+[![unsafe forbidden](https://img.shields.io/badge/unsafe-forbidden-success.svg)](https://github.com/rust-secure-code/safety-dance/)
 [![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/clippy.svg)](#license)
 
 
@@ -48,6 +49,7 @@ card codes are case-insensitive.
     - https://github.com/ferrous-systems/flamegraph
 - try binary heap instead of priority queue?
 - add a badge that links to crates.io ([example 1](https://github.com/serde-rs/serde/blob/master/README.md) [example 2](https://raw.githubusercontent.com/BurntSushi/cargo-benchcmp/master/README.md))
+- link to docs (maybe as badge?)
 
 ### API Guidelines
 
