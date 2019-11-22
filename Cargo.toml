@@ -12,10 +12,5 @@ readme = "README.md"
 edition = '2018'
 # TODO there might be more that needs to go here
 
-[[bin]]
-name = "freecell"
-test = false
-
 [dependencies]
 arrayvec = "0.4.7"
-priority-queue = "0.6.0"
