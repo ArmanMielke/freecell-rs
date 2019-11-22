@@ -3,43 +3,24 @@ use super::error_messages::ERR_TOO_MANY_CASCADES;
 
 
 pub fn cascades_vec_to_array(mut cascades: Vec<Cascade>) -> Result<Cascades, String> {
-    // TODO implement this properly
-    if cascades.len() == 8 {
-        Ok([
-            cascades.remove(0),
-            cascades.remove(0),
-            cascades.remove(0),
-            cascades.remove(0),
-            cascades.remove(0),
-            cascades.remove(0),
-            cascades.remove(0),
-            cascades.remove(0),
-        ])
-    } else if cascades.len() > 8 {
-        Err(String::from(ERR_TOO_MANY_CASCADES))
-    } else if cascades.len() == 7 {
-        Ok([
-            cascades.remove(0),
-            cascades.remove(0),
-            cascades.remove(0),
-            cascades.remove(0),
-            cascades.remove(0),
-            cascades.remove(0),
-            cascades.remove(0),
-            Vec::new(),
-        ])
-    } else if cascades.len() == 0 {
-        Ok([
-            Vec::new(),
-            Vec::new(),
-            Vec::new(),
-            Vec::new(),
-            Vec::new(),
-            Vec::new(),
-            Vec::new(),
-            Vec::new(),
-        ])
-    } else {
-        unimplemented!()
+    if cascades.len() > 8 {
+        return Err(String::from(ERR_TOO_MANY_CASCADES));
     }
+
+    // pad to 8 cascades
+    for _ in cascades.len()..8 {
+        cascades.push(Vec::new())
+    }
+
+    // convert to array
+    Ok([
+        cascades.remove(0),
+        cascades.remove(0),
+        cascades.remove(0),
+        cascades.remove(0),
+        cascades.remove(0),
+        cascades.remove(0),
+        cascades.remove(0),
+        cascades.remove(0),
+    ])
 }
