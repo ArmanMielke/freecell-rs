@@ -1,5 +1,5 @@
 
-# Cargo
+# Rust and Cargo
 /target/
 **/*.rs.bk
 

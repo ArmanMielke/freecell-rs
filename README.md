@@ -1,8 +1,12 @@
 # Freecell
 
-A Freecell solver written in Rust
+Freecell game objects and rules written in Rust
 
-**THIS PROJECT IS A WORK IN PROGRESS AND NOT YET FUNCTIONAL**
+**THIS PROJECT IS A WORK IN PROGRESS**
+
+------------------------------------------------------------------------------
+
+# Temporary notes
 
 ## Explanation for Card Codes (Could be used in some top level doc)
 
