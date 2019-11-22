@@ -1,8 +1,18 @@
 # Freecell
 
+[![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/clippy.svg)](#license)
+
+
 Freecell game objects and rules written in Rust
 
 **THIS PROJECT IS A WORK IN PROGRESS**
+
+
+## License
+
+Licensed under either of <a href="LICENSE-APACHE">Apache License, Version
+2.0</a> or <a href="LICENSE-MIT">MIT license</a> at your option.
+
 
 ------------------------------------------------------------------------------
 
