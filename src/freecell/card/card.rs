@@ -173,6 +173,6 @@ impl TryFrom<&str> for Card {
     ///
     /// See the description of `TryFrom<String>` for details.
     fn try_from(string: &str) -> Result<Card, Self::Error> {
-        return Card::try_from(string.to_string())
+        Card::try_from(string.to_string())
     }
 }

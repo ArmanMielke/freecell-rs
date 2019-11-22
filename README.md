@@ -47,6 +47,7 @@ card codes are case-insensitive.
     - https://bheisler.github.io/criterion.rs/book/criterion_rs.html
     - https://github.com/ferrous-systems/flamegraph
 - try binary heap instead of priority queue?
+- add a badge that links to crates.io ([example 1](https://github.com/serde-rs/serde/blob/master/README.md) [example 2](https://raw.githubusercontent.com/BurntSushi/cargo-benchcmp/master/README.md))
 
 ### API Guidelines
 

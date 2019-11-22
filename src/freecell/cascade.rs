@@ -22,7 +22,7 @@ use super::{Card, CardCollection, ACE};
 pub type Cascade = Vec<Card>;
 
 
-fn fits_on_top_of(lower_card: &Card, higher_card: &Card) -> bool {
+fn fits_on_top_of(lower_card: Card, higher_card: Card) -> bool {
     lower_card.suit.colour() != higher_card.suit.colour() &&
     lower_card.rank + 1 == higher_card.rank
 }
@@ -38,8 +38,8 @@ impl CardCollection for Cascade {
         match self.last() {
 
             // the cascade contains at least one card
-            Some(top_card) => {
-                if fits_on_top_of(&card, &top_card) {
+            Some(&top_card) => {
+                if fits_on_top_of(card, top_card) {
                     // the new card can be put onto this cascade
                     let mut clone = (*self).clone();
                     clone.push(card);

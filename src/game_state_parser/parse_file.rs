@@ -91,20 +91,20 @@ fn parse_cards(card_iterator: SplitWhitespace) -> Result<Vec<Card>, String> {
 
 fn create_foundations(foundations: &mut Foundations, foundation_cards: Vec<Card>) -> Result<(), String> {
     for card in foundation_cards  {
-        if foundations.foundation(card.suit).len() > 0 {
+        if !foundations.foundation(card.suit).is_empty() {
             return Err(err_multiple_foundations_of_suit!(card.suit))
         } else {
-            foundations.0[card.suit as usize] = card_sequence_up_to(&card);
+            foundations.0[card.suit as usize] = card_sequence_up_to(card);
         }
     }
 
     Ok(())
 }
 
-fn card_sequence_up_to(card: &Card) -> Vec<Card> {
+fn card_sequence_up_to(card: Card) -> Vec<Card> {
     let mut cards = Vec::new();
 
-    for rank in 1..card.rank +1 {
+    for rank in 1..=card.rank {
         cards.push(Card{
             suit: card.suit,
             rank,
@@ -117,7 +117,7 @@ fn card_sequence_up_to(card: &Card) -> Vec<Card> {
 
 fn create_freecells(freecells: &mut Freecells, freecell_cards: Vec<Card>) -> Result<(), String> {
     for card in freecell_cards {
-        if let Err(_) = freecells.try_push(card) {
+        if freecells.try_push(card).is_err() {
             return Err(String::from(ERR_TOO_MANY_FREECELLS))
         }
     }

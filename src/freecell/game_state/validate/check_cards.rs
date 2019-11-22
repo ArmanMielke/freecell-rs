@@ -8,11 +8,11 @@ use super::super::GameState;
 pub fn check_cards(game_state: &GameState) -> Result<(), String> {
     let card_count = count_cards(game_state);
 
-    for card_index in 0..card_count.len() {
-        if card_count[card_index] != 1 {
+    for (index, &count) in card_count.iter().enumerate() {
+        if count != 1 {
             return Err(format!(
                 "Card {} exists {} times, should exist once",
-                card_from_index(card_index), card_count[card_index]
+                card_from_index(index), count
             ));
         }
     }
@@ -26,18 +26,18 @@ fn count_cards(game_state: &GameState) -> [i32; 52] {
     let mut card_count = [0; 52];
 
     for cascade in game_state.cascades.iter() {
-        for card in cascade {
+        for &card in cascade {
             card_count[card_index(card)] += 1;
         }
     }
 
     for foundation in game_state.foundations.0.iter() {
-        for card in foundation {
+        for &card in foundation {
             card_count[card_index(card)] += 1;
         }
     }
 
-    for card in game_state.freecells.iter() {
+    for &card in game_state.freecells.iter() {
         card_count[card_index(card)] += 1;
     }
 
@@ -45,7 +45,7 @@ fn count_cards(game_state: &GameState) -> [i32; 52] {
 }
 
 
-fn card_index(card: &Card) -> usize {
+fn card_index(card: Card) -> usize {
     card.suit as usize * 13 + card.rank as usize - 1
 }
 

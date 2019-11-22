@@ -58,7 +58,7 @@ impl Suit {
     /// assert_eq!(Colour::Black, Suit::Club.colour());
     /// assert_eq!(Colour::Red, Suit::Heart.colour());
     /// ```
-    pub fn colour(&self) -> Colour {
+    pub fn colour(self) -> Colour {
         match self {
             Suit::Club => Colour::Black,
             Suit::Spade => Colour::Black,
@@ -70,7 +70,7 @@ impl Suit {
     /// Returns the color of this suit.
     ///
     /// This is an alias of `colour()`
-    pub fn color(&self) -> Color {
+    pub fn color(self) -> Color {
         self.colour()
     }
 }
@@ -157,6 +157,6 @@ impl TryFrom<&str> for Suit {
     ///
     /// See the description of `TryFrom<String>` for details.
     fn try_from(string: &str) -> Result<Suit, Self::Error> {
-        return Suit::try_from(string.to_string())
+        Suit::try_from(string.to_string())
     }
 }

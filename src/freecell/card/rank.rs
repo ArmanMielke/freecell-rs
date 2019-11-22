@@ -53,12 +53,12 @@ pub fn rank_from_string<S: Into<String>>(string: S) -> Result<Rank, String> {
 
         // rank is not a word => try to parse it as u8
         _ => match string.trim().parse::<u8>() {
-            Err(_) => return Err(format!("Rank is neither named rank nor integer: \"{}\"", string)),
+            Err(_) => Err(format!("Rank is neither named rank nor integer: \"{}\"", string)),
 
             // successfully parsed number => check whether it is in the correct range
             Ok(rank) => match rank {
                 0 => Err("Rank cannot be 0".to_string()),
-                1...13 => Ok(rank),
+                1..=13 => Ok(rank),
                 _ => Err(format!("Rank cannot be greater than 13 (rank is {})", rank)),
             }
         }
