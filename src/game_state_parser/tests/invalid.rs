@@ -7,7 +7,7 @@ use super::super::error_messages::ERR_TOO_MANY_CASCADES;
 
 #[test]
 fn test_easy_10_instead_of_t() {
-    // TODO test for exact error message
+    // TODO [low priority] test for exact error message
     assert!(parse_file("test-inputs/invalid/easy-10-instead-of-T.txt").is_err());
 }
 
@@ -64,5 +64,5 @@ fn test_easy_misspelled_cascade() {
 
 #[test]
 fn test_easy_duplicate_foundation() {
-    // TODO (test file does not exist yet)
+    // TODO [low priority] test. (test file does not exist yet)
 }

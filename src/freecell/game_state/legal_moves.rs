@@ -5,8 +5,8 @@ use super::GameState;
 
 impl GameState {
 
-    // TODO possible optimisation: if there are multiple empty cascades, only allow to move to one of them
-    // TODO deduplicate code
+    // TODO [low priority] possible optimisation: if there are multiple empty cascades, only allow to move to one of them
+    // TODO [low priority] deduplicate code
     pub fn legal_moves(&self) -> Vec<(GameState, Move)> {
         // This is a temporary implementation.
         // My attempts to implement this nicely have been thwarted by rust's rules for creating

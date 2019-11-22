@@ -72,7 +72,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
 
 
 fn read_file_as_lines<P: AsRef<Path>>(file_name: P) -> Result<Lines<BufReader<File>>, String> {
-    // TODO return a proper error if the file does not exist, along the lines of 'File "<file name>" does not exist' or 'File "<file name>" not found'
+    // TODO [med priority] return a proper error if the file does not exist, along the lines of 'File "<file name>" does not exist' or 'File "<file name>" not found'
     let file = match File::open(file_name) {
         Ok(file) => file,
         Err(_) => return Err(String::from(ERR_COULD_NOT_READ_FILE)),

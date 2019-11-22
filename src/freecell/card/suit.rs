@@ -102,7 +102,7 @@ impl Debug for Suit {
 }
 
 
-// TODO is there a solution for this:
+// TODO [low priority] is there a solution for this:
 // would like this to be
 // impl<S: Into<String>> TryFrom<S> for Suit
 // but this doesn't work because of https://github.com/rust-lang/rust/issues/50133
@@ -131,7 +131,7 @@ impl TryFrom<String> for Suit {
     /// assert_eq!(Ok(Suit::Heart), Suit::try_from(String::from("h")));
     /// ```
     fn try_from(string: String) -> Result<Suit, Self::Error> {
-        // TODO use regex
+        // TODO [low priority] use regex
         match string.to_lowercase().trim() {
             "club" => Ok(Suit::Club),
             "clubs" => Ok(Suit::Club),

@@ -18,7 +18,7 @@ use super::{Card, CardCollection, ACE};
 ///
 /// # Examples
 ///
-/// TODO Add examples
+/// TODO [high priority] Add examples
 pub type Cascade = Vec<Card>;
 
 

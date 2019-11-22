@@ -81,7 +81,7 @@ impl Debug for Card {
 }
 
 
-// TODO is there a solution for this:
+// TODO [low priority] is there a solution for this:
 // would like this to be
 // impl<S: Into<String>> TryFrom<S> for Card
 // but this doesn't work because of https://github.com/rust-lang/rust/issues/50133
@@ -146,7 +146,7 @@ impl TryFrom<String> for Card {
     /// assert_eq!(Ok(Card { suit: Spade, rank: QUEEN }), Card::try_from("12 oF sPaDeS"));
     /// ```
     fn try_from(string: String) -> Result<Card, Self::Error> {
-        // TODO use regex
+        // TODO [low priority] use regex
         let string = string.trim();
 
         if string.len() == 2 {

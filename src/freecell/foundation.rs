@@ -38,12 +38,12 @@ pub type Foundation = Vec<Card>;
 ///
 /// The position of the Foundation in the array determines which suit it holds.
 /// Eg. `foundations[1]` may only hold spade cards, since Suit::Spade equals 1.
-/// TODO explain more thoroughly
+/// TODO [high priority] explain more thoroughly
 ///
 /// # Examples
 ///
 /// ```
-/// // TODO
+/// // TODO [high priority]
 /// ```
 #[derive(Clone, Default, Eq, Hash, PartialEq)]
 pub struct Foundations(pub [Foundation; 4]);

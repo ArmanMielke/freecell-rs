@@ -32,4 +32,4 @@ impl GameState {
 
 }
 
-// TODO implement Eq. Order of cascades and order of cards in freecells should not matter.
+// TODO [high/med priority] implement Eq. Order of cascades and order of cards in freecells should not matter.
