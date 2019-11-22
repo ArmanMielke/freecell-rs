@@ -1,10 +1,8 @@
 use std::convert::TryFrom;
 use std::fmt;
-use std::fmt::{Display, Debug, Formatter};
+use std::fmt::{Debug, Display, Formatter};
 
 use super::{Color, Colour};
-
-
 
 /// Indicates the suit of a card.
 ///
@@ -43,7 +41,6 @@ pub enum Suit {
     Diamond = 3,
 }
 
-
 impl Suit {
     /// Returns the colour of this suit.
     ///
@@ -75,7 +72,6 @@ impl Suit {
     }
 }
 
-
 impl Display for Suit {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         let name = match self {
@@ -88,7 +84,6 @@ impl Display for Suit {
     }
 }
 
-
 impl Debug for Suit {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         let name = match self {
@@ -100,7 +95,6 @@ impl Debug for Suit {
         write!(f, "{}", name)
     }
 }
-
 
 // TODO [low priority] is there a solution for this:
 // would like this to be

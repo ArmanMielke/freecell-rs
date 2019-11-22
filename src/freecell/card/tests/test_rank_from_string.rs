@@ -1,8 +1,6 @@
 use super::super::rank::rank_from_string;
 use super::super::{ACE, JACK, KING, QUEEN};
 
-
-
 #[test]
 fn test_word_aliases() {
     assert_eq!(Ok(ACE), rank_from_string("Ace"));

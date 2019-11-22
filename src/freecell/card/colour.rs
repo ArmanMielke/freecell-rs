@@ -1,7 +1,5 @@
 use std::fmt::{Display, Formatter, Result};
 
-
-
 /// Indicates the colour of a card.
 ///
 /// The suits Club and Spade are black, whereas Heart and Diamond are red.
@@ -19,13 +17,12 @@ use std::fmt::{Display, Formatter, Result};
 /// ```
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
 pub enum Colour {
-    Black, Red
+    Black,
+    Red,
 }
-
 
 /// Alias for the American spelling of Colour.
 pub type Color = Colour;
-
 
 impl Display for Colour {
     fn fmt(&self, f: &mut Formatter) -> Result {

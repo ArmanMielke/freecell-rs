@@ -1,9 +1,7 @@
 use arrayvec::ArrayVec;
 
-use crate::freecell::{Card, Foundations, GameState, ACE, JACK, KING, QUEEN};
 use crate::freecell::Suit::{Club, Diamond, Heart, Spade};
-
-
+use crate::freecell::{Card, Foundations, GameState, ACE, JACK, KING, QUEEN};
 
 #[test]
 fn test_hard_solved_to_t_empty_cascades_omitted() {

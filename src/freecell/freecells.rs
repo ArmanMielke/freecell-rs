@@ -2,18 +2,14 @@ use arrayvec::ArrayVec;
 
 use super::{Card, CardCollection};
 
-
-
 /// May hold up to four arbitrary cards
 // TODO [med/low priority] consider a different type for this, e.g. one where order doesn't matter
 pub type Freecells = ArrayVec<[Card; 4]>;
 
-
 impl CardCollection for Freecells {
-
     fn add_card(&self, card: Card) -> Result<Self, ()> {
         if self.is_full() {
-            return Err(())
+            return Err(());
         }
 
         let mut clone = self.clone();
@@ -33,5 +29,4 @@ impl CardCollection for Freecells {
 
         results
     }
-
 }

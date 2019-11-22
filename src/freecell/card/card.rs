@@ -2,9 +2,7 @@ use std::convert::TryFrom;
 use std::fmt;
 use std::fmt::{Debug, Display, Formatter};
 
-use super::{Rank, Suit, rank_from_string, ACE, JACK, KING, QUEEN};
-
-
+use super::{rank_from_string, Rank, Suit, ACE, JACK, KING, QUEEN};
 
 /// Represents one card in the game.
 ///
@@ -51,7 +49,6 @@ pub struct Card {
     pub rank: Rank,
 }
 
-
 impl Display for Card {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         let rank_string = match self.rank {
@@ -64,7 +61,6 @@ impl Display for Card {
         write!(f, "{} of {}s", rank_string, self.suit)
     }
 }
-
 
 impl Debug for Card {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
@@ -79,7 +75,6 @@ impl Debug for Card {
         write!(f, "{}{:?}", rank_string, self.suit)
     }
 }
-
 
 // TODO [low priority] is there a solution for this:
 // would like this to be

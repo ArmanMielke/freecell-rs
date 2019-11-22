@@ -1,8 +1,6 @@
+use super::super::GameState;
 use crate::freecell::Card;
 use crate::freecell::Suit::{Club, Diamond, Heart, Spade};
-use super::super::GameState;
-
-
 
 /// Checks whether each possible card exists exactly once
 pub fn check_cards(game_state: &GameState) -> Result<(), String> {
@@ -19,7 +17,6 @@ pub fn check_cards(game_state: &GameState) -> Result<(), String> {
 
     Ok(())
 }
-
 
 /// For each of the 52 possible cards, this function counts how many instances of this card exist.
 fn count_cards(game_state: &GameState) -> [i32; 52] {
@@ -44,11 +41,9 @@ fn count_cards(game_state: &GameState) -> [i32; 52] {
     card_count
 }
 
-
 fn card_index(card: Card) -> usize {
     card.suit as usize * 13 + card.rank as usize - 1
 }
-
 
 fn card_from_index(index: usize) -> Card {
     Card {
@@ -57,7 +52,7 @@ fn card_from_index(index: usize) -> Card {
             1 => Spade,
             2 => Heart,
             3 => Diamond,
-            _ => unreachable!("invalid card index: {}", index)
+            _ => unreachable!("invalid card index: {}", index),
         },
         rank: (index % 13) as u8 + 1,
     }

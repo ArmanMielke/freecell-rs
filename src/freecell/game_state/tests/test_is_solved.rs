@@ -1,7 +1,5 @@
 use crate::game_state_parser;
 
-
-
 #[test]
 fn test_solved() {
     let game_state = game_state_parser::parse_file("test-inputs/solved.txt").unwrap();

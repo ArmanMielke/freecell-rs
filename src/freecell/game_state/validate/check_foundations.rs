@@ -1,8 +1,6 @@
-use crate::freecell::{Foundation, Suit};
-use crate::freecell::Suit::{Club, Diamond, Heart, Spade};
 use super::super::GameState;
-
-
+use crate::freecell::Suit::{Club, Diamond, Heart, Spade};
+use crate::freecell::{Foundation, Suit};
 
 /// Checks whether there is one foundation of each suit and whether each individual foundation is
 /// correct.
@@ -12,7 +10,6 @@ pub fn check_foundations(game_state: &GameState) -> Result<(), String> {
     }
     Ok(())
 }
-
 
 /// Checks whether the cards in a foundation have the required suit and are in the correct order.
 fn check_foundation(foundation: &Foundation, suit: Suit) -> Result<(), String> {

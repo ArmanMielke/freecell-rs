@@ -1,9 +1,7 @@
-use crate::game_state_parser;
-use super::super::super::super::{Card, Move, Position, KING};
 use super::super::super::super::Suit::Club;
+use super::super::super::super::{Card, Move, Position, KING};
 use super::utils;
-
-
+use crate::game_state_parser;
 
 #[test]
 fn test_one_card_left() {
@@ -16,7 +14,7 @@ fn test_one_card_left() {
                 card: Card { suit: Club, rank: KING },
                 from: Position::Cascade(2),
                 to: Position::Cascade(0),
-            }
+            },
         ),
         (
             game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-cascade1.txt").unwrap(),
@@ -24,7 +22,7 @@ fn test_one_card_left() {
                 card: Card { suit: Club, rank: KING },
                 from: Position::Cascade(2),
                 to: Position::Cascade(1),
-            }
+            },
         ),
         (
             game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-cascade3.txt").unwrap(),
@@ -32,7 +30,7 @@ fn test_one_card_left() {
                 card: Card { suit: Club, rank: KING },
                 from: Position::Cascade(2),
                 to: Position::Cascade(3),
-            }
+            },
         ),
         (
             game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-cascade4.txt").unwrap(),
@@ -40,7 +38,7 @@ fn test_one_card_left() {
                 card: Card { suit: Club, rank: KING },
                 from: Position::Cascade(2),
                 to: Position::Cascade(4),
-            }
+            },
         ),
         (
             game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-cascade5.txt").unwrap(),
@@ -48,7 +46,7 @@ fn test_one_card_left() {
                 card: Card { suit: Club, rank: KING },
                 from: Position::Cascade(2),
                 to: Position::Cascade(5),
-            }
+            },
         ),
         (
             game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-cascade6.txt").unwrap(),
@@ -56,7 +54,7 @@ fn test_one_card_left() {
                 card: Card { suit: Club, rank: KING },
                 from: Position::Cascade(2),
                 to: Position::Cascade(6),
-            }
+            },
         ),
         (
             game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-cascade7.txt").unwrap(),
@@ -64,7 +62,7 @@ fn test_one_card_left() {
                 card: Card { suit: Club, rank: KING },
                 from: Position::Cascade(2),
                 to: Position::Cascade(7),
-            }
+            },
         ),
         (
             game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-foundations.txt").unwrap(),
@@ -72,7 +70,7 @@ fn test_one_card_left() {
                 card: Card { suit: Club, rank: KING },
                 from: Position::Cascade(2),
                 to: Position::Foundations,
-            }
+            },
         ),
         (
             game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-freecells.txt").unwrap(),
@@ -80,7 +78,7 @@ fn test_one_card_left() {
                 card: Card { suit: Club, rank: KING },
                 from: Position::Cascade(2),
                 to: Position::Freecells,
-            }
+            },
         ),
     ];
 

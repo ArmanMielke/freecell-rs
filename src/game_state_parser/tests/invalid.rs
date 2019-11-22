@@ -1,9 +1,7 @@
+use super::super::error_messages::ERR_TOO_MANY_CASCADES;
+use super::super::parse_file;
 use crate::freecell::Card;
 use crate::freecell::Suit::{Club, Spade};
-use super::super::parse_file;
-use super::super::error_messages::ERR_TOO_MANY_CASCADES;
-
-
 
 #[test]
 fn test_easy_10_instead_of_t() {

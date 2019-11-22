@@ -3,8 +3,6 @@ use std::convert::TryFrom;
 use super::super::Suit;
 use super::super::Suit::{Club, Diamond, Heart, Spade};
 
-
-
 #[test]
 fn test_display() {
     assert_eq!(Ok(Club), Suit::try_from(Club.to_string()));

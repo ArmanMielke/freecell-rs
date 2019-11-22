@@ -1,9 +1,7 @@
 use std::convert::TryFrom;
 
-use super::super::{Card, ACE, JACK, KING, QUEEN};
 use super::super::Suit::{Club, Diamond, Heart, Spade};
-
-
+use super::super::{Card, ACE, JACK, KING, QUEEN};
 
 const CARDS: &'static [Card] = &[
     Card { suit: Heart, rank: ACE},

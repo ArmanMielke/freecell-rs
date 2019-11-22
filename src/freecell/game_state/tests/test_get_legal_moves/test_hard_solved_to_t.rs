@@ -1,4 +1,3 @@
-
 //#[test]
 #[allow(dead_code)]
 fn test_hard_solved_to_t() {

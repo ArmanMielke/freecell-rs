@@ -1,9 +1,7 @@
-use crate::game_state_parser;
-use super::super::super::super::{Card, Move, Position, ACE};
 use super::super::super::super::Suit::{Club, Diamond, Heart};
+use super::super::super::super::{Card, Move, Position, ACE};
 use super::utils;
-
-
+use crate::game_state_parser;
 
 // only the cards in the freecells can be moved
 #[test]
@@ -17,7 +15,7 @@ fn test_easy_full_freecells() {
                 card: Card { suit: Heart, rank: 6 },
                 from: Position::Freecells,
                 to: Position::Cascade(1),
-            }
+            },
         ),
         (
             game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/9d-from-freecells-to-cascade0.txt").unwrap(),
@@ -25,7 +23,7 @@ fn test_easy_full_freecells() {
                 card: Card { suit: Diamond, rank: 9 },
                 from: Position::Freecells,
                 to: Position::Cascade(0),
-            }
+            },
         ),
         (
             game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/9d-from-freecells-to-cascade3.txt").unwrap(),
@@ -33,7 +31,7 @@ fn test_easy_full_freecells() {
                 card: Card { suit: Diamond, rank: 9 },
                 from: Position::Freecells,
                 to: Position::Cascade(3),
-            }
+            },
         ),
         (
             game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/ac-from-freecells-to-foundations.txt").unwrap(),
@@ -41,7 +39,7 @@ fn test_easy_full_freecells() {
                 card: Card { suit: Club, rank: ACE },
                 from: Position::Freecells,
                 to: Position::Foundations,
-            }
+            },
         ),
         (
             game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/ad-from-freecells-to-foundations.txt").unwrap(),
@@ -49,7 +47,7 @@ fn test_easy_full_freecells() {
                 card: Card { suit: Diamond, rank: ACE },
                 from: Position::Freecells,
                 to: Position::Foundations,
-            }
+            },
         ),
     ];
 

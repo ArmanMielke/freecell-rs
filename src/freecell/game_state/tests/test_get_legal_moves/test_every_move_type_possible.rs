@@ -1,4 +1,3 @@
-
 //#[test]
 #[allow(dead_code)]
 fn test_every_move_type_possible() {

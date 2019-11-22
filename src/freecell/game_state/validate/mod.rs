@@ -1,14 +1,9 @@
 mod check_cards;
 mod check_foundations;
 
-
-
 use super::GameState;
 
-
-
 impl GameState {
-
     /// Checks whether a game state is correct, i.e.
     /// - each card exists exactly once
     /// - each card on a foundation is of the correct suit
@@ -19,5 +14,4 @@ impl GameState {
         check_foundations::check_foundations(&self)?;
         Ok(())
     }
-
 }

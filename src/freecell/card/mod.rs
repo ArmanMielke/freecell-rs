@@ -5,7 +5,7 @@ mod suit;
 
 pub use self::card::Card;
 pub use self::colour::{Color, Colour};
-pub use self::rank::{Rank, rank_from_string, ACE, JACK, KING, QUEEN};
+pub use self::rank::{rank_from_string, Rank, ACE, JACK, KING, QUEEN};
 pub use self::suit::Suit;
 
 #[cfg(test)]

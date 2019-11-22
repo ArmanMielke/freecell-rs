@@ -1,6 +1,5 @@
-use crate::freecell::{Cascade, Cascades};
 use super::error_messages::ERR_TOO_MANY_CASCADES;
-
+use crate::freecell::{Cascade, Cascades};
 
 pub fn cascades_vec_to_array(mut cascades: Vec<Cascade>) -> Result<Cascades, String> {
     if cascades.len() > 8 {

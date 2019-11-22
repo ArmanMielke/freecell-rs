@@ -1,9 +1,7 @@
-
 pub const ACE: Rank = 1;
 pub const JACK: Rank = 11;
 pub const QUEEN: Rank = 12;
 pub const KING: Rank = 13;
-
 
 /// Indicates the rank of a card.
 ///
@@ -16,7 +14,6 @@ pub const KING: Rank = 13;
 ///
 /// Rank 0 and ranks greater than 13 are not valid card ranks.
 pub type Rank = u8;
-
 
 /// Converts a String to a Rank.
 ///
@@ -60,7 +57,7 @@ pub fn rank_from_string<S: Into<String>>(string: S) -> Result<Rank, String> {
                 0 => Err("Rank cannot be 0".to_string()),
                 1..=13 => Ok(rank),
                 _ => Err(format!("Rank cannot be greater than 13 (rank is {})", rank)),
-            }
-        }
+            },
+        },
     }
 }

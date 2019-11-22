@@ -1,17 +1,13 @@
-use std::fmt::{Debug, Display, Formatter, Error};
+use std::fmt::{Debug, Display, Error, Formatter};
 
 use super::{Card, CardCollection, Suit, ACE};
 
-
-
 //const FOUNDATION_MAX_SIZE: usize = 13;
-
 
 /// A stack of cards of one suit, ordered from Ace upwards.
 ///
 /// See struct Foundations.
 pub type Foundation = Vec<Card>;
-
 
 /// Four stacks of cards, where each stack contains only cards of one suit, going from Ace upwards.
 ///
@@ -48,9 +44,7 @@ pub type Foundation = Vec<Card>;
 #[derive(Clone, Default, Eq, Hash, PartialEq)]
 pub struct Foundations(pub [Foundation; 4]);
 
-
 impl Foundations {
-
     /// Creates empty foundations
     pub fn new() -> Foundations {
         Foundations([Vec::new(), Vec::new(), Vec::new(), Vec::new()])
@@ -60,12 +54,9 @@ impl Foundations {
     pub fn foundation(&self, suit: Suit) -> &Foundation {
         &self.0[suit as usize]
     }
-
 }
 
-
 impl CardCollection for Foundations {
-
     /// Attempts to put a card on the foundation of the appropriate suit.
     ///
     /// An Ace can be put on a foundation iff there is no other card on the foundation of that suit.
@@ -78,7 +69,7 @@ impl CardCollection for Foundations {
         if self.foundation(card.suit).is_empty() {
             // only Aces can be put on an empty foundation
             if card.rank != ACE {
-                return Err(())
+                return Err(());
             }
         } else if
             // Aces can only be put on an empty foundation
@@ -87,7 +78,7 @@ impl CardCollection for Foundations {
             // currently topmost card on the foundation
             self.foundation(card.suit).last().unwrap().rank + 1 != card.rank
         {
-            return Err(())
+            return Err(());
         }
 
         let mut clone = self.clone();
@@ -99,9 +90,7 @@ impl CardCollection for Foundations {
     fn pop_card(&self) -> Vec<(Self, Card)> {
         Vec::new()
     }
-
 }
-
 
 impl Display for Foundations {
     fn fmt(&self, f: &mut Formatter) -> Result<(), Error> {
@@ -116,7 +105,6 @@ impl Display for Foundations {
         write!(f, "Foundations: {}", foundation_strings.join(", "))
     }
 }
-
 
 impl Debug for Foundations {
     fn fmt(&self, f: &mut Formatter) -> Result<(), Error> {

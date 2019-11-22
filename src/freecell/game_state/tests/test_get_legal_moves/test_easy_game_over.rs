@@ -1,7 +1,5 @@
 use crate::game_state_parser;
 
-
-
 // no moves possible
 #[test]
 fn test_easy_game_over() {

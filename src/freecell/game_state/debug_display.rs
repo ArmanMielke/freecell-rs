@@ -2,8 +2,6 @@ use std::fmt::{Debug, Display, Formatter, Result};
 
 use super::GameState;
 
-
-
 impl Display for GameState {
     fn fmt(&self, f: &mut Formatter) -> Result {
         // foundations
@@ -25,7 +23,6 @@ impl Display for GameState {
         writeln!(f, "Freecells: {}", freecell_cards.join(", "))
     }
 }
-
 
 // TODO [high priority] document that the debug output can be used as input file
 // TODO [med priority] test whether this outputs in the same format that the test inputs use

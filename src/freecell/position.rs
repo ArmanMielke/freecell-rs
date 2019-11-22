@@ -1,7 +1,5 @@
 use std::fmt::{Display, Formatter, Result};
 
-
-
 /// Indicates the position of a card.
 ///
 /// The cascades are numbered from 0 to 7.
@@ -9,9 +7,8 @@ use std::fmt::{Display, Formatter, Result};
 pub enum Position {
     Cascade(usize),
     Foundations,
-    Freecells
+    Freecells,
 }
-
 
 impl Display for Position {
     fn fmt(&self, f: &mut Formatter) -> Result {

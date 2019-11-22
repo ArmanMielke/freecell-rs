@@ -1,10 +1,7 @@
 use super::super::{CardCollection, Move, Position};
 use super::GameState;
 
-
-
 impl GameState {
-
     // TODO [low priority] possible optimisation: if there are multiple empty cascades, only allow to move to one of them
     // TODO [low priority] deduplicate code
     pub fn legal_moves(&self) -> Vec<(GameState, Move)> {
@@ -43,7 +40,7 @@ impl GameState {
                             card,
                             from: Position::Cascade(i),
                             to: Position::Cascade(j),
-                        }
+                        },
                     ));
                 }
             }
@@ -62,7 +59,7 @@ impl GameState {
                         card,
                         from: Position::Cascade(i),
                         to: Position::Foundations,
-                    }
+                    },
                 ));
             }
 
@@ -80,11 +77,10 @@ impl GameState {
                         card,
                         from: Position::Cascade(i),
                         to: Position::Freecells,
-                    }
+                    },
                 ));
             }
         }
-
 
         // move from freecells ...
         let from_freecells = self.freecells.pop_card();
@@ -104,7 +100,7 @@ impl GameState {
                             card,
                             from: Position::Freecells,
                             to: Position::Cascade(i),
-                        }
+                        },
                     ));
                 }
             }
@@ -121,12 +117,11 @@ impl GameState {
                         card,
                         from: Position::Freecells,
                         to: Position::Foundations,
-                    }
+                    },
                 ));
             }
         }
 
         legal_moves
     }
-
 }
