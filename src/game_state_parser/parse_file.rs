@@ -12,18 +12,13 @@ use crate::freecell::{Card, Cascade, Foundations, Freecells, GameState};
 
 
 
-// TODO refactor module
+// TODO [high priority] let all structs handle their own parsing (should be case-insensitive)
 
 const FOUNDATIONS: &str = "foundations:";
 const CASCADE: &str = "cascade:";
 const FREECELLS: &str = "freecells:";
 
 
-// TODO add fn parse_string, similar to parse_file but takes the contents directly as string
-// TODO make all the parsing case-insensitive
-
-
-// TODO add documentation (use the template explanation in doc/)
 pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
     let lines = read_file_as_lines(file_name)?;
 
@@ -100,7 +95,6 @@ fn create_foundations(foundations: &mut Foundations, foundation_cards: Vec<Card>
             return Err(err_multiple_foundations_of_suit!(card.suit))
         } else {
             foundations.0[card.suit as usize] = card_sequence_up_to(&card);
-//            *foundations.get_foundation(card.suit) = card_sequence_up_to(&card);
         }
     }
 
