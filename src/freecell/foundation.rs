@@ -9,15 +9,7 @@ use super::{Card, CardCollection, Suit, ACE};
 
 /// A stack of cards of one suit, ordered from Ace upwards.
 ///
-/// # Rules
-///
-/// TODO
-///
-/// # Examples
-///
-/// ```
-/// // TODO
-/// ```
+/// See struct Foundations.
 pub type Foundation = Vec<Card>;
 
 
@@ -25,7 +17,22 @@ pub type Foundation = Vec<Card>;
 ///
 /// # Rules
 ///
-/// TODO
+/// There exists one foundation for each of the four suits.
+/// Cards can only be put on the foundation corresponding to their suit.
+///
+/// An Ace can be put on the foundation of the appropriate suit iff there is no other card on that
+/// foundation.
+/// This is always the case in a valid game state.
+///
+/// Any other card *c* can be put on the foundation of the appropriate suit iff the top card on that
+/// foundation has a rank exactly one lower than card *c*.
+///
+/// This means a foundation can hold at most 13 cards:
+/// The cards from Ace to King of one suit in order of their ranks, the Ace being on the bottom and
+/// the King being on top.
+/// The game ends in a victory when all four foundations reach this state.
+///
+/// Once a card is on a foundation, it can never be removed.
 ///
 /// # Usage
 ///
@@ -59,6 +66,13 @@ impl Foundations {
 
 impl CardCollection for Foundations {
 
+    /// Attempts to put a card on the foundation of the appropriate suit.
+    ///
+    /// An Ace can be put on a foundation iff there is no other card on the foundation of that suit.
+    /// This is always the case in a valid game state.
+    ///
+    /// Any other card *c* can be put on a foundation iff the top card on the foundation of that
+    /// suit has a rank exactly one lower than card *c*.
     fn add_card(&self, card: Card) -> Result<Self, ()> {
         // check whether the card can be put on any foundation
         if self.foundation(card.suit).is_empty() {
@@ -81,7 +95,7 @@ impl CardCollection for Foundations {
         Ok(clone)
     }
 
-    /// Always returns an empty Vec, since cards cannot be removed from foundations
+    /// Always returns an empty Vec, since cards cannot be removed from foundations.
     fn pop_card(&self) -> Vec<(Self, Card)> {
         Vec::new()
     }
