@@ -10,7 +10,7 @@ readme = "README.md"
 # categories = ["TODO1", "TODO2"]
 # license = "TODO"
 edition = '2018'
-# TODO there might be more that needs to go here
+# TODO there might be more that needs to go here: https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-arrayvec = "0.4.7"
+arrayvec = "0.5.1"

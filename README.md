@@ -1,19 +1,18 @@
-# Freecell
+# FreeCell
 
 [![tests](https://github.com/Arman-Mielke/freecell-rs/workflows/tests/badge.svg)](https://github.com/Arman-Mielke/freecell-rs/actions)
 [![unsafe forbidden](https://img.shields.io/badge/unsafe-forbidden-success.svg)](https://github.com/rust-secure-code/safety-dance/)
 [![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/clippy.svg)](#license)
 
 
-Freecell game objects and rules written in Rust
+[FreeCell](https://en.wikipedia.org/wiki/FreeCell) game objects and rules written in Rust
 
 **THIS PROJECT IS A WORK IN PROGRESS**
 
 
 ## License
 
-Licensed under either of <a href="LICENSE-APACHE">Apache License, Version
-2.0</a> or <a href="LICENSE-MIT">MIT license</a> at your option.
+Licensed under either of <a href="LICENSE-APACHE">Apache License, Version 2.0</a> or <a href="LICENSE-MIT">MIT license</a> at your option.
 
 
 ------------------------------------------------------------------------------
@@ -44,6 +43,9 @@ card codes are case-insensitive.
 
 ## TODO
 
+- add `fn random_game() -> GameState`
+    - there may be a better name
+    - can be a separate feature so not everyone needs to compile the rand crate
 - measure and visualize performance
     - https://bheisler.github.io/criterion.rs/book/criterion_rs.html
     - https://github.com/ferrous-systems/flamegraph

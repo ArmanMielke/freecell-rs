@@ -13,6 +13,7 @@ pub struct GameState {
 }
 
 impl GameState {
+    // TODO document
     pub fn is_solved(&self) -> bool {
         self.foundations.0[0].len() == 13 &&
         self.foundations.0[1].len() == 13 &&
@@ -20,6 +21,7 @@ impl GameState {
         self.foundations.0[3].len() == 13
     }
 
+    // TODO document
     pub fn id(&self) -> GameStateId {
         let mut hasher = DefaultHasher::new();
         self.hash(&mut hasher);
