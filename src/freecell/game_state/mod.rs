@@ -1,3 +1,4 @@
+mod allows_move;
 mod debug_display;
 mod game_state;
 mod legal_moves;
