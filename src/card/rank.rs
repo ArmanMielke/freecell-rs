@@ -1,6 +1,10 @@
+/// The rank of an Ace
 pub const ACE: Rank = 1;
+/// The rank of a Jack
 pub const JACK: Rank = 11;
+/// The rank of a Queen
 pub const QUEEN: Rank = 12;
+/// The rank of a King
 pub const KING: Rank = 13;
 
 /// Indicates the rank of a card.

@@ -15,7 +15,7 @@ Game objects and rules for the solitaire card game [FreeCell](https://en.wikiped
 
 ## FreeCell Rules
 
-Source: [Wikipedia](https://en.wikipedia.org/wiki/FreeCell#Rules)
+This library uses the following rules of FreeCell:
 
 - Construction and layout
     - One [standard 52-card deck](https://en.wikipedia.org/wiki/Standard_52-card_deck) is used.
@@ -31,6 +31,8 @@ Source: [Wikipedia](https://en.wikipedia.org/wiki/FreeCell#Rules)
 - The game is won after all cards are moved to their foundation piles.
 
 Not all deals are solvable, but the probability of an unsolvable deal is very low. It is estimated that 99.999% of possible deals are solvable.
+
+Source: [Wikipedia](https://en.wikipedia.org/wiki/FreeCell#Rules)
 
 
 
