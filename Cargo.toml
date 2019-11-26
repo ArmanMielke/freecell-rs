@@ -5,10 +5,9 @@ authors = ["Arman Mielke <arman.mielke@yahoo.de>"]
 edition = '2018'
 
 description = "Game objects and rules for the solitaire card game FreeCell"
-# documentation = "TODO link"
 repository = "https://github.com/Arman-Mielke/freecell-rs"
 readme = "README.md"
-keywords = ["freecell", "solitaire", "patience", "card game", "cards"]
+keywords = ["freecell", "solitaire", "patience", "game", "cards"]
 categories = ["game-engines"]
 license = "MIT OR Apache-2.0"
 
