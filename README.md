@@ -10,6 +10,28 @@ Game objects and rules for the solitaire card game [FreeCell](https://en.wikiped
 **THIS PROJECT IS A WORK IN PROGRESS**
 
 
+
+## FreeCell Rules
+
+Source: [Wikipedia](https://en.wikipedia.org/wiki/FreeCell#Rules)
+
+- Construction and layout
+    - One [standard 52-card deck](https://en.wikipedia.org/wiki/Standard_52-card_deck) is used.
+    - There are four open *freecells* and four open [*foundations*](https://en.wikipedia.org/wiki/Glossary_of_patience_terms#Foundation).
+    - Cards are dealt face-up into eight [*cascades*](https://en.wikipedia.org/wiki/Glossary_of_patience_terms#Deal_terms), four of which comprise seven cards each and four of which comprise six cards each.
+- Building during play
+    - The top card of each cascade begins a [tableau](https://en.wikipedia.org/wiki/Glossary_of_patience_terms#Layout_terms).
+    - Tableaux must be built down by alternating colors.
+    - Foundations are built up by suit.
+- Moves
+    - Any freecell card or top card of any cascade may be moved to build on a tableau, or moved to an empty cell, an empty cascade, or its foundation.
+    - Complete or partial tableaus may be moved to build on existing tableaus, or moved to empty cascades, by recursively placing and removing cards through intermediate locations.
+- The game is won after all cards are moved to their foundation piles.
+
+Not all deals are solvable, but the probability of an unsolvable deal is very low. It is estimated that 99.999% of possible deals are solvable.
+
+
+
 ## License
 
 Licensed under either of <a href="LICENSE-APACHE">Apache License, Version 2.0</a> or <a href="LICENSE-MIT">MIT license</a> at your option.
