@@ -1,6 +1,6 @@
 use freecell::game_state_parser::parse_file;
-use freecell::Suit::{Club, Spade};
-use freecell::Card;
+use freecell::Suit::{Club, Diamond, Spade};
+use freecell::{Card};
 
 #[test]
 fn test_easy_10_instead_of_t() {
@@ -60,6 +60,15 @@ fn test_easy_misspelled_cascade() {
 }
 
 #[test]
-fn test_easy_duplicate_foundation() {
-    // TODO [low priority] test. (test file does not exist yet)
+fn test_hard_solved_to_2_too_many_foundations_in_multiple_lines() {
+    let actual = parse_file("test-inputs/invalid/hard-solved-to-2-too-many-foundations-in-multiple-lines.txt");
+    let expected = Err(format!("Multiple foundations of suit {} specified", Diamond));
+    assert_eq!(actual, expected);
+}
+
+#[test]
+fn test_hard_solved_to_2_too_many_foundations_in_one_line() {
+    let actual = parse_file("test-inputs/invalid/hard-solved-to-2-too-many-foundations-in-one-line.txt");
+    let expected = Err(format!("Multiple foundations of suit {} specified", Club));
+    assert_eq!(actual, expected);
 }
