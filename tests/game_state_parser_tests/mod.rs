@@ -6,7 +6,7 @@ mod solved;
 
 // TODO [low priority] missing test cases:
 // - something that uses freecells
-//     - some freecells
-//     - all freecells
+//     - some freecells -> every-move-type-possible.txt
+//     - all freecells -> easy-game-over.txt
 //     - too many freecells
 // - something that uses some foundations
