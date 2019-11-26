@@ -1,3 +1,0 @@
-TODO: a game state where for every pair of two position (order matters, index of the cascade is ignored),
-there is both a legal move and an illegal move from position a to position b.
-the illegal move uses a card that actually is in position a.

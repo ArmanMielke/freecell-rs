@@ -1,0 +1,12 @@
+foundations: TC TS TH TD
+
+cascade: JS JH JD
+cascade: KS
+cascade:
+cascade: KD
+cascade: QC
+cascade: QS
+cascade: QH
+cascade: QD
+
+freecells: KC JC KH
