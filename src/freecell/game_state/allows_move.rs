@@ -5,7 +5,6 @@ impl GameState {
 
     /// Returns `true` if the given move is legal in this game state, `false` otherwise.
     /// Moves that don't change the game state are treated as illegal.
-    // TODO test (for legal moves, just check whether all results from GameState.legal_moves() return true)
     pub fn allows_move(&self, game_move: Move) -> bool {
         // moves that don't change the game state are treated as illegal
         if game_move.from == game_move.to {
