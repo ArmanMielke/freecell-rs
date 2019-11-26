@@ -1,6 +1,6 @@
 use std::fmt::{Debug, Display, Error, Formatter};
 
-use super::{Card, CardCollection, Suit, ACE};
+use crate::{Card, CardCollection, Suit, ACE};
 
 //const FOUNDATION_MAX_SIZE: usize = 13;
 

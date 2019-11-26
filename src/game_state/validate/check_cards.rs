@@ -1,6 +1,6 @@
 use super::super::GameState;
-use crate::freecell::Card;
-use crate::freecell::Suit::{Club, Diamond, Heart, Spade};
+use crate::Card;
+use crate::Suit::{Club, Diamond, Heart, Spade};
 
 /// Checks whether each possible card exists exactly once
 pub fn check_cards(game_state: &GameState) -> Result<(), String> {

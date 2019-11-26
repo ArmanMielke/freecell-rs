@@ -1,6 +1,6 @@
 use super::super::GameState;
-use crate::freecell::Suit::{Club, Diamond, Heart, Spade};
-use crate::freecell::{Foundation, Suit};
+use crate::Suit::{Club, Diamond, Heart, Spade};
+use crate::{Foundation, Suit};
 
 /// Checks whether there is one foundation of each suit and whether each individual foundation is
 /// correct.

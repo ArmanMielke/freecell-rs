@@ -1,6 +1,6 @@
 use std::fmt::{Debug, Display, Formatter, Result};
 
-use super::{Card, Position};
+use crate::{Card, Position};
 
 /// Represents one step in the game, where a card is moved from one position to another.
 #[derive(Clone, Eq, PartialEq, Hash)]

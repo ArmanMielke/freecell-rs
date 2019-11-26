@@ -1,6 +1,6 @@
 use std::marker::Sized;
 
-use super::Card;
+use crate::Card;
 
 pub trait CardCollection
 where

@@ -1,7 +1,7 @@
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 
-use super::super::{Cascades, Foundations, Freecells};
+use crate::{Cascades, Foundations, Freecells};
 
 pub type GameStateId = u64;
 

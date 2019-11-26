@@ -1,6 +1,6 @@
 use arrayvec::ArrayVec;
 
-use super::{Card, CardCollection};
+use crate::{Card, CardCollection};
 
 /// May hold up to four arbitrary cards
 // TODO [med/low priority] consider a different type for this, e.g. one where order doesn't matter

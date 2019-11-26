@@ -1,4 +1,4 @@
-use super::{Card, CardCollection, ACE};
+use crate::{Card, CardCollection, ACE};
 
 //const CASCADE_MAX_SIZE: usize = 52;
 

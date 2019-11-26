@@ -1,4 +1,4 @@
-use super::super::{CardCollection, Move, Position};
+use crate::{CardCollection, Move, Position};
 use super::GameState;
 
 impl GameState {
