@@ -5,6 +5,3 @@ mod legal_moves;
 mod validate;
 
 pub use self::game_state::{GameState, GameStateId};
-
-#[cfg(test)]
-mod tests;
