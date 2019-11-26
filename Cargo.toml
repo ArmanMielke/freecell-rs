@@ -1,16 +1,17 @@
 [package]
 name = "freecell"
 version = "0.1.0"
-authors = ["- <@>"]
-# description = "TODO"
-# documentation = "TODO link"
-# repository = "TODO link"
-readme = "README.md"
-# keywords = ["TODO1", "TODO2"]
-# categories = ["TODO1", "TODO2"]
-# license = "TODO"
+authors = ["Arman Mielke <arman.mielke@yahoo.de>"]
 edition = '2018'
-# TODO there might be more that needs to go here: https://doc.rust-lang.org/cargo/reference/manifest.html
+
+description = "Game objects and rules for the solitaire card game FreeCell"
+# documentation = "TODO link"
+repository = "https://github.com/Arman-Mielke/freecell-rs"
+readme = "README.md"
+keywords = ["freecell", "solitaire", "patience", "card game", "cards"]
+categories = ["game-engines"]
+license = "MIT OR Apache-2.0"
+
 
 [dependencies]
 arrayvec = "0.5.1"
