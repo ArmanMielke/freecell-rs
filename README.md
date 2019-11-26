@@ -1,8 +1,10 @@
 # FreeCell
 
 [![tests](https://github.com/Arman-Mielke/freecell-rs/workflows/tests/badge.svg)](https://github.com/Arman-Mielke/freecell-rs/actions)
+[![crates.io](https://img.shields.io/crates/v/freecell)](https://crates.io/crates/freecell)
+[![docs.rs](https://docs.rs/freecell/badge.svg)](https://docs.rs/freecell)
 [![unsafe forbidden](https://img.shields.io/badge/unsafe-forbidden-success.svg)](https://github.com/rust-secure-code/safety-dance/)
-[![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/clippy.svg)](#license)
+[![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/freecell)](#license)
 
 
 Game objects and rules for the solitaire card game [FreeCell](https://en.wikipedia.org/wiki/FreeCell), written in Rust.

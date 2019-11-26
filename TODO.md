@@ -6,8 +6,6 @@
 - measure and visualize performance
     - https://bheisler.github.io/criterion.rs/book/criterion_rs.html
     - https://github.com/ferrous-systems/flamegraph
-- add a badge that links to crates.io to [README.md](README.md) ([example 1](https://github.com/serde-rs/serde/blob/master/README.md) [example 2](https://raw.githubusercontent.com/BurntSushi/cargo-benchcmp/master/README.md))
-- add a link to the docs to [README.md](README.md) (maybe as badge?)
 - explain the [rules](README.md) in more detail (find a better source?)
 
 
