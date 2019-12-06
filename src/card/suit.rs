@@ -66,7 +66,7 @@ impl Suit {
 
     /// Returns the color of this suit.
     ///
-    /// This is an alias of `colour()`
+    /// This is an alias of `colour()`.
     pub fn color(self) -> Color {
         self.colour()
     }

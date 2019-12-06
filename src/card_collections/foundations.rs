@@ -6,6 +6,8 @@ use crate::{Card, CardCollection, Suit, ACE};
 
 /// A stack of cards of one suit, ordered from Ace upwards.
 ///
+/// The end of the `Vec` is the top of the stack.
+///
 /// See struct Foundations.
 pub type Foundation = Vec<Card>;
 
@@ -24,7 +26,7 @@ pub type Foundation = Vec<Card>;
 /// foundation has a rank exactly one lower than card *c*.
 ///
 /// This means a foundation can hold at most 13 cards:
-/// The cards from Ace to King of one suit in order of their ranks, the Ace being on the bottom and
+/// the cards from Ace to King of one suit in order of their ranks, the Ace being on the bottom and
 /// the King being on top.
 /// The game ends in a victory when all four foundations reach this state.
 ///
@@ -33,8 +35,8 @@ pub type Foundation = Vec<Card>;
 /// # Usage
 ///
 /// The position of the Foundation in the array determines which suit it holds.
-/// Eg. `foundations[1]` may only hold spade cards, since Suit::Spade equals 1.
-/// TODO [high priority] explain more thoroughly
+/// For example, `foundations[1]` may only hold spade cards, since `Suit::Spade` equals 1.
+/// For a given suit the corresponding foundation can be accessed with `foundations.foundation(suit)`
 ///
 /// # Examples
 ///
@@ -45,12 +47,12 @@ pub type Foundation = Vec<Card>;
 pub struct Foundations(pub [Foundation; 4]);
 
 impl Foundations {
-    /// Creates empty foundations
+    /// Creates empty foundations.
     pub fn new() -> Foundations {
         Foundations([Vec::new(), Vec::new(), Vec::new(), Vec::new()])
     }
 
-    /// Returns the foundation of the given suit
+    /// Returns the foundation of the given suit.
     pub fn foundation(&self, suit: Suit) -> &Foundation {
         &self.0[suit as usize]
     }

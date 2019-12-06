@@ -2,7 +2,7 @@ use arrayvec::ArrayVec;
 
 use crate::{Card, CardCollection};
 
-/// May hold up to four arbitrary cards
+/// May hold up to four arbitrary cards.
 // TODO [med/low priority] consider a different type for this, e.g. one where order doesn't matter
 pub type Freecells = ArrayVec<[Card; 4]>;
 

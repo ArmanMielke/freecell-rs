@@ -30,6 +30,7 @@ This library uses the following rules of FreeCell:
     - Complete or partial tableaus may be moved to build on existing tableaus, or moved to empty cascades, by recursively placing and removing cards through intermediate locations.
 - The game is won after all cards are moved to their foundation piles.
 
+All cards are face-up at all times.
 Not all deals are solvable, but the probability of an unsolvable deal is very low. It is estimated that 99.999% of possible deals are solvable.
 
 Source: [Wikipedia](https://en.wikipedia.org/wiki/FreeCell#Rules)

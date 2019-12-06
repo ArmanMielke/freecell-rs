@@ -13,7 +13,7 @@ pub struct GameState {
 }
 
 impl GameState {
-    // TODO document
+    /// Returns `true` if all cards are on the foundations, `false` otherwise.
     pub fn is_solved(&self) -> bool {
         self.foundations.0[0].len() == 13 &&
         self.foundations.0[1].len() == 13 &&

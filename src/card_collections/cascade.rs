@@ -4,6 +4,8 @@ use crate::{Card, CardCollection, ACE};
 
 /// A stack of arbitrary cards.
 ///
+/// The end of the `Vec` is the top of the stack.
+///
 /// # Rules
 ///
 /// Adding cards:
@@ -59,4 +61,5 @@ impl CardCollection for Cascade {
     }
 }
 
+/// A collection of 8 Cascades.
 pub type Cascades = [Cascade; 8];
