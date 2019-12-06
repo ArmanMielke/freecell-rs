@@ -141,7 +141,7 @@ impl TryFrom<String> for Card {
     /// assert_eq!(Ok(Card { suit: Spade, rank: QUEEN }), Card::try_from("12 oF sPaDeS"));
     /// ```
     fn try_from(string: String) -> Result<Card, Self::Error> {
-        // TODO [low priority] use regex
+        // TODO [v1] use regex
         let string = string.trim();
 
         if string.len() == 2 {

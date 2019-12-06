@@ -17,7 +17,7 @@ use crate::{Card, CardCollection, ACE};
 ///
 /// # Examples
 ///
-/// TODO [high priority] Add examples
+/// TODO [v1] Add examples
 pub type Cascade = Vec<Card>;
 
 fn fits_on_top_of(lower_card: Card, higher_card: Card) -> bool {
@@ -28,7 +28,7 @@ fn fits_on_top_of(lower_card: Card, higher_card: Card) -> bool {
 impl CardCollection for Cascade {
     fn add_card(&self, card: Card) -> Result<Cascade, ()> {
         // optimisation: aces cannot be put on cascades
-        // this is technically a legal move, just not a very good one
+        // TODO [v2+] create a separate, optimised version of Cascades that has this and other optimisations, remove it from here
         if card.rank == ACE {
             return Err(());
         }

@@ -2,9 +2,8 @@ use crate::{CardCollection, Move, Position};
 use super::GameState;
 
 impl GameState {
-    // TODO [low priority] possible optimisation: if there are multiple empty cascades, only allow to move to one of them
     // TODO [low priority] deduplicate code
-    // TODO [med priority] [before 1.0.0] moves that don't change the game state should be treated as illegal
+    // TODO [v1] moves that don't change the game state should be treated as illegal
     pub fn legal_moves(&self) -> Vec<(GameState, Move)> {
         // This is a temporary implementation.
         // My attempts to implement this nicely have been thwarted by rust's rules for creating

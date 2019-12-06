@@ -3,7 +3,12 @@ use arrayvec::ArrayVec;
 use crate::{Card, CardCollection};
 
 /// May hold up to four arbitrary cards.
-// TODO [med/low priority] consider a different type for this, e.g. one where order doesn't matter
+// TODO [v2+] create an optimised version of Freecells, where the order of cards doesn't matter
+// data structures to consider:
+// - HashSet, BTreeSet
+// - https://lib.rs/crates/map_vec
+// - https://lib.rs/crates/uset
+// need to test performance for all of those
 pub type Freecells = ArrayVec<[Card; 4]>;
 
 impl CardCollection for Freecells {

@@ -125,7 +125,6 @@ impl TryFrom<String> for Suit {
     /// assert_eq!(Ok(Suit::Heart), Suit::try_from(String::from("h")));
     /// ```
     fn try_from(string: String) -> Result<Suit, Self::Error> {
-        // TODO [low priority] use regex
         match string.to_lowercase().trim() {
             "club" => Ok(Suit::Club),
             "clubs" => Ok(Suit::Club),

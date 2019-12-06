@@ -21,7 +21,7 @@ impl GameState {
         self.foundations.0[3].len() == 13
     }
 
-    // TODO document
+    // TODO [v1] document
     pub fn id(&self) -> GameStateId {
         let mut hasher = DefaultHasher::new();
         self.hash(&mut hasher);
@@ -29,4 +29,4 @@ impl GameState {
     }
 }
 
-// TODO [high/med priority] implement Eq. Order of cascades and order of cards in freecells should not matter.
+// TODO [v2+] add an alternative GameState struct where Eq is implemented so that the order of cascades and the order of cards in freecells don't matter.

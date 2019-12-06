@@ -10,7 +10,7 @@ use super::conversions_to_array;
 use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS, ERR_TOO_MANY_FREECELLS};
 use crate::{Card, Cascade, Foundations, Freecells, GameState};
 
-// TODO [high priority] let all structs handle their own parsing (should be case-insensitive)
+// TODO [v1] let all structs handle their own parsing (should be case-insensitive)
 
 const FOUNDATIONS: &str = "foundations:";
 const CASCADE: &str = "cascade:";

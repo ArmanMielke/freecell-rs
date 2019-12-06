@@ -41,7 +41,7 @@ pub type Foundation = Vec<Card>;
 /// # Examples
 ///
 /// ```
-/// // TODO [high priority]
+/// // TODO [v1] Add code examples
 /// ```
 #[derive(Clone, Default, Eq, Hash, PartialEq)]
 pub struct Foundations(pub [Foundation; 4]);
