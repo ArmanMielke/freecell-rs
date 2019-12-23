@@ -39,9 +39,13 @@ use super::{Color, Colour};
 #[derive(Clone, Copy, Eq, PartialEq, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum Suit {
+    #[allow(missing_docs)]
     Club = 0,
+    #[allow(missing_docs)]
     Spade = 1,
+    #[allow(missing_docs)]
     Heart = 2,
+    #[allow(missing_docs)]
     Diamond = 3,
 }
 

@@ -1,4 +1,16 @@
 #![forbid(unsafe_code)]
+#![deny(
+    anonymous_parameters,
+    unused_extern_crates,
+)]
+#![warn(
+    // TODO uncomment
+    // missing_docs,
+    trivial_casts,
+    trivial_numeric_casts,
+    unused_import_braces,
+    unused_qualifications,
+)]
 
 //! **TODO** general introduction
 //!

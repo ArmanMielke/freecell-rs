@@ -5,8 +5,11 @@ use crate::{Card, Position};
 /// Represents one step in the game, where a card is moved from one position to another.
 #[derive(Clone, Eq, PartialEq, Hash)]
 pub struct Move {
+    #[allow(missing_docs)]
     pub card: Card,
+    #[allow(missing_docs)]
     pub from: Position,
+    #[allow(missing_docs)]
     pub to: Position,
 }
 

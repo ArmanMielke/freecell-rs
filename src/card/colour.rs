@@ -17,7 +17,9 @@ use std::fmt::{Display, Formatter, Result};
 /// ```
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
 pub enum Colour {
+    #[allow(missing_docs)]
     Black,
+    #[allow(missing_docs)]
     Red,
 }
 

@@ -49,7 +49,9 @@ use super::{rank_from_string, Rank, Suit, ACE, JACK, KING, QUEEN};
 #[derive(Clone, Copy, Eq, PartialEq, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Card {
+    #[allow(missing_docs)]
     pub suit: Suit,
+    #[allow(missing_docs)]
     pub rank: Rank,
 }
 
