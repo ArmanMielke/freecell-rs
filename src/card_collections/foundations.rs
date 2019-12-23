@@ -1,3 +1,6 @@
+#[cfg(feature = "serde")]
+use serde::{Serialize, Deserialize};
+
 use std::fmt::{Debug, Display, Error, Formatter};
 
 use crate::{Card, CardCollection, Suit, ACE};
@@ -44,6 +47,7 @@ pub type Foundation = Vec<Card>;
 /// // TODO [v1] Add code examples
 /// ```
 #[derive(Clone, Default, Eq, Hash, PartialEq)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Foundations(pub [Foundation; 4]);
 
 impl Foundations {

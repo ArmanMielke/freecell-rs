@@ -1,3 +1,6 @@
+#[cfg(feature = "serde")]
+use serde::{Serialize, Deserialize};
+
 use std::convert::TryFrom;
 use std::fmt;
 use std::fmt::{Debug, Display, Formatter};
@@ -34,6 +37,7 @@ use super::{Color, Colour};
 /// assert_eq!(Ok(Suit::Club), Suit::try_from(format!("{:?}", Suit::Club)));
 /// ```
 #[derive(Clone, Copy, Eq, PartialEq, Hash)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum Suit {
     Club = 0,
     Spade = 1,

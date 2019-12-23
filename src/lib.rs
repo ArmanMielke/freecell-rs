@@ -1,5 +1,16 @@
 #![forbid(unsafe_code)]
 
+//! **TODO** general introduction
+//!
+//! # FreeCell Rules
+//!
+//! **TODO** explain rules (once the explanation in README.md has been improved)
+//!
+//! # Serialization
+//!
+//! If the `"serialization"` feature is enabled, the `Serialize` and `Deserialize` traits from
+//! [`serde`](https://docs.rs/serde) are implemented for all types exported by this crate.
+
 pub mod game_state_parser;
 
 mod card;

@@ -1,3 +1,6 @@
+#[cfg(feature = "serde")]
+use serde::{Serialize, Deserialize};
+
 use std::convert::TryFrom;
 use std::fmt;
 use std::fmt::{Debug, Display, Formatter};
@@ -44,6 +47,7 @@ use super::{rank_from_string, Rank, Suit, ACE, JACK, KING, QUEEN};
 /// assert_eq!(Ok(ace_of_spades), Card::try_from(format!("{:?}", ace_of_spades)));
 /// ```
 #[derive(Clone, Copy, Eq, PartialEq, Hash)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Card {
     pub suit: Suit,
     pub rank: Rank,
