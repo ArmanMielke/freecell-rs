@@ -1,7 +1,11 @@
 # Changelog
 
+## Unreleased Changes
 
-- **0.?.?**
-    - No changes yet
+None so far
+
+
+## Releases
+
 - **0.1.0**: Initial release
 
