@@ -27,7 +27,7 @@ pub enum Colour {
 pub type Color = Colour;
 
 impl Display for Colour {
-    fn fmt(&self, f: &mut Formatter) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
         match self {
             Colour::Black => write!(f, "black"),
             Colour::Red => write!(f, "red"),

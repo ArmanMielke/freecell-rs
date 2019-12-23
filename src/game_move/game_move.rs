@@ -3,7 +3,7 @@ use std::fmt::{Debug, Display, Formatter, Result};
 use crate::{Card, Position};
 
 /// Represents one step in the game, where a card is moved from one position to another.
-#[derive(Clone, Eq, PartialEq, Hash)]
+#[derive(Clone, Copy, Eq, PartialEq, Hash)]
 pub struct Move {
     #[allow(missing_docs)]
     pub card: Card,
@@ -14,13 +14,13 @@ pub struct Move {
 }
 
 impl Display for Move {
-    fn fmt(&self, f: &mut Formatter) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
         write!(f, "Move the {} from {} to {}", self.card, self.from, self.to)
     }
 }
 
 impl Debug for Move {
-    fn fmt(&self, f: &mut Formatter) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
         write!(f, "Move {:?} from {} to {}", self.card, self.from, self.to)
     }
 }

@@ -56,7 +56,7 @@ pub struct Card {
 }
 
 impl Display for Card {
-    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         let rank_string = match self.rank {
             JACK => String::from("Jack"),
             QUEEN => String::from("Queen"),
@@ -69,7 +69,7 @@ impl Display for Card {
 }
 
 impl Debug for Card {
-    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         let rank_string = match self.rank {
             JACK => String::from("J"),
             QUEEN => String::from("Q"),

@@ -3,7 +3,7 @@ use std::fmt::{Debug, Display, Formatter, Result};
 use super::GameState;
 
 impl Display for GameState {
-    fn fmt(&self, f: &mut Formatter) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
         // foundations
         writeln!(f, "{}\n", self.foundations)?;
 
@@ -27,7 +27,7 @@ impl Display for GameState {
 // TODO [v1] document that the debug output can be used as input file
 // TODO [med priority] test whether this outputs in the same format that the test inputs use
 impl Debug for GameState {
-    fn fmt(&self, f: &mut Formatter) -> Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
         // foundations
         writeln!(f, "{:?}\n", self.foundations)?;
 

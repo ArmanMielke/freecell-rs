@@ -81,7 +81,7 @@ impl Suit {
 }
 
 impl Display for Suit {
-    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         let name = match self {
             Suit::Club => "Club",
             Suit::Spade => "Spade",
@@ -93,7 +93,7 @@ impl Display for Suit {
 }
 
 impl Debug for Suit {
-    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         let name = match self {
             Suit::Club => "C",
             Suit::Spade => "S",

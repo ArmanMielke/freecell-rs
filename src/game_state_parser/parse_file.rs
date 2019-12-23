@@ -72,7 +72,7 @@ fn read_file_as_lines<P: AsRef<Path>>(file_name: P) -> Result<Lines<BufReader<Fi
     Ok(buffered_reader.lines())
 }
 
-fn parse_cards(card_iterator: SplitWhitespace) -> Result<Vec<Card>, String> {
+fn parse_cards(card_iterator: SplitWhitespace<'_>) -> Result<Vec<Card>, String> {
     let mut cards = Vec::new();
 
     for card_code in card_iterator {

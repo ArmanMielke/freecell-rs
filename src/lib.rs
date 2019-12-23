@@ -4,13 +4,18 @@
     unused_extern_crates,
 )]
 #![warn(
+    missing_copy_implementations,
+    missing_debug_implementations,
     // TODO uncomment
     // missing_docs,
     trivial_casts,
     trivial_numeric_casts,
+    rust_2018_idioms,
     unused_import_braces,
     unused_qualifications,
 )]
+// TODO check whether this would be useful
+// #![warn(unreachable_pub)]
 
 //! **TODO** general introduction
 //!

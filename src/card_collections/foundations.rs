@@ -99,7 +99,7 @@ impl CardCollection for Foundations {
 }
 
 impl Display for Foundations {
-    fn fmt(&self, f: &mut Formatter) -> Result<(), Error> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), Error> {
         let foundation_strings: Vec<String> = self.0.iter().map(
             |foundation|
                 if foundation.is_empty() {
@@ -113,7 +113,7 @@ impl Display for Foundations {
 }
 
 impl Debug for Foundations {
-    fn fmt(&self, f: &mut Formatter) -> Result<(), Error> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), Error> {
         write!(f, "Foundations:")?;
         for foundation in &self.0 {
             if !foundation.is_empty() {
