@@ -1,5 +1,3 @@
-use arrayvec::ArrayVec;
-
 use freecell::game_state_parser::parse_file;
 use freecell::Suit::{Club, Diamond, Heart, Spade};
 use freecell::{Card, Foundations, GameState, ACE, JACK, KING, QUEEN};
@@ -79,7 +77,7 @@ fn test_solved() {
                 Card { suit: Diamond, rank: KING },
             ],
         ]),
-        freecells: ArrayVec::new(),
+        freecells: [None, None, None, None],
     };
 
     let actual = parse_file("test-inputs/solved.txt").unwrap();

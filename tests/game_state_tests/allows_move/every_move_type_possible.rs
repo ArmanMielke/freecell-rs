@@ -34,7 +34,7 @@ fn test_all_move_types_allowed() {
     assert!(!game_state.allows_move(
         Move {
             card: Card { suit: Club, rank: JACK },
-            from: Position::Freecells,
+            from: Position::Freecell(2),
             to: Position::Cascade(2),
         }
     ));
@@ -43,7 +43,7 @@ fn test_all_move_types_allowed() {
     assert!(!game_state.allows_move(
         Move {
             card: Card { suit: Club, rank: KING },
-            from: Position::Freecells,
+            from: Position::Freecell(0),
             to: Position::Foundations,
         }
     ));

@@ -26,7 +26,7 @@ fn test_hard_solved_to_6() {
         Move {
             card: Card { suit: Club, rank: 6 },
             from: Position::Foundations,
-            to: Position::Freecells,
+            to: Position::Freecell(3),
         }
     ));
     // this is illegal because cards cannot be removed from the foundations
@@ -36,7 +36,7 @@ fn test_hard_solved_to_6() {
     assert_eq!(game_state.cascades[1].last().unwrap(), &card);
     assert_eq!(game_state.cascades[5].last().unwrap(), &Card { suit: Diamond, rank: QUEEN });
     assert!(!game_state.allows_move(
-        Move { card, from: Position::Freecells, to: Position::Cascade(5) }
+        Move { card, from: Position::Freecell(0), to: Position::Cascade(5) }
     ));
     // moving the card from cascade 1 to cascade 5 would have been legal
 

@@ -34,8 +34,10 @@ fn count_cards(game_state: &GameState) -> [i32; 52] {
         }
     }
 
-    for &card in game_state.freecells.iter() {
-        card_count[card_index(card)] += 1;
+    for &some_card in game_state.freecells.iter() {
+        if let Some(card) = some_card {
+            card_count[card_index(card)] += 1;
+        }
     }
 
     card_count

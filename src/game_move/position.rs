@@ -4,7 +4,7 @@ use serde::{Serialize, Deserialize};
 use std::fmt::{Display, Formatter, Result};
 
 /// All possible positions.
-pub const POSITIONS: [Position; 10] = [
+pub const POSITIONS: [Position; 13] = [
     Position::Cascade(0),
     Position::Cascade(1),
     Position::Cascade(2),
@@ -14,7 +14,10 @@ pub const POSITIONS: [Position; 10] = [
     Position::Cascade(6),
     Position::Cascade(7),
     Position::Foundations,
-    Position::Freecells,
+    Position::Freecell(0),
+    Position::Freecell(1),
+    Position::Freecell(2),
+    Position::Freecell(3),
 ];
 
 /// Indicates the position of a card.
@@ -29,15 +32,15 @@ pub enum Position {
     #[allow(missing_docs)]
     Foundations,
     #[allow(missing_docs)]
-    Freecells,
+    Freecell(usize),
 }
 
 impl Display for Position {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result {
         match self {
-            Position::Cascade(pos) => write!(f, "Cascade {}", pos + 1),
+            Position::Cascade(i) => write!(f, "Cascade {}", i + 1),
             Position::Foundations => write!(f, "the Foundations"),
-            Position::Freecells => write!(f, "the Freecells"),
+            Position::Freecell(i) => write!(f, "Freecell {}", i + 1),
         }
     }
 }

@@ -1,5 +1,3 @@
-use arrayvec::ArrayVec;
-
 use std::fs::File;
 use std::io::{BufRead, BufReader, Lines};
 use std::path::Path;
@@ -7,7 +5,7 @@ use std::str::SplitWhitespace;
 
 use super::conversions_to_array;
 use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS, ERR_TOO_MANY_FREECELLS};
-use crate::{Card, Cascade, Foundations, Freecells, GameState};
+use crate::{Card, Cascade, Foundations, Freecell, Freecells, GameState};
 
 // TODO [v1] let all structs handle their own parsing (should be case-insensitive)
 
@@ -20,7 +18,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
 
     let mut cascades: Vec<Cascade> = Vec::with_capacity(8);
     let mut foundations = Foundations::new();
-    let mut freecells = ArrayVec::new();
+    let mut freecells: Freecells = [None, None, None, None];
 
     for line_result in lines {
         let line = match line_result {
@@ -41,10 +39,7 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
                 parse_cards(token_iterator)?
             )?,
             CASCADE => cascades.push(parse_cards(token_iterator)?),
-            FREECELLS => create_freecells(
-                &mut freecells,
-                parse_cards(token_iterator)?
-            )?,
+            FREECELLS => freecells = create_freecells(parse_cards(token_iterator)?)?,
             _ => warn_invalid_first_token!(first_token_in_line),
         };
     }
@@ -107,12 +102,20 @@ fn card_sequence_up_to(card: Card) -> Vec<Card> {
     cards
 }
 
-fn create_freecells(freecells: &mut Freecells, freecell_cards: Vec<Card>) -> Result<(), String> {
-    for card in freecell_cards {
-        if freecells.try_push(card).is_err() {
-            return Err(String::from(ERR_TOO_MANY_FREECELLS));
-        }
+// TODO input card should be able to be "Empty" to denote that there is nothing in this freecell
+fn create_freecells(freecell_cards: Vec<Card>) -> Result<Freecells, String> {
+    if freecell_cards.len() > 4 {
+        return Err(String::from(ERR_TOO_MANY_FREECELLS));
     }
 
-    Ok(())
+    let mut freecells: Vec<Freecell> = freecell_cards.into_iter().map(|card| Some(card)).collect();
+    freecells.resize(4, None);
+
+    // convert to array
+    Ok([
+        freecells.remove(0),
+        freecells.remove(0),
+        freecells.remove(0),
+        freecells.remove(0),
+    ])
 }

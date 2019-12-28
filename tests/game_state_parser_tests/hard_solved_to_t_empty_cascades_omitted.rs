@@ -1,5 +1,3 @@
-use arrayvec::ArrayVec;
-
 use freecell::game_state_parser::parse_file;
 use freecell::Suit::{Club, Diamond, Heart, Spade};
 use freecell::{Card, Foundations, GameState, ACE, JACK, KING, QUEEN};
@@ -85,7 +83,7 @@ fn test_hard_solved_to_t_empty_cascades_omitted() {
                 Card { suit: Diamond, rank: 10 },
             ],
         ]),
-        freecells: ArrayVec::new(),
+        freecells: [None, None, None, None],
     };
 
     let actual = parse_file("test-inputs/hard-solved-to-T-empty-cascades-omitted.txt").unwrap();

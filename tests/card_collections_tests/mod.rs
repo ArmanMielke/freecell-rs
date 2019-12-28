@@ -1,3 +1,3 @@
 mod cascade;
 mod foundations;
-mod freecells;
+mod freecell;

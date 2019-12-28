@@ -1,14 +1,14 @@
 use std::collections::HashSet;
 use std::iter::FromIterator;
 
-use crate::{Card, CardCollection, Cascade, Foundations, Freecells, Move, Position, POSITIONS};
+use crate::{Card, CardCollection, Cascade, Foundations, Freecell, Move, Position, POSITIONS};
 use super::GameState;
 
 #[derive(Clone)]
 enum AnyCardCollection {
     Cascade(usize, Cascade),
     Foundations(Foundations),
-    Freecells(Freecells),
+    Freecell(usize, Freecell),
 }
 
 impl GameState {
@@ -44,8 +44,8 @@ impl GameState {
             Position::Foundations => self.foundations.pop_card().drain(..).map(
                 |(foundations, card)| (AnyCardCollection::Foundations(foundations), card)
             ).collect(),
-            Position::Freecells => self.freecells.pop_card().drain(..).map(
-                |(freecells, card)| (AnyCardCollection::Freecells(freecells), card)
+            Position::Freecell(i) => self.freecells[i].pop_card().drain(..).map(
+                |(freecell, card)| (AnyCardCollection::Freecell(i, freecell), card)
             ).collect(),
         }
     }
@@ -55,7 +55,7 @@ impl GameState {
         match position {
             Position::Cascade(i) => Ok(AnyCardCollection::Cascade(i, self.cascades[i].add_card(card)?)),
             Position::Foundations => Ok(AnyCardCollection::Foundations(self.foundations.add_card(card)?)),
-            Position::Freecells => Ok(AnyCardCollection::Freecells(self.freecells.add_card(card)?)),
+            Position::Freecell(i) => Ok(AnyCardCollection::Freecell(i, self.freecells[i].add_card(card)?)),
         }
     }
 
@@ -70,7 +70,7 @@ impl GameState {
             match card_collection {
                 AnyCardCollection::Cascade(i, cascade) => next_game_state.cascades[i] = cascade,
                 AnyCardCollection::Foundations(foundations) => next_game_state.foundations = foundations,
-                AnyCardCollection::Freecells(freecells) => next_game_state.freecells = freecells,
+                AnyCardCollection::Freecell(i, freecell) => next_game_state.freecells[i] = freecell,
             }
         }
 

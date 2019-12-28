@@ -18,7 +18,10 @@ impl Display for GameState {
 
         // freecells
         let freecell_cards: Vec<String> = self.freecells.iter().map(
-            |card| card.to_string()
+            |some_card| match some_card {
+                Some(card) => card.to_string(),
+                None => String::from("Empty")
+            }
         ).collect();
         writeln!(f, "Freecells: {}", freecell_cards.join(", "))
     }
@@ -43,8 +46,11 @@ impl Debug for GameState {
 
         // freecells
         write!(f, "Freecells:")?;
-        for card in &self.freecells {
-            write!(f, " {:?}", card)?;
+        for some_card in &self.freecells {
+            match some_card {
+                Some(card) => write!(f, " {:?}", card)?,
+                None => write!(f, " Empty")?,
+            };
         }
         writeln!(f)
     }

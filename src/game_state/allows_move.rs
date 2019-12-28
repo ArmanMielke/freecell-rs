@@ -15,7 +15,7 @@ impl GameState {
         let can_pop_card = match game_move.from {
             Position::Cascade(i) => can_pop_from_collection(game_move.card, &self.cascades[i]),
             Position::Foundations => false,
-            Position::Freecells => can_pop_from_collection(game_move.card, &self.freecells),
+            Position::Freecell(i) => can_pop_from_collection(game_move.card, &self.freecells[i]),
         };
         if !can_pop_card { return false; }
 
@@ -23,7 +23,7 @@ impl GameState {
         let can_add_card = match game_move.to {
             Position::Cascade(i) => self.cascades[i].add_card(game_move.card).is_ok(),
             Position::Foundations => self.foundations.add_card(game_move.card).is_ok(),
-            Position::Freecells => self.freecells.add_card(game_move.card).is_ok(),
+            Position::Freecell(i) => self.freecells[i].add_card(game_move.card).is_ok(),
         };
         can_add_card
     }

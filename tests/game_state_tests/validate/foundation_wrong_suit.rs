@@ -1,5 +1,3 @@
-use arrayvec::ArrayVec;
-
 use freecell::Suit::{Club, Diamond, Heart, Spade};
 use freecell::{Card, Foundations, GameState, ACE, JACK, KING, QUEEN};
 
@@ -84,7 +82,7 @@ fn test_hard_solved_to_t_empty_cascades_omitted() {
                 Card { suit: Heart, rank: 10 },  // wrong suit
             ],
         ]),
-        freecells: ArrayVec::new(),
+        freecells: [None, None, None, None],
     };
 
     let actual = state.validate();
