@@ -19,7 +19,7 @@ const FREECELLS: &str = "freecells:";
 pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
     let lines = read_file_as_lines(file_name)?;
 
-    let mut cascades: Vec<Cascade> = Vec::new();
+    let mut cascades: Vec<Cascade> = Vec::with_capacity(8);
     let mut foundations = Foundations::new();
     let mut freecells = ArrayVec::new();
 

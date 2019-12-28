@@ -56,7 +56,7 @@ impl CardCollection for Cascade {
         let mut clone = (*self).clone();
         match clone.pop() {
             Some(card) => vec![(clone, card)],
-            None => Vec::new(),
+            None => Vec::with_capacity(0),
         }
     }
 }

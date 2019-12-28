@@ -94,7 +94,7 @@ impl CardCollection for Foundations {
 
     /// Always returns an empty Vec, since cards cannot be removed from foundations.
     fn pop_card(&self) -> Vec<(Self, Card)> {
-        Vec::new()
+        Vec::with_capacity(0)
     }
 }
 
