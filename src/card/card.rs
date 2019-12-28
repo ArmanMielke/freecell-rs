@@ -1,7 +1,6 @@
 #[cfg(feature = "serde")]
 use serde::{Serialize, Deserialize};
 
-use std::convert::TryFrom;
 use std::fmt;
 use std::fmt::{Debug, Display, Formatter};
 use std::str::FromStr;
@@ -10,7 +9,7 @@ use super::{rank_from_string, Rank, Suit, ACE, JACK, KING, QUEEN};
 
 /// Represents one card in the game.
 ///
-/// Cards can be converted from Strings or `&str`s.
+/// Cards can be parsed from Strings or `&str`s.
 /// The formats for this are the same formats used by Display and Debug.
 /// See the description for `FromStr` below for details.
 ///
@@ -150,14 +149,14 @@ impl FromStr for Card {
         if string.len() == 2 {
             // string uses the short Debug format
             // the first character is the rank, the second character is the suit
-            let suit = Suit::try_from(&string[1..2])?;
+            let suit = string[1..2].parse()?;
             let rank = rank_from_string(&string[0..1])?;
             Ok(Card { suit, rank })
         } else {
             // string seems to use the long Display format
             // the first word is the rank, the second word is the suit
             let string: Vec<&str> = string.split(' ').collect();
-            let suit = Suit::try_from(*string.last().unwrap())?;
+            let suit = string.last().unwrap().parse()?;
             let rank = rank_from_string(string[0])?;
             Ok(Card { suit, rank })
         }

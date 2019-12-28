@@ -1,27 +1,25 @@
-use std::convert::TryFrom;
-
 use freecell::Suit::{self, Club, Diamond, Heart, Spade};
 
 #[test]
 fn test_valid_name() {
-    assert_eq!(Ok(Club), Suit::try_from("Club"));
-    assert_eq!(Ok(Club), Suit::try_from("Clubs"));
-    assert_eq!(Ok(Club), Suit::try_from("c"));
-    assert_eq!(Ok(Spade), Suit::try_from("Spade"));
-    assert_eq!(Ok(Spade), Suit::try_from("SPADES"));
-    assert_eq!(Ok(Spade), Suit::try_from("S"));
-    assert_eq!(Ok(Heart), Suit::try_from("Heart"));
-    assert_eq!(Ok(Heart), Suit::try_from("hearts"));
-    assert_eq!(Ok(Heart), Suit::try_from("H"));
-    assert_eq!(Ok(Diamond), Suit::try_from("Diamond"));
-    assert_eq!(Ok(Diamond), Suit::try_from("Diamonds"));
-    assert_eq!(Ok(Diamond), Suit::try_from("d"));
+    assert_eq!(Ok(Club), "Club".parse());
+    assert_eq!(Ok(Club), "Clubs".parse());
+    assert_eq!(Ok(Club), "c".parse());
+    assert_eq!(Ok(Spade), "Spade".parse());
+    assert_eq!(Ok(Spade), "SPADES".parse());
+    assert_eq!(Ok(Spade), "S".parse());
+    assert_eq!(Ok(Heart), "Heart".parse());
+    assert_eq!(Ok(Heart), "hearts".parse());
+    assert_eq!(Ok(Heart), "H".parse());
+    assert_eq!(Ok(Diamond), "Diamond".parse());
+    assert_eq!(Ok(Diamond), "Diamonds".parse());
+    assert_eq!(Ok(Diamond), "d".parse());
 }
 
 #[test]
 fn test_invalid_name() {
-    assert!(Suit::try_from("Not A Suit").is_err());
-    assert!(Suit::try_from("He").is_err());
-    assert!(Suit::try_from("Hear").is_err());
-    assert!(Suit::try_from("Heartss").is_err());
+    assert!("Not A Suit".parse::<Suit>().is_err());
+    assert!("He".parse::<Suit>().is_err());
+    assert!("Hear".parse::<Suit>().is_err());
+    assert!("Heartss".parse::<Suit>().is_err());
 }
