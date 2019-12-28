@@ -2,7 +2,7 @@
 
 ## Unreleased Changes
 
-None so far
+- Use `FromStr` instead of `TryFrom<String>` and `TryFrom<&str>`
 
 
 ## Releases
