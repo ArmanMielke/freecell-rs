@@ -1,19 +1,6 @@
 use freecell::Suit::{Club, Diamond, Heart, Spade};
 use freecell::game_state_parser;
-use freecell::{Card, Move, Position};
-
-const POSITIONS: [Position; 10] = [
-    Position::Cascade(0),
-    Position::Cascade(1),
-    Position::Cascade(2),
-    Position::Cascade(3),
-    Position::Cascade(4),
-    Position::Cascade(5),
-    Position::Cascade(6),
-    Position::Cascade(7),
-    Position::Foundations,
-    Position::Freecells,
-];
+use freecell::{Card, Move, POSITIONS};
 
 #[test]
 fn test_easy_game_over() {

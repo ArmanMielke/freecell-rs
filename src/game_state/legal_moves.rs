@@ -1,127 +1,87 @@
-use crate::{CardCollection, Move, Position};
+use std::collections::HashSet;
+use std::iter::FromIterator;
+
+use crate::{Card, CardCollection, Cascade, Foundations, Freecells, Move, Position, POSITIONS};
 use super::GameState;
 
-impl GameState {
-    // TODO [low priority] deduplicate code
-    // TODO [v1] moves that don't change the game state should be treated as illegal
-    pub fn legal_moves(&self) -> Vec<(GameState, Move)> {
-        // This is a temporary implementation.
-        // My attempts to implement this nicely have been thwarted by rust's rules for creating
-        // collections of traits (I tried to implement a method that returns a vector of
-        // (CardCollection, Position), then iterate over it, try to pop cards and push them back
-        // into a CardCollection. If both positions in a Move match, i.e. the card was pushed back
-        // into the same CardCollection, the move was going to be filtered out.)
-        // Unfortunately, I am stuck with this ugly mess for now:
+#[derive(Clone)]
+enum AnyCardCollection {
+    Cascade(usize, Cascade),
+    Foundations(Foundations),
+    Freecells(Freecells),
+}
 
+impl GameState {
+
+    pub fn legal_moves(&self) -> Vec<(GameState, Move)> {
         let mut legal_moves = Vec::new();
 
-        // move from cascades ...
-        for i in 0..self.cascades.len() {
-            let (cascade, card) = match self.cascades[i].pop_card().pop() {
-                Some((cascade, card)) => (cascade, card),
-                None => continue,
-            };
-
-            // ... to other cascades
-            for j in 0..self.cascades.len() {
-                if i == j { continue }
-
-                if let Ok(to_cascade) = self.cascades[j].add_card(card) {
-                    let mut new_cascades = self.cascades.clone();
-                    new_cascades[i] = cascade.clone();
-                    new_cascades[j] = to_cascade;
-                    legal_moves.push((
-                        GameState {
-                            cascades: new_cascades,
-                            foundations: self.foundations.clone(),
-                            freecells: self.freecells.clone(),
-                        },
-                        Move {
-                            card,
-                            from: Position::Cascade(i),
-                            to: Position::Cascade(j),
-                        },
-                    ));
+        // for all combinations of source and target position (where the two are different),
+        // try to move cards from one to the other
+        for &from_position in positions_except_for(&Position::Foundations) {
+            for (from_card_collection, card) in self.pop_card_at_position(from_position) {
+                for &to_position in positions_except_for(&from_position) {
+                    if let Ok(to_card_collection) = self.add_card_at_position(to_position, card) {
+                        legal_moves.push((
+                            self.construct_next_game_state(from_card_collection.clone(), to_card_collection),
+                            Move { card, from: from_position, to: to_position }
+                        ));
+                    }
                 }
-            }
-
-            // ... to foundations
-            if let Ok(foundations) = self.foundations.add_card(card) {
-                let mut new_cascades = self.cascades.clone();
-                new_cascades[i] = cascade.clone();
-                legal_moves.push((
-                    GameState {
-                        cascades: new_cascades,
-                        foundations,
-                        freecells: self.freecells.clone(),
-                    },
-                    Move {
-                        card,
-                        from: Position::Cascade(i),
-                        to: Position::Foundations,
-                    },
-                ));
-            }
-
-            // ... to freecells
-            if let Ok(freecells) = self.freecells.add_card(card) {
-                let mut new_cascades = self.cascades.clone();
-                new_cascades[i] = cascade;
-                legal_moves.push((
-                    GameState {
-                        cascades: new_cascades,
-                        foundations: self.foundations.clone(),
-                        freecells,
-                    },
-                    Move {
-                        card,
-                        from: Position::Cascade(i),
-                        to: Position::Freecells,
-                    },
-                ));
-            }
-        }
-
-        // move from freecells ...
-        let from_freecells = self.freecells.pop_card();
-        for (freecells, card) in from_freecells {
-            // ... to cascades
-            for i in 0..self.cascades.len() {
-                if let Ok(cascade) = self.cascades[i].add_card(card) {
-                    let mut new_cascades = self.cascades.clone();
-                    new_cascades[i] = cascade;
-                    legal_moves.push((
-                        GameState {
-                            cascades: new_cascades,
-                            foundations: self.foundations.clone(),
-                            freecells: freecells.clone(),
-                        },
-                        Move {
-                            card,
-                            from: Position::Freecells,
-                            to: Position::Cascade(i),
-                        },
-                    ));
-                }
-            }
-
-            // ... to foundations
-            if let Ok(foundations) = self.foundations.add_card(card) {
-                legal_moves.push((
-                    GameState {
-                        cascades: self.cascades.clone(),
-                        foundations,
-                        freecells: freecells.clone(),
-                    },
-                    Move {
-                        card,
-                        from: Position::Freecells,
-                        to: Position::Foundations,
-                    },
-                ));
             }
         }
 
         legal_moves
     }
+
+    fn pop_card_at_position(&self, position: Position) -> Vec<(AnyCardCollection, Card)> {
+        // calls pop_card() at the desired card collection and replaces the returned card
+        // collections with AnyCardCollections
+        match position {
+            Position::Cascade(i) => self.cascades[i].pop_card().drain(..).map(
+                |(cascade, card)| (AnyCardCollection::Cascade(i, cascade), card)
+            ).collect(),
+            Position::Foundations => self.foundations.pop_card().drain(..).map(
+                |(foundations, card)| (AnyCardCollection::Foundations(foundations), card)
+            ).collect(),
+            Position::Freecells => self.freecells.pop_card().drain(..).map(
+                |(freecells, card)| (AnyCardCollection::Freecells(freecells), card)
+            ).collect(),
+        }
+    }
+
+    fn add_card_at_position(&self, position: Position, card: Card) -> Result<AnyCardCollection, ()> {
+        // calls add_card(card) at the desired card collection and turns the result into an AnyCardCollection
+        match position {
+            Position::Cascade(i) => Ok(AnyCardCollection::Cascade(i, self.cascades[i].add_card(card)?)),
+            Position::Foundations => Ok(AnyCardCollection::Foundations(self.foundations.add_card(card)?)),
+            Position::Freecells => Ok(AnyCardCollection::Freecells(self.freecells.add_card(card)?)),
+        }
+    }
+
+    fn construct_next_game_state(&self, from_card_collection: AnyCardCollection, to_card_collection: AnyCardCollection) -> GameState {
+        // creates a game state that is identical to the current one, except for the source and
+        // target position of the moved card. Those are identical to from_card_collection and
+        // to_card_collection, respectively.
+        // TODO there must be a way that does not require cloning the parts of the game state that are overwritten anyway
+        let mut next_game_state = self.clone();
+
+        for card_collection in vec![from_card_collection, to_card_collection].drain(..) {
+            match card_collection {
+                AnyCardCollection::Cascade(i, cascade) => next_game_state.cascades[i] = cascade,
+                AnyCardCollection::Foundations(foundations) => next_game_state.foundations = foundations,
+                AnyCardCollection::Freecells(freecells) => next_game_state.freecells = freecells,
+            }
+        }
+
+        next_game_state
+    }
+
+}
+
+/// Returns all possible positions, except for the given one.
+fn positions_except_for(position: &Position) -> HashSet<&Position> {
+    let mut positions = HashSet::from_iter(&POSITIONS);
+    positions.remove(position);
+    positions
 }

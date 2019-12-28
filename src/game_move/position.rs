@@ -3,6 +3,20 @@ use serde::{Serialize, Deserialize};
 
 use std::fmt::{Display, Formatter, Result};
 
+/// All possible positions.
+pub const POSITIONS: [Position; 10] = [
+    Position::Cascade(0),
+    Position::Cascade(1),
+    Position::Cascade(2),
+    Position::Cascade(3),
+    Position::Cascade(4),
+    Position::Cascade(5),
+    Position::Cascade(6),
+    Position::Cascade(7),
+    Position::Foundations,
+    Position::Freecells,
+];
+
 /// Indicates the position of a card.
 ///
 /// The cascades are numbered from 0 to 7.
