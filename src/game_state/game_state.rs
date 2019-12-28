@@ -33,5 +33,3 @@ impl GameState {
         hasher.finish()
     }
 }
-
-// TODO [v2+] add an alternative GameState struct where Eq is implemented so that the order of cascades and the order of cards in freecells don't matter.

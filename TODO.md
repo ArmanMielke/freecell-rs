@@ -9,10 +9,11 @@
     - e.g. player can choose in which freecell to put a card (Freecells as `[Option<Card>; 4]`)
 - **[v2+]** add a second game state struct with performance optimisation
     - introduce a trait implemented by both structs?? (if not, consider renaming `legal_moves()` to `moves()`)
-    - e.g. different implementation of `eq()` where order of cascades doesn't matter
-    - e.g. different implementation of `legal_moves()` that returns fewer moves if some of them are equivalent (e.g. if there are multiple empty cascades)
-    - e.g. if there are safe moves, `legal_moves()` only returns those
-    - e.g. different Freecells struct that behaves like a set
+    - optimisations:
+        - different implementation of `eq()` where order of cascades doesn't matter
+        - all freecells are one card collection together, implemented as set-like data structure
+        - different implementation of `legal_moves()` that returns fewer moves if some of them are equivalent (e.g. if there are multiple empty cascades)
+        - if there are safe moves, `legal_moves()` only returns the first one of those
 - **[v2+]** measure and visualize performance
     - https://bheisler.github.io/criterion.rs/book/criterion_rs.html
     - https://github.com/ferrous-systems/flamegraph
