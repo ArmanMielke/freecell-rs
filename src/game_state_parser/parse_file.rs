@@ -1,6 +1,5 @@
 use arrayvec::ArrayVec;
 
-use std::convert::TryFrom;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Lines};
 use std::path::Path;
@@ -76,7 +75,7 @@ fn parse_cards(card_iterator: SplitWhitespace<'_>) -> Result<Vec<Card>, String> 
     let mut cards = Vec::new();
 
     for card_code in card_iterator {
-        cards.push(Card::try_from(card_code)?);
+        cards.push(card_code.parse()?);
     }
 
     Ok(cards)

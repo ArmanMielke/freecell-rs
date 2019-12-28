@@ -4,6 +4,7 @@ use serde::{Serialize, Deserialize};
 use std::convert::TryFrom;
 use std::fmt;
 use std::fmt::{Debug, Display, Formatter};
+use std::str::FromStr;
 
 use super::{rank_from_string, Rank, Suit, ACE, JACK, KING, QUEEN};
 
@@ -11,7 +12,7 @@ use super::{rank_from_string, Rank, Suit, ACE, JACK, KING, QUEEN};
 ///
 /// Cards can be converted from Strings or `&str`s.
 /// The formats for this are the same formats used by Display and Debug.
-/// See the descriptions for `TryFrom<String>` and `TryFrom<&str>` below for details.
+/// See the description for `FromStr` below for details.
 ///
 /// # Examples
 ///
@@ -23,16 +24,16 @@ use super::{rank_from_string, Rank, Suit, ACE, JACK, KING, QUEEN};
 /// use freecell::Suit::{Club, Diamond, Heart, Spade};
 ///
 /// // Short representation used by Debug
-/// assert_eq!(Ok(Card { suit: Diamond, rank: ACE }), Card::try_from("AD"));
-/// assert_eq!(Ok(Card { suit: Club, rank: 4 }), Card::try_from("4C"));
-/// assert_eq!(Ok(Card { suit: Diamond, rank: 10 }), Card::try_from("TD"));
-/// assert_eq!(Ok(Card { suit: Club, rank: JACK }), Card::try_from("jc"));
-/// assert_eq!(Ok(Card { suit: Spade, rank: QUEEN }), Card::try_from("qS"));
-/// assert_eq!(Ok(Card { suit: Heart, rank: KING }), Card::try_from("Kh"));
+/// assert_eq!(Ok(Card { suit: Diamond, rank: ACE }), "AD".parse());
+/// assert_eq!(Ok(Card { suit: Club, rank: 4 }), "4C".parse());
+/// assert_eq!(Ok(Card { suit: Diamond, rank: 10 }), "TD".parse());
+/// assert_eq!(Ok(Card { suit: Club, rank: JACK }), "jc".parse());
+/// assert_eq!(Ok(Card { suit: Spade, rank: QUEEN }), "qS".parse());
+/// assert_eq!(Ok(Card { suit: Heart, rank: KING }), "Kh".parse());
 ///
 /// // Long representation used by Display
-/// assert_eq!(Ok(Card { suit: Diamond, rank: JACK }), Card::try_from("Jack of Diamonds"));
-/// assert_eq!(Ok(Card { suit: Club, rank: 10 }), Card::try_from("10 oF cLuBs"));
+/// assert_eq!(Ok(Card { suit: Diamond, rank: JACK }), "Jack of Diamonds".parse());
+/// assert_eq!(Ok(Card { suit: Club, rank: 10 }), "10 oF cLuBs".parse());
 /// ```
 ///
 /// A formatted card can be converted back to the original card:
@@ -42,9 +43,9 @@ use super::{rank_from_string, Rank, Suit, ACE, JACK, KING, QUEEN};
 /// # use freecell::Suit::Spade;
 /// let ace_of_spades = Card { suit: Spade, rank: ACE };
 /// // Formatted using Display
-/// assert_eq!(Ok(ace_of_spades), Card::try_from(ace_of_spades.to_string()));
+/// assert_eq!(Ok(ace_of_spades), ace_of_spades.to_string().parse());
 /// // Formatted using Debug
-/// assert_eq!(Ok(ace_of_spades), Card::try_from(format!("{:?}", ace_of_spades)));
+/// assert_eq!(Ok(ace_of_spades), format!("{:?}", ace_of_spades).parse());
 /// ```
 #[derive(Clone, Copy, Eq, PartialEq, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -82,14 +83,10 @@ impl Debug for Card {
     }
 }
 
-// TODO [low priority] is there a solution for this:
-// would like this to be
-// impl<S: Into<String>> TryFrom<S> for Card
-// but this doesn't work because of https://github.com/rust-lang/rust/issues/50133
-impl TryFrom<String> for Card {
-    type Error = String;
+impl FromStr for Card {
+    type Err = String;
 
-    /// Converts a String to a Card.
+    /// Converts a `&str` to a Card.
     ///
     /// The String must follow one of two formats.
     /// Both formats are case-insensitive.
@@ -121,12 +118,12 @@ impl TryFrom<String> for Card {
     /// use freecell::{ACE, JACK, KING, QUEEN};
     /// use freecell::Suit::{Club, Diamond, Heart, Spade};
     ///
-    /// assert_eq!(Ok(Card { suit: Diamond, rank: ACE }), Card::try_from("AD"));
-    /// assert_eq!(Ok(Card { suit: Club, rank: 4 }), Card::try_from("4C"));
-    /// assert_eq!(Ok(Card { suit: Diamond, rank: 10 }), Card::try_from("TD"));
-    /// assert_eq!(Ok(Card { suit: Club, rank: JACK }), Card::try_from("jc"));
-    /// assert_eq!(Ok(Card { suit: Spade, rank: QUEEN }), Card::try_from("qS"));
-    /// assert_eq!(Ok(Card { suit: Heart, rank: KING }), Card::try_from("Kh"));
+    /// assert_eq!(Ok(Card { suit: Diamond, rank: ACE }), "AD".parse());
+    /// assert_eq!(Ok(Card { suit: Club, rank: 4 }), "4C".parse());
+    /// assert_eq!(Ok(Card { suit: Diamond, rank: 10 }), "TD".parse());
+    /// assert_eq!(Ok(Card { suit: Club, rank: JACK }), "jc".parse());
+    /// assert_eq!(Ok(Card { suit: Spade, rank: QUEEN }), "qS".parse());
+    /// assert_eq!(Ok(Card { suit: Heart, rank: KING }), "Kh".parse());
     /// ```
     ///
     /// # The long format used by Display
@@ -142,11 +139,11 @@ impl TryFrom<String> for Card {
     /// use freecell::{JACK, QUEEN};
     /// use freecell::Suit::{Club, Diamond, Spade};
     ///
-    /// assert_eq!(Ok(Card { suit: Diamond, rank: JACK }), Card::try_from("Jack of Diamonds"));
-    /// assert_eq!(Ok(Card { suit: Club, rank: 3 }), Card::try_from("3 of clubs"));
-    /// assert_eq!(Ok(Card { suit: Spade, rank: QUEEN }), Card::try_from("12 oF sPaDeS"));
+    /// assert_eq!(Ok(Card { suit: Diamond, rank: JACK }), "Jack of Diamonds".parse());
+    /// assert_eq!(Ok(Card { suit: Club, rank: 3 }), "3 of clubs".parse());
+    /// assert_eq!(Ok(Card { suit: Spade, rank: QUEEN }), "12 oF sPaDeS".parse());
     /// ```
-    fn try_from(string: String) -> Result<Card, Self::Error> {
+    fn from_str(string: &str) -> Result<Card, Self::Err> {
         // TODO [v1] use regex
         let string = string.trim();
 
@@ -164,16 +161,5 @@ impl TryFrom<String> for Card {
             let rank = rank_from_string(string[0])?;
             Ok(Card { suit, rank })
         }
-    }
-}
-
-impl TryFrom<&str> for Card {
-    type Error = String;
-
-    /// Converts a `&str` to a Card.
-    ///
-    /// See the description of `TryFrom<String>` for details.
-    fn try_from(string: &str) -> Result<Card, Self::Error> {
-        Card::try_from(string.to_string())
     }
 }

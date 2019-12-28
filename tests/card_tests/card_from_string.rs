@@ -1,81 +1,40 @@
-use std::convert::TryFrom;
-
 use freecell::Suit::{Club, Diamond, Heart, Spade};
 use freecell::{Card, ACE, JACK, KING, QUEEN};
 
 #[test]
 fn test_long_representation() {
     // named ranks
-    assert_eq!(
-        Ok(Card { suit: Spade, rank: ACE }),
-        Card::try_from("Ace of Spades")
-    );
-    assert_eq!(
-        Ok(Card { suit: Diamond, rank: JACK }),
-        Card::try_from("Jack of Diamonds")
-    );
-    assert_eq!(
-        Ok(Card { suit: Heart, rank: QUEEN }),
-        Card::try_from("Queen of Hearts")
-    );
-    assert_eq!(
-        Ok(Card { suit: Club, rank: KING }),
-        Card::try_from("King of Clubs")
-    );
+    assert_eq!(Ok(Card { suit: Spade, rank: ACE }), "Ace of Spades".parse());
+    assert_eq!(Ok(Card { suit: Diamond, rank: JACK }), "Jack of Diamonds".parse());
+    assert_eq!(Ok(Card { suit: Heart, rank: QUEEN }), "Queen of Hearts".parse());
+    assert_eq!(Ok(Card { suit: Club, rank: KING }), "King of Clubs".parse());
 
     // numbers as ranks
-    assert_eq!(
-        Ok(Card { suit: Heart, rank: 8 }),
-        Card::try_from("8 of Hearts")
-    );
-    assert_eq!(
-        Ok(Card { suit: Club, rank: 10 }),
-        Card::try_from("10 of Clubs")
-    );
-    assert_eq!(
-        Ok(Card { suit: Spade, rank: JACK }),
-        Card::try_from("11 of Spades")
-    );
+    assert_eq!(Ok(Card { suit: Heart, rank: 8 }), "8 of Hearts".parse());
+    assert_eq!(Ok(Card { suit: Club, rank: 10 }), "10 of Clubs".parse());
+    assert_eq!(Ok(Card { suit: Spade, rank: JACK }), "11 of Spades".parse());
 }
 
 #[test]
 fn test_short_representation() {
     // named ranks
-    assert_eq!(
-        Ok(Card { suit: Diamond, rank: ACE }),
-        Card::try_from("ad")
-    );
+    assert_eq!(Ok(Card { suit: Diamond, rank: ACE }), "ad".parse());
     // 10 is a named rank in the short representation
-    assert_eq!(
-        Ok(Card { suit: Diamond, rank: 10 }),
-        Card::try_from("TD")
-    );
-    assert_eq!(
-        Ok(Card { suit: Club, rank: JACK }),
-        Card::try_from("JC")
-    );
-    assert_eq!(
-        Ok(Card { suit: Spade, rank: QUEEN }),
-        Card::try_from("qS")
-    );
-    assert_eq!(
-        Ok(Card { suit: Heart, rank: KING }),
-        Card::try_from("Kh")
-    );
+    assert_eq!(Ok(Card { suit: Diamond, rank: 10 }), "TD".parse());
+    assert_eq!(Ok(Card { suit: Club, rank: JACK }), "JC".parse());
+    assert_eq!(Ok(Card { suit: Spade, rank: QUEEN }), "qS".parse());
+    assert_eq!(Ok(Card { suit: Heart, rank: KING }), "Kh".parse());
 
     // number as rank
-    assert_eq!(
-        Ok(Card { suit: Club, rank: 4 }),
-        Card::try_from("4C")
-    );
+    assert_eq!(Ok(Card { suit: Club, rank: 4 }), "4C".parse());
 }
 
 #[test]
 fn test_invalid() {
-    assert!(Card::try_from("Not A Card").is_err());
-    assert!(Card::try_from("Jack of NotASuit").is_err());
-    assert!(Card::try_from("NotARank of Spades").is_err());
-    assert!(Card::try_from("0S").is_err()); // invalid rank
-    assert!(Card::try_from("XC").is_err()); // invalid rank
-    assert!(Card::try_from("6X").is_err()); // invalid suit
+    assert!("Not A Card".parse::<Card>().is_err());
+    assert!("Jack of NotASuit".parse::<Card>().is_err());
+    assert!("NotARank of Spades".parse::<Card>().is_err());
+    assert!("0S".parse::<Card>().is_err()); // invalid rank
+    assert!("XC".parse::<Card>().is_err()); // invalid rank
+    assert!("6X".parse::<Card>().is_err()); // invalid suit
 }
