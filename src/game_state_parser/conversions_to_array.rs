@@ -2,14 +2,11 @@ use super::error_messages::ERR_TOO_MANY_CASCADES;
 use crate::{Cascade, Cascades};
 
 pub fn cascades_vec_to_array(mut cascades: Vec<Cascade>) -> Result<Cascades, String> {
+    // make sure cascades has length 8
     if cascades.len() > 8 {
         return Err(String::from(ERR_TOO_MANY_CASCADES));
     }
-
-    // pad to 8 cascades
-    for _ in cascades.len()..8 {
-        cascades.push(Vec::new())
-    }
+    cascades.resize(8, Vec::new());
 
     // convert to array
     Ok([
