@@ -9,8 +9,7 @@ use crate::{Cascades, Foundations, Freecells};
 pub type GameStateId = u64;
 
 #[derive(Clone, Eq, PartialEq, Hash)]
-// TODO uncomment this
-// #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct GameState {
     pub cascades: Cascades,
     pub foundations: Foundations,

@@ -1,3 +1,6 @@
+#[cfg(feature = "serde")]
+use serde::{Serialize, Deserialize};
+
 use std::fmt::{Display, Formatter, Result};
 
 /// Indicates the colour of a card.
@@ -16,6 +19,7 @@ use std::fmt::{Display, Formatter, Result};
 /// assert_eq!(Colour::Red, red_card.suit.colour());
 /// ```
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum Colour {
     #[allow(missing_docs)]
     Black,
