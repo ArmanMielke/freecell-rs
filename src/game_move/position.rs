@@ -1,3 +1,6 @@
+#[cfg(feature = "serde")]
+use serde::{Serialize, Deserialize};
+
 use std::fmt::{Display, Formatter, Result};
 
 /// Indicates the position of a card.
@@ -5,6 +8,7 @@ use std::fmt::{Display, Formatter, Result};
 /// The cascades are numbered from 0 to 7.
 // TODO [v2+] need a normal version with Freecells(usize) and an efficient version with just Freecells
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum Position {
     #[allow(missing_docs)]
     Cascade(usize),

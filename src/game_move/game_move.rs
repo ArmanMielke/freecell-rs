@@ -1,9 +1,13 @@
+#[cfg(feature = "serde")]
+use serde::{Serialize, Deserialize};
+
 use std::fmt::{Debug, Display, Formatter, Result};
 
 use crate::{Card, Position};
 
 /// Represents one step in the game, where a card is moved from one position to another.
 #[derive(Clone, Copy, Eq, PartialEq, Hash)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Move {
     #[allow(missing_docs)]
     pub card: Card,
