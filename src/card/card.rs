@@ -17,7 +17,6 @@ use super::{rank_from_string, Rank, Suit, ACE, JACK, KING, QUEEN};
 ///
 /// Parsing cards from strings:
 /// ```
-/// use std::convert::TryFrom;
 /// # use freecell::Card;
 /// use freecell::{ACE, JACK, KING, QUEEN};
 /// use freecell::Suit::{Club, Diamond, Heart, Spade};
@@ -37,7 +36,6 @@ use super::{rank_from_string, Rank, Suit, ACE, JACK, KING, QUEEN};
 ///
 /// A formatted card can be converted back to the original card:
 /// ```
-/// # use std::convert::TryFrom;
 /// # use freecell::{Card, ACE};
 /// # use freecell::Suit::Spade;
 /// let ace_of_spades = Card { suit: Spade, rank: ACE };
@@ -112,7 +110,6 @@ impl FromStr for Card {
     /// ## Examples
     ///
     /// ```
-    /// # use std::convert::TryFrom;
     /// # use freecell::Card;
     /// use freecell::{ACE, JACK, KING, QUEEN};
     /// use freecell::Suit::{Club, Diamond, Heart, Spade};
@@ -133,7 +130,6 @@ impl FromStr for Card {
     /// ## Examples
     ///
     /// ```
-    /// # use std::convert::TryFrom;
     /// # use freecell::Card;
     /// use freecell::{JACK, QUEEN};
     /// use freecell::Suit::{Club, Diamond, Spade};

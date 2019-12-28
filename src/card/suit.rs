@@ -17,9 +17,7 @@ use super::{Color, Colour};
 ///
 /// Parsing suits from strings:
 /// ```
-/// use std::convert::TryFrom;
 /// # use freecell::Suit;
-///
 /// assert_eq!(Ok(Suit::Club), "Club".parse());
 /// assert_eq!(Ok(Suit::Club), "Clubs".parse());
 /// assert_eq!(Ok(Suit::Spade), "spade".parse());
@@ -29,7 +27,6 @@ use super::{Color, Colour};
 ///
 /// A formatted suit can be converted back to the original suit:
 /// ```
-/// # use std::convert::TryFrom;
 /// # use freecell::Suit;
 /// // Formatted using Display
 /// assert_eq!(Ok(Suit::Club), Suit::Club.to_string().parse());
@@ -119,7 +116,6 @@ impl FromStr for Suit {
     /// # Examples
     ///
     /// ```
-    /// # use std::convert::TryFrom;
     /// # use freecell::Suit;
     /// assert_eq!(Ok(Suit::Club), "Club".parse());
     /// assert_eq!(Ok(Suit::Club), "Clubs".parse());
