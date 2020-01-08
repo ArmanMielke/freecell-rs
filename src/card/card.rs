@@ -1,3 +1,5 @@
+use lazy_static::lazy_static;
+use regex::Regex;
 #[cfg(feature = "serde")]
 use serde::{Serialize, Deserialize};
 
@@ -6,6 +8,9 @@ use std::fmt::{Debug, Display, Formatter};
 use std::str::FromStr;
 
 use super::{rank_from_string, Rank, Suit, ACE, JACK, KING, QUEEN};
+
+/// A regular expression that matches cards.
+const CARD_PATTERN: &str = r"(?P<rank>10|11|12|13|ace|jack|queen|king|[atjqk1-9])\s*(of)?\s*(?P<suit>c(lub(s)?)?|s(pade(s)?)?|h(eart(s)?)?|d(iamond(s)?)?)";
 
 /// Represents one card in the game.
 ///
@@ -139,22 +144,16 @@ impl FromStr for Card {
     /// assert_eq!(Ok(Card { suit: Spade, rank: QUEEN }), "12 oF sPaDeS".parse());
     /// ```
     fn from_str(string: &str) -> Result<Card, Self::Err> {
-        // TODO [v1] use regex
-        let string = string.trim();
+        lazy_static! {
+            static ref CARD_RE: Regex = Regex::new(format!(r"(?i)^\s*{}\s*$", CARD_PATTERN).as_str()).unwrap();
+        }
 
-        if string.len() == 2 {
-            // string uses the short Debug format
-            // the first character is the rank, the second character is the suit
-            let suit = string[1..2].parse()?;
-            let rank = rank_from_string(&string[0..1])?;
-            Ok(Card { suit, rank })
-        } else {
-            // string seems to use the long Display format
-            // the first word is the rank, the second word is the suit
-            let string: Vec<&str> = string.split(' ').collect();
-            let suit = string.last().unwrap().parse()?;
-            let rank = rank_from_string(string[0])?;
-            Ok(Card { suit, rank })
+        match CARD_RE.captures(string) {
+            Some(caps) => Ok(Card {
+                suit: caps.name("suit").unwrap().as_str().parse()?,
+                rank: rank_from_string(caps.name("rank").unwrap().as_str())?
+            }),
+            None => Err("Could not parse card".to_string())
         }
     }
 }

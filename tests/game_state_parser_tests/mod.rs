@@ -1,3 +1,4 @@
+mod easy_10_instead_of_t;
 mod invalid;
 mod hard;
 mod hard_solved_to_6;
