@@ -29,12 +29,6 @@
 
 Some relevant items include:
 
-- Data structures implement Serde's Serialize, Deserialize
-    - https://rust-lang.github.io/api-guidelines/interoperability.html#c-serde
-    - e.g. GameState should be serializable
-    - "If a crate does not already depend on Serde for other reasons, it may wish to gate Serde impls behind a Cargo cfg."
-    - The link includes a tutorial
-    - example for how to document this: https://docs.rs/splines/0.2.3/splines/#features-and-customization
 - All checklist items regarding documentation
 - Caller decides where to copy and place data
     - https://rust-lang.github.io/api-guidelines/flexibility.html#c-caller-control
