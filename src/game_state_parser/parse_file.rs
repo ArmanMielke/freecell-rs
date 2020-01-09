@@ -4,8 +4,8 @@ use std::path::Path;
 use std::str::SplitWhitespace;
 
 use super::conversions_to_array;
-use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS, ERR_TOO_MANY_FREECELLS};
-use crate::{Card, Cascade, Foundations, Freecell, Freecells, GameState};
+use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS};
+use crate::{Card, Cascade, Foundations, Freecells, GameState, parse_freecells};
 
 // TODO [v1] let all structs handle their own parsing (should be case-insensitive)
 
@@ -39,7 +39,10 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
                 parse_cards(token_iterator)?
             )?,
             CASCADE => cascades.push(parse_cards(token_iterator)?),
-            FREECELLS => freecells = create_freecells(parse_cards(token_iterator)?)?,
+            FREECELLS => freecells = parse_freecells(token_iterator.fold(
+                String::new(),
+                |mut string, token| {string.push_str(token); string.push(' '); string}
+            ))?,
             _ => warn_invalid_first_token!(first_token_in_line),
         };
     }
@@ -100,22 +103,4 @@ fn card_sequence_up_to(card: Card) -> Vec<Card> {
     }
 
     cards
-}
-
-// TODO input card should be able to be "Empty" to denote that there is nothing in this freecell
-fn create_freecells(freecell_cards: Vec<Card>) -> Result<Freecells, String> {
-    if freecell_cards.len() > 4 {
-        return Err(String::from(ERR_TOO_MANY_FREECELLS));
-    }
-
-    let mut freecells: Vec<Freecell> = freecell_cards.into_iter().map(|card| Some(card)).collect();
-    freecells.resize(4, None);
-
-    // convert to array
-    Ok([
-        freecells.remove(0),
-        freecells.remove(0),
-        freecells.remove(0),
-        freecells.remove(0),
-    ])
 }

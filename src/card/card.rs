@@ -10,7 +10,11 @@ use std::str::FromStr;
 use super::{rank_from_string, Rank, Suit, ACE, JACK, KING, QUEEN};
 
 /// A regular expression that matches cards.
-const CARD_PATTERN: &str = r"(?P<rank>10|11|12|13|ace|jack|queen|king|[atjqk1-9])\s*(of)?\s*(?P<suit>c(lub(s)?)?|s(pade(s)?)?|h(eart(s)?)?|d(iamond(s)?)?)";
+pub const CARD_PATTERN: &str = r"(?x)
+    (?P<rank>10|11|12|13|ace|jack|queen|king|[atjqk1-9])
+    \s*(of)?\s*
+    (?P<suit>c(lub(s)?)?|s(pade(s)?)?|h(eart(s)?)?|d(iamond(s)?)?)
+";
 
 /// Represents one card in the game.
 ///

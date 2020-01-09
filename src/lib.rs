@@ -35,7 +35,27 @@ mod card_collections;
 mod game_move;
 mod game_state;
 
-pub use self::card::{rank_from_string, Card, Color, Colour, Rank, Suit, ACE, JACK, KING, QUEEN};
-pub use self::card_collections::{CardCollection, Cascade, Cascades, Foundation, Foundations, Freecell, Freecells};
-pub use self::game_move::{Move, Position, POSITIONS};
-pub use self::game_state::{GameState, GameStateId};
+pub use self::card::{
+    rank_from_string,
+    Card,
+    Color, Colour,
+    Rank,
+    Suit,
+    ACE, JACK, KING, QUEEN
+};
+pub use self::card_collections::{
+    parse_freecells,
+    CardCollection,
+    Cascade, Cascades,
+    Foundation, Foundations,
+    Freecell, Freecells
+};
+pub use self::game_move::{
+    Move,
+    Position,
+    POSITIONS
+};
+pub use self::game_state::{
+    GameState,
+    GameStateId
+};
