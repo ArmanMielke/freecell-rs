@@ -48,6 +48,8 @@ pub type Freecells = [Freecell; 4];
 /// ```
 /// # use freecell::Suit::{Club, Diamond, Heart, Spade};
 /// # use freecell::{parse_freecells, Card, ACE, JACK};
+/// assert_eq!(parse_freecells(""), Ok([None, None, None, None]));
+///
 /// assert_eq!(
 ///     parse_freecells("JH TD 9H"),
 ///     Ok([
@@ -68,7 +70,6 @@ pub type Freecells = [Freecell; 4];
 ///     ])
 /// );
 /// ```
-// TODO test
 pub fn parse_freecells<S: Into<String>>(string: S) -> Result<Freecells, String> {
     lazy_static! {
         static ref FREECELLS_RE: Regex = Regex::new(format!(r"(?i)^\s*(({}|empty)\s*){}$", CARD_PATTERN, "{0,4}").as_str()).unwrap();
@@ -77,7 +78,7 @@ pub fn parse_freecells<S: Into<String>>(string: S) -> Result<Freecells, String> 
 
     let string = &string.into();
     if !FREECELLS_RE.is_match(string) {
-        return Err("Could not parse freecells".to_string())
+        return Err(format!("Could not parse freecells: \"{}\"", string))
     }
 
     let mut freecells = [None, None, None, None];

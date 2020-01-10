@@ -92,7 +92,7 @@ impl Debug for Card {
 impl FromStr for Card {
     type Err = String;
 
-    /// Converts a `&str` to a Card.
+    /// Converts a `&str` to a `Card`.
     ///
     /// The String must follow one of two formats.
     /// Both formats are case-insensitive.
@@ -157,7 +157,7 @@ impl FromStr for Card {
                 suit: caps.name("suit").unwrap().as_str().parse()?,
                 rank: parse_rank(caps.name("rank").unwrap().as_str())?
             }),
-            None => Err("Could not parse card".to_string())
+            None => Err(format!("Could not parse card: \"{}\"", string))
         }
     }
 }

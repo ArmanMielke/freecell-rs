@@ -4,7 +4,7 @@ use freecell::parse_freecells;
 fn test_invalid_card() {
     assert_eq!(
         parse_freecells("KD XX 8H"),
-        Err("Could not parse freecells".to_string())
+        Err("Could not parse freecells: \"KD XX 8H\"".to_string())
     );
 }
 
@@ -12,7 +12,7 @@ fn test_invalid_card() {
 fn test_comma_separated() {
     assert_eq!(
         parse_freecells("JH, TD, 9H"),
-        Err("Could not parse freecells".to_string())
+        Err("Could not parse freecells: \"JH, TD, 9H\"".to_string())
     );
 }
 
@@ -20,6 +20,6 @@ fn test_comma_separated() {
 fn test_too_many_cards() {
     assert_eq!(
         parse_freecells("JH TD 9H 6C 5S"),
-        Err("Could not parse freecells".to_string())
+        Err("Could not parse freecells: \"JH TD 9H 6C 5S\"".to_string())
     );
 }
