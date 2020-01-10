@@ -76,7 +76,18 @@ impl CardCollection for Cascade {
 /// # Examples
 ///
 /// ```
-/// // TODO [v1] add code examples
+/// # use freecell::Suit::{Club, Heart, Spade};
+/// # use freecell::{parse_cascade, Card, ACE};
+/// assert_eq!(parse_cascade(""), Ok(Vec::new()));
+///
+/// assert_eq!(
+///     parse_cascade("9S 7H AC"),
+///     Ok(vec![
+///         Card { suit: Spade, rank: 9 },
+///         Card { suit: Heart, rank: 7 },
+///         Card { suit: Club, rank: ACE },
+///     ])
+/// );
 /// ```
 // TODO [v1] test
 pub fn parse_cascade<S: Into<String>>(string: S) -> Result<Cascade, String> {

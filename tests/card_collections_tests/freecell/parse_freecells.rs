@@ -1,9 +1,9 @@
 use freecell::Suit::{Club, Diamond, Heart, Spade};
-use freecell::{parse_freecells, Card, Freecells, ACE, JACK, KING, QUEEN};
+use freecell::{parse_freecells, Card, ACE, JACK, KING, QUEEN};
 
 #[test]
 fn test_empty() {
-    let freecells: Result<Freecells, String> = Ok([None, None, None, None]);
+    let freecells = Ok([None, None, None, None]);
     assert_eq!(parse_freecells(""), freecells);
     assert_eq!(parse_freecells("EmPtY EMPTY"), freecells);
     assert_eq!(parse_freecells("emptyemptyemptyempty"), freecells);
