@@ -11,42 +11,42 @@ fn test_easy_full_freecells() {
     let actual = game_state.legal_moves();
     let expected = vec![
         (
-            game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/6h-from-freecells-to-cascade1.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/6h-from-freecell3-to-cascade1.txt").unwrap(),
             Move {
                 card: Card { suit: Heart, rank: 6 },
-                from: Position::Freecells,
+                from: Position::Freecell(3),
                 to: Position::Cascade(1),
             },
         ),
         (
-            game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/9d-from-freecells-to-cascade0.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/9d-from-freecell2-to-cascade0.txt").unwrap(),
             Move {
                 card: Card { suit: Diamond, rank: 9 },
-                from: Position::Freecells,
+                from: Position::Freecell(2),
                 to: Position::Cascade(0),
             },
         ),
         (
-            game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/9d-from-freecells-to-cascade3.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/9d-from-freecell2-to-cascade3.txt").unwrap(),
             Move {
                 card: Card { suit: Diamond, rank: 9 },
-                from: Position::Freecells,
+                from: Position::Freecell(2),
                 to: Position::Cascade(3),
             },
         ),
         (
-            game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/ac-from-freecells-to-foundations.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/ac-from-freecell1-to-foundations.txt").unwrap(),
             Move {
                 card: Card { suit: Club, rank: ACE },
-                from: Position::Freecells,
+                from: Position::Freecell(1),
                 to: Position::Foundations,
             },
         ),
         (
-            game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/ad-from-freecells-to-foundations.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/easy-full-freecells/ad-from-freecell0-to-foundations.txt").unwrap(),
             Move {
                 card: Card { suit: Diamond, rank: ACE },
-                from: Position::Freecells,
+                from: Position::Freecell(0),
                 to: Position::Foundations,
             },
         ),

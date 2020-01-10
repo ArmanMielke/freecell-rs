@@ -74,11 +74,35 @@ fn test_one_card_left() {
             },
         ),
         (
-            game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-freecells.txt").unwrap(),
+            game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-freecell0.txt").unwrap(),
             Move {
                 card: Card { suit: Club, rank: KING },
                 from: Position::Cascade(2),
-                to: Position::Freecells,
+                to: Position::Freecell(0),
+            },
+        ),
+        (
+            game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-freecell1.txt").unwrap(),
+            Move {
+                card: Card { suit: Club, rank: KING },
+                from: Position::Cascade(2),
+                to: Position::Freecell(1),
+            },
+        ),
+        (
+            game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-freecell2.txt").unwrap(),
+            Move {
+                card: Card { suit: Club, rank: KING },
+                from: Position::Cascade(2),
+                to: Position::Freecell(2),
+            },
+        ),
+        (
+            game_state_parser::parse_file("test-inputs/move-results/one-card-left/kc-from-cascade2-to-freecell3.txt").unwrap(),
+            Move {
+                card: Card { suit: Club, rank: KING },
+                from: Position::Cascade(2),
+                to: Position::Freecell(3),
             },
         ),
     ];
