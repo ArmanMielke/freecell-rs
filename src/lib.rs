@@ -36,7 +36,7 @@ mod game_move;
 mod game_state;
 
 pub use self::card::{
-    rank_from_string,
+    parse_rank,
     Card,
     Color, Colour,
     Rank,

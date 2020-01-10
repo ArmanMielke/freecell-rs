@@ -7,7 +7,7 @@ use std::fmt;
 use std::fmt::{Debug, Display, Formatter};
 use std::str::FromStr;
 
-use super::{rank_from_string, Rank, Suit, ACE, JACK, KING, QUEEN};
+use super::{parse_rank, Rank, Suit, ACE, JACK, KING, QUEEN};
 
 /// A regular expression that matches cards.
 pub const CARD_PATTERN: &str = r"(?x)
@@ -155,7 +155,7 @@ impl FromStr for Card {
         match CARD_RE.captures(string) {
             Some(caps) => Ok(Card {
                 suit: caps.name("suit").unwrap().as_str().parse()?,
-                rank: rank_from_string(caps.name("rank").unwrap().as_str())?
+                rank: parse_rank(caps.name("rank").unwrap().as_str())?
             }),
             None => Err("Could not parse card".to_string())
         }

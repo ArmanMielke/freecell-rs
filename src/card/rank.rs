@@ -29,17 +29,17 @@ pub type Rank = u8;
 /// # Examples
 ///
 /// ```
-/// use freecell::{rank_from_string, ACE, JACK, KING};
+/// use freecell::{parse_rank, ACE, JACK, KING};
 ///
-/// assert_eq!(Ok(ACE), rank_from_string("ace"));
-/// assert_eq!(Ok(JACK), rank_from_string("J"));
-/// assert_eq!(Ok(10), rank_from_string("t"));
-/// assert_eq!(Ok(8), rank_from_string("8"));
-/// assert_eq!(Ok(KING), rank_from_string("13"));
-/// assert!(rank_from_string("0").is_err());
-/// assert!(rank_from_string("14").is_err());
+/// assert_eq!(Ok(ACE), parse_rank("ace"));
+/// assert_eq!(Ok(JACK), parse_rank("J"));
+/// assert_eq!(Ok(10), parse_rank("t"));
+/// assert_eq!(Ok(8), parse_rank("8"));
+/// assert_eq!(Ok(KING), parse_rank("13"));
+/// assert!(parse_rank("0").is_err());
+/// assert!(parse_rank("14").is_err());
 /// ```
-pub fn rank_from_string<S: Into<String>>(string: S) -> Result<Rank, String> {
+pub fn parse_rank<S: Into<String>>(string: S) -> Result<Rank, String> {
     let string = string.into();
     match string.to_lowercase().trim() {
         "ace" => Ok(ACE),
