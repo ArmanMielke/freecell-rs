@@ -44,6 +44,7 @@ pub use self::card::{
     ACE, JACK, KING, QUEEN
 };
 pub use self::card_collections::{
+    parse_cascade,
     parse_freecells,
     CardCollection,
     Cascade, Cascades,

@@ -5,7 +5,7 @@ use std::str::SplitWhitespace;
 
 use super::conversions_to_array;
 use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS};
-use crate::{Card, Cascade, Foundations, Freecells, GameState, parse_freecells};
+use crate::{parse_cascade, parse_freecells, Card, Cascade, Foundations, Freecells, GameState};
 
 // TODO [v1] let all structs handle their own parsing (should be case-insensitive)
 
@@ -39,7 +39,10 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
                 &mut foundations,
                 parse_cards(token_iterator)?
             )?,
-            CASCADE => cascades.push(parse_cards(token_iterator)?),
+            CASCADE => cascades.push(parse_cascade(token_iterator.fold(
+                String::new(),
+                |mut string, token| {string.push_str(token); string.push(' '); string}
+            ))?),
             FREECELLS => freecells = parse_freecells(token_iterator.fold(
                 String::new(),
                 |mut string, token| {string.push_str(token); string.push(' '); string}

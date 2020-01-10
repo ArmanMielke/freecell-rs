@@ -22,14 +22,14 @@ fn test_easy_extra_cascade() {
 #[test]
 fn test_easy_invalid_card_rank() {
     let actual = parse_file("test-inputs/invalid/easy-invalid-card-rank.txt");
-    let expected = Err("Could not parse card".to_string());
+    let expected = Err("Could not parse cascade: \"3S 8S AD 2D AS 4C XS \"".to_string());
     assert_eq!(actual, expected);
 }
 
 #[test]
 fn test_easy_invalid_suit() {
     let actual = parse_file("test-inputs/invalid/easy-invalid-suit.txt");
-    let expected = Err("Could not parse card".to_string());
+    let expected = Err("Could not parse cascade: \"3S 8S AD 2D AS 4C TX \"".to_string());
     assert_eq!(actual, expected);
 }
 

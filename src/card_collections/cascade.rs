@@ -1,3 +1,7 @@
+use lazy_static::lazy_static;
+use regex::Regex;
+
+use crate::card::CARD_PATTERN;
 use crate::{Card, CardCollection, ACE};
 
 //const CASCADE_MAX_SIZE: usize = 52;
@@ -5,6 +9,8 @@ use crate::{Card, CardCollection, ACE};
 /// A stack of arbitrary cards.
 ///
 /// The end of the `Vec` is the top of the stack.
+///
+/// Can be parsed with [`parse_cascade`](fn.parse_cascade.html).
 ///
 /// # Rules
 ///
@@ -59,6 +65,32 @@ impl CardCollection for Cascade {
             None => Vec::with_capacity(0),
         }
     }
+}
+
+/// Converts a string to a [`Cascade`](type.Cascade.html).
+///
+/// The input string should consist of any number of cards, where the cards follow the format
+/// described in [`Card`](struct.Card.html)'s `FromStr` implementation.
+/// Cards can optionally be separated by spaces.
+///
+/// # Examples
+///
+/// ```
+/// // TODO [v1] add code examples
+/// ```
+// TODO [v1] test
+pub fn parse_cascade<S: Into<String>>(string: S) -> Result<Cascade, String> {
+    lazy_static! {
+        static ref CASCADE_RE: Regex = Regex::new(format!(r"(?i)^\s*({}\s*)*$", CARD_PATTERN).as_str()).unwrap();
+        static ref CARD_RE: Regex = Regex::new(format!(r"(?i){}", CARD_PATTERN).as_str()).unwrap();
+    }
+
+    let string = &string.into();
+    if !CASCADE_RE.is_match(string) {
+        return Err(format!("Could not parse cascade: \"{}\"", string))
+    }
+
+    Ok(CARD_RE.find_iter(string).map(|re_match| re_match.as_str().parse().unwrap()).collect())
 }
 
 /// A collection of 8 Cascades.
