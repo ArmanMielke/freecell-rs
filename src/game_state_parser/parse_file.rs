@@ -13,6 +13,7 @@ const FOUNDATIONS: &str = "foundations:";
 const CASCADE: &str = "cascade:";
 const FREECELLS: &str = "freecells:";
 
+#[allow(missing_docs)]
 pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
     let lines = read_file_as_lines(file_name)?;
 

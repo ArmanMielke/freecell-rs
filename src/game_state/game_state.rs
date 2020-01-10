@@ -26,8 +26,11 @@ pub type GameStateId = u64;
 #[derive(Clone, Eq, PartialEq, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct GameState {
+    #[allow(missing_docs)]
     pub cascades: Cascades,
+    #[allow(missing_docs)]
     pub foundations: Foundations,
+    #[allow(missing_docs)]
     pub freecells: Freecells,
 }
 
