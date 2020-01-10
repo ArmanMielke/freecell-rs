@@ -41,11 +41,32 @@ pub type Freecells = [Freecell; 4];
 /// or "empty", case-insensitive.
 /// The cards follow the format described in [`Card`](struct.Card.html)'s `FromStr`
 /// implementation.
+/// Tokens can optionally be separated by spaces.
 ///
 /// # Examples
 ///
 /// ```
-/// // TODO [v1] Add code examples
+/// # use freecell::Suit::{Club, Diamond, Heart, Spade};
+/// # use freecell::{parse_freecells, Card, ACE, JACK};
+/// assert_eq!(
+///     parse_freecells("JH TD 9H"),
+///     Ok([
+///         Some(Card { suit: Heart, rank: JACK }),
+///         Some(Card { suit: Diamond, rank: 10 }),
+///         Some(Card { suit: Heart, rank: 9 }),
+///         None,
+///     ])
+/// );
+///
+/// assert_eq!(
+///     parse_freecells("empty AS empty 8C"),
+///     Ok([
+///         None,
+///         Some(Card { suit: Spade, rank: ACE }),
+///         None,
+///         Some(Card { suit: Club, rank: 8 }),
+///     ])
+/// );
 /// ```
 // TODO test
 pub fn parse_freecells<S: Into<String>>(string: S) -> Result<Freecells, String> {
