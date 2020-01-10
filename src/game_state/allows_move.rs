@@ -5,6 +5,12 @@ impl GameState {
 
     /// Returns `true` if the given move is legal in this game state, `false` otherwise.
     /// Moves that don't change the game state are treated as illegal.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// // TODO [v1] Add code examples (once FromStr is implemented for GameState)
+    /// ```
     pub fn allows_move(&self, game_move: Move) -> bool {
         // moves that don't change the game state are treated as illegal
         if game_move.from == game_move.to {

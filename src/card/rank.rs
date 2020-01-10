@@ -17,9 +17,11 @@ pub const KING: Rank = 13;
 /// - A King has rank 13
 ///
 /// Rank 0 and ranks greater than 13 are not valid card ranks.
+///
+/// Can be parsed with [`parse_rank`](fn.parse_rank.html).
 pub type Rank = u8;
 
-/// Converts a String to a Rank.
+/// Converts a string to a [`Rank`](type.Rank.html).
 ///
 /// The string should be either the rank as number between 1 and 13 or one of these strings that
 /// represent the named cards:

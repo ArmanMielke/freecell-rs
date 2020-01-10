@@ -39,7 +39,8 @@ pub type Foundation = Vec<Card>;
 ///
 /// The position of the Foundation in the array determines which suit it holds.
 /// For example, `foundations[1]` may only hold spade cards, since `Suit::Spade` equals 1.
-/// For a given suit the corresponding foundation can be accessed with `foundations.foundation(suit)`
+/// For a given suit the corresponding foundation can be accessed with
+/// `foundations.foundation(suit)`.
 ///
 /// # Examples
 ///

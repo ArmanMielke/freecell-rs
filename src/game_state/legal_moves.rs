@@ -13,6 +13,15 @@ enum AnyCardCollection {
 
 impl GameState {
 
+    /// Returns all moves that are legal in this game state, as well as the game states they result
+    /// in.
+    /// Moves that don't change the game state are treated as illegal.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// // TODO [v1] Add code examples (once FromStr is implemented for GameState)
+    /// ```
     pub fn legal_moves(&self) -> Vec<(GameState, Move)> {
         let mut legal_moves = Vec::new();
 
@@ -63,7 +72,7 @@ impl GameState {
         // creates a game state that is identical to the current one, except for the source and
         // target position of the moved card. Those are identical to from_card_collection and
         // to_card_collection, respectively.
-        // TODO there must be a way that does not require cloning the parts of the game state that are overwritten anyway
+        // TODO [low priority] there must be a way that does not require cloning the parts of the game state that are overwritten anyway
         let mut next_game_state = self.clone();
 
         for card_collection in vec![from_card_collection, to_card_collection].drain(..) {
