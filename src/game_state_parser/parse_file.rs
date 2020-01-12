@@ -1,11 +1,10 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader, Lines};
 use std::path::Path;
-use std::str::SplitWhitespace;
 
 use super::conversions_to_array;
 use super::error_messages::{ERR_COULD_NOT_READ_FILE, ERR_COULD_NOT_READ_FILE_CONTENTS};
-use crate::{parse_cascade, parse_freecells, Card, Cascade, Foundations, Freecells, GameState};
+use crate::{parse_cascade, parse_freecells, Cascade, Foundations, Freecells, GameState};
 
 // TODO [v1] let all structs handle their own parsing (should be case-insensitive)
 
@@ -71,14 +70,4 @@ fn read_file_as_lines<P: AsRef<Path>>(file_name: P) -> Result<Lines<BufReader<Fi
 
     let buffered_reader = BufReader::new(file);
     Ok(buffered_reader.lines())
-}
-
-fn parse_cards(card_iterator: SplitWhitespace<'_>) -> Result<Vec<Card>, String> {
-    let mut cards = Vec::new();
-
-    for card_code in card_iterator {
-        cards.push(card_code.parse()?);
-    }
-
-    Ok(cards)
 }
