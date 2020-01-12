@@ -4,8 +4,6 @@ use regex::Regex;
 use crate::card::CARD_PATTERN;
 use crate::{Card, CardCollection, ACE};
 
-//const CASCADE_MAX_SIZE: usize = 52;
-
 /// A stack of arbitrary cards.
 ///
 /// The end of the `Vec` is the top of the stack.
@@ -23,7 +21,43 @@ use crate::{Card, CardCollection, ACE};
 ///
 /// # Examples
 ///
-/// TODO [v1] Add examples
+/// ```
+/// # use freecell::Suit::{Club, Heart, Spade};
+/// # use freecell::{parse_cascade, Card, CardCollection, ACE};
+/// let cascade = parse_cascade("9S AC 7H").unwrap();
+/// assert_eq!(
+///     cascade,
+///     vec![
+///         Card { suit: Spade, rank: 9 },
+///         Card { suit: Club, rank: ACE },
+///         Card { suit: Heart, rank: 7 },
+///     ]
+/// );
+///
+/// // The 6 of Spades fits on top of the 7 of Hearts,
+/// // since it is of a different colour and one rank lower.
+/// assert_eq!(
+///     cascade.add_card(Card { suit: Spade, rank: 6 }),
+///     Ok(vec![
+///         Card { suit: Spade, rank: 9 },
+///         Card { suit: Club, rank: ACE },
+///         Card { suit: Heart, rank: 7 },
+///         Card { suit: Spade, rank: 6 },
+///     ])
+/// );
+///
+/// // Only the top card of the cascade can be removed.
+/// assert_eq!(
+///     cascade.pop_card(),
+///     vec![(
+///         vec![
+///             Card { suit: Spade, rank: 9 },
+///             Card { suit: Club, rank: ACE },
+///         ],
+///         Card { suit: Heart, rank: 7 }
+///     )]
+/// );
+/// ```
 pub type Cascade = Vec<Card>;
 
 fn fits_on_top_of(lower_card: Card, higher_card: Card) -> bool {
@@ -81,15 +115,14 @@ impl CardCollection for Cascade {
 /// assert_eq!(parse_cascade(""), Ok(Vec::new()));
 ///
 /// assert_eq!(
-///     parse_cascade("9S 7H AC"),
+///     parse_cascade("9S AC 7H"),
 ///     Ok(vec![
 ///         Card { suit: Spade, rank: 9 },
-///         Card { suit: Heart, rank: 7 },
 ///         Card { suit: Club, rank: ACE },
+///         Card { suit: Heart, rank: 7 },
 ///     ])
 /// );
 /// ```
-// TODO [v1] test
 pub fn parse_cascade<S: Into<String>>(string: S) -> Result<Cascade, String> {
     lazy_static! {
         static ref CASCADE_RE: Regex = Regex::new(format!(r"(?i)^\s*({}\s*)*$", CARD_PATTERN).as_str()).unwrap();

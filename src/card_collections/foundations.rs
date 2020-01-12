@@ -73,6 +73,7 @@ pub type Foundation = Vec<Card>;
 ///     ])
 /// );
 ///
+/// // The 3 of Hearts fits on top of the 2 of Hearts, since it is of the same suit and one rank higher.
 /// assert_eq!(
 ///     foundations.add_card(Card { suit: Heart, rank: 3 }),
 ///     Ok(Foundations([
@@ -92,7 +93,7 @@ pub type Foundation = Vec<Card>;
 ///     ]))
 /// );
 ///
-/// // Cards can never be removed from foundations
+/// // Cards can never be removed from foundations.
 /// assert_eq!(foundations.pop_card(), Vec::new());
 /// ```
 #[derive(Clone, Default, Eq, Hash, PartialEq)]
