@@ -35,10 +35,10 @@ pub fn parse_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
         };
 
         match first_token_in_line {
-            FOUNDATIONS => create_foundations(
-                &mut foundations,
-                parse_cards(token_iterator)?
-            )?,
+            FOUNDATIONS => foundations = token_iterator.fold(
+                String::new(),
+                |mut string, token| {string.push_str(token); string.push(' '); string}
+            ).parse()?,
             CASCADE => cascades.push(parse_cascade(token_iterator.fold(
                 String::new(),
                 |mut string, token| {string.push_str(token); string.push(' '); string}
@@ -81,30 +81,4 @@ fn parse_cards(card_iterator: SplitWhitespace<'_>) -> Result<Vec<Card>, String> 
     }
 
     Ok(cards)
-}
-
-
-fn create_foundations(foundations: &mut Foundations, foundation_cards: Vec<Card>) -> Result<(), String> {
-    for card in foundation_cards  {
-        if !foundations.foundation(card.suit).is_empty() {
-            return Err(err_multiple_foundations_of_suit!(card.suit));
-        } else {
-            foundations.0[card.suit as usize] = card_sequence_up_to(card);
-        }
-    }
-
-    Ok(())
-}
-
-fn card_sequence_up_to(card: Card) -> Vec<Card> {
-    let mut cards = Vec::new();
-
-    for rank in 1..=card.rank {
-        cards.push(Card {
-            suit: card.suit,
-            rank,
-        });
-    }
-
-    cards
 }

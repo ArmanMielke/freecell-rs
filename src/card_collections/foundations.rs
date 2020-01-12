@@ -1,8 +1,12 @@
+use lazy_static::lazy_static;
+use regex::Regex;
 #[cfg(feature = "serde")]
 use serde::{Serialize, Deserialize};
 
 use std::fmt::{Debug, Display, Error, Formatter};
+use std::str::FromStr;
 
+use crate::card::CARD_PATTERN;
 use crate::{Card, CardCollection, Suit, ACE};
 
 //const FOUNDATION_MAX_SIZE: usize = 13;
@@ -123,4 +127,44 @@ impl Debug for Foundations {
         }
         Ok(())
     }
+}
+
+impl FromStr for Foundations {
+    type Err = String;
+
+    // TODO document
+    // TODO test
+    fn from_str(string: &str) -> Result<Foundations, Self::Err> {
+        lazy_static! {
+            static ref FOUNDATIONS_RE: Regex = Regex::new(format!(r"(?i)^\s*({}\s*){}$", CARD_PATTERN, "{0,4}").as_str()).unwrap();
+            static ref CARD_RE: Regex = Regex::new(format!(r"(?i){}", CARD_PATTERN).as_str()).unwrap();
+        }
+
+        if !FOUNDATIONS_RE.is_match(string) {
+            return Err(format!("Could not parse foundations: \"{}\"", string))
+        }
+
+        let top_cards: Vec<Card> = CARD_RE.find_iter(string).map(|re_match| re_match.as_str().parse().unwrap()).collect();
+
+        let mut foundations = Foundations::new();
+        for card in top_cards {
+            if !foundations.foundation(card.suit).is_empty() {
+                return Err(format!("Multiple foundations of suit {} specified", card.suit));
+            } else {
+                foundations.0[card.suit as usize] = card_sequence_up_to(card);
+            }
+        }
+
+        Ok(foundations)
+    }
+}
+
+fn card_sequence_up_to(card: Card) -> Vec<Card> {
+    let mut cards = Vec::new();
+
+    for rank in 1..=card.rank {
+        cards.push(Card { suit: card.suit, rank });
+    }
+
+    cards
 }
