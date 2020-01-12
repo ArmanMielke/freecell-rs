@@ -132,8 +132,8 @@ impl Debug for Foundations {
 impl FromStr for Foundations {
     type Err = String;
 
-    // TODO document
-    // TODO test
+    // TODO [v1] document
+    // TODO [v1] test
     fn from_str(string: &str) -> Result<Foundations, Self::Err> {
         lazy_static! {
             static ref FOUNDATIONS_RE: Regex = Regex::new(format!(r"(?i)^\s*({}\s*){}$", CARD_PATTERN, "{0,4}").as_str()).unwrap();

@@ -67,3 +67,10 @@ fn test_hard_solved_to_2_too_many_foundations_in_one_line() {
     let expected = Err("Could not parse foundations: \"2C 2S 2H 2D 3C \"".to_string());
     assert_eq!(actual, expected);
 }
+
+#[test]
+fn test_hard_solved_to_2_multiple_foundations_of_the_same_suit() {
+    let actual = parse_file("test-inputs/invalid/hard-solved-to-2-multiple-foundations-of-the-same-suit.txt");
+    let expected = Err(format!("Multiple foundations of suit {} specified", Club));
+    assert_eq!(actual, expected);
+}
