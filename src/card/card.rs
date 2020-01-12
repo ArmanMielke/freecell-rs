@@ -18,7 +18,7 @@ pub const CARD_PATTERN: &str = r"(?x)
 
 /// Represents one card in the game.
 ///
-/// Cards can be parsed from Strings or `&str`s.
+/// Cards can be parsed from `&str`s.
 /// The formats for this are the same formats used by Display and Debug.
 /// See the description for `FromStr` below for details.
 ///

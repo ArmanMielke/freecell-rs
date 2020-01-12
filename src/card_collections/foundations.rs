@@ -20,6 +20,9 @@ pub type Foundation = Vec<Card>;
 
 /// Four stacks of cards, where each stack contains only cards of one suit, going from Ace upwards.
 ///
+/// Foundations can be parsed from `&str`s.
+/// See the description for `FromStr` below for details.
+///
 /// # Rules
 ///
 /// There exists one foundation for each of the four suits.
@@ -49,7 +52,48 @@ pub type Foundation = Vec<Card>;
 /// # Examples
 ///
 /// ```
-/// // TODO [v1] Add code examples
+/// # use freecell::Suit::{Club, Diamond, Heart};
+/// # use freecell::{Foundations, Card, CardCollection, ACE};
+/// let foundations: Foundations = "4D 2H AC".parse().unwrap();
+/// assert_eq!(
+///     foundations,
+///     Foundations([
+///         vec![Card { suit: Club, rank: ACE }],
+///         Vec::new(),
+///         vec![
+///             Card { suit: Heart, rank: ACE },
+///             Card { suit: Heart, rank: 2 },
+///         ],
+///         vec![
+///             Card { suit: Diamond, rank: ACE },
+///             Card { suit: Diamond, rank: 2 },
+///             Card { suit: Diamond, rank: 3 },
+///             Card { suit: Diamond, rank: 4 },
+///         ],
+///     ])
+/// );
+///
+/// assert_eq!(
+///     foundations.add_card(Card { suit: Heart, rank: 3 }),
+///     Ok(Foundations([
+///         vec![Card { suit: Club, rank: ACE }],
+///         Vec::new(),
+///         vec![
+///             Card { suit: Heart, rank: ACE },
+///             Card { suit: Heart, rank: 2 },
+///             Card { suit: Heart, rank: 3 },
+///         ],
+///         vec![
+///             Card { suit: Diamond, rank: ACE },
+///             Card { suit: Diamond, rank: 2 },
+///             Card { suit: Diamond, rank: 3 },
+///             Card { suit: Diamond, rank: 4 },
+///         ],
+///     ]))
+/// );
+///
+/// // Cards can never be removed from foundations
+/// assert_eq!(foundations.pop_card(), Vec::new());
 /// ```
 #[derive(Clone, Default, Eq, Hash, PartialEq)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -132,7 +176,43 @@ impl Debug for Foundations {
 impl FromStr for Foundations {
     type Err = String;
 
-    // TODO [v1] document
+    /// Converts a `&str` to `Foundations`.
+    ///
+    /// The input should consist of up to four cards of different suits, where each card follows the
+    /// format described in [`Card`](struct.Card.html)'s `FromStr` implementation.
+    /// Each of those cards denotes the highest card in one of the foundations.
+    /// Cards can optionally be separated by spaces.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use freecell::Suit::{Club, Diamond, Heart};
+    /// # use freecell::{Foundations, Card, ACE};
+    /// assert_eq!("".parse(), Ok(Foundations::new()));
+    ///
+    /// assert_eq!(
+    ///     "4D 2H AC".parse(),
+    ///     Ok(Foundations([
+    ///         vec![Card { suit: Club, rank: ACE }],
+    ///         Vec::new(),
+    ///         vec![
+    ///             Card { suit: Heart, rank: ACE },
+    ///             Card { suit: Heart, rank: 2 },
+    ///         ],
+    ///         vec![
+    ///             Card { suit: Diamond, rank: ACE },
+    ///             Card { suit: Diamond, rank: 2 },
+    ///             Card { suit: Diamond, rank: 3 },
+    ///             Card { suit: Diamond, rank: 4 },
+    ///         ],
+    ///     ]))
+    /// );
+    ///
+    /// assert_eq!(
+    ///     "6C 7S 9C".parse::<Foundations>(),
+    ///     Err("Multiple foundations of suit Club specified".to_string())
+    /// );
+    /// ```
     fn from_str(string: &str) -> Result<Foundations, Self::Err> {
         lazy_static! {
             static ref FOUNDATIONS_RE: Regex = Regex::new(format!(r"(?i)^\s*({}\s*){}$", CARD_PATTERN, "{0,4}").as_str()).unwrap();
