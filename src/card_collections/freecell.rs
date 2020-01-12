@@ -5,6 +5,38 @@ use crate::card::CARD_PATTERN;
 use crate::{Card, CardCollection};
 
 /// May hold any card.
+///
+/// # Examples
+///
+/// ```
+/// # use freecell::Suit::{Diamond, Spade};
+/// # use freecell::{Card, QUEEN};
+/// use freecell::CardCollection;
+///
+/// let card = Card { suit: Diamond, rank: QUEEN };
+///
+/// // A card can be added to a freecell if it is empty
+/// assert_eq!(
+///     None.add_card(card),
+///     Ok(Some(card))
+/// );
+/// // No card can be added to an occupied freecell
+/// assert_eq!(
+///     Some(Card { suit: Spade, rank: 4 }).add_card(card),
+///     Err(())
+/// );
+///
+/// // If the freecell is occupied, then a card can be removed
+/// assert_eq!(
+///     Some(card).pop_card(),
+///     vec![(None, card)]
+/// );
+/// // No card can be removed if the freecell is empty
+/// assert_eq!(
+///     None.pop_card(),
+///     Vec::new()
+/// );
+/// ```
 pub type Freecell = Option<Card>;
 
 impl CardCollection for Freecell {
@@ -33,6 +65,45 @@ impl CardCollection for Freecell {
 /// Any card that can be moved from its current position can be moved to the freecells, as long as
 /// no other card occupies that freecell.
 /// Cards can be moved away from the freecells at any time.
+///
+/// # Examples
+///
+/// ```
+/// # use freecell::Suit::{Club, Heart, Spade};
+/// # use freecell::{parse_freecells, Card, CardCollection, ACE, KING};
+/// let freecells = parse_freecells("empty AS empty 8C").unwrap();
+/// assert_eq!(
+///     freecells,
+///     [
+///         None,
+///         Some(Card { suit: Spade, rank: ACE }),
+///         None,
+///         Some(Card { suit: Club, rank: 8 }),
+///     ]
+/// );
+///
+/// // A card can be added to the first freecell, since it is empty.
+/// assert_eq!(
+///     freecells[0].add_card(Card { suit: Heart, rank: KING }),
+///     Ok(Some(Card { suit: Heart, rank: KING }))
+/// );
+/// // No card can be added to the second freecell, since it is occupied.
+/// assert_eq!(
+///     freecells[1].add_card(Card { suit: Heart, rank: KING }),
+///     Err(())
+/// );
+///
+/// // The card in the second freecell can be removed.
+/// assert_eq!(
+///     freecells[1].pop_card(),
+///     vec![(None, Card { suit: Spade, rank: ACE })]
+/// );
+/// // No card can be removed from the first freecell, since it is empty.
+/// assert_eq!(
+///     freecells[0].pop_card(),
+///     Vec::new()
+/// );
+/// ```
 pub type Freecells = [Freecell; 4];
 
 /// Converts a string to [`Freecells`](type.Freecells.html).
