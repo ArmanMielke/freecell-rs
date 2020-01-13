@@ -61,7 +61,14 @@ impl GameState {
     /// # Examples
     ///
     /// ```
-    /// // TODO [v1] Add code examples (once FromStr is implemented for GameState)
+    /// # use freecell::GameState;
+    /// assert!("foundations: KC KS KH KD".parse::<GameState>().unwrap().is_solved());
+    /// assert!(
+    ///     !"
+    ///         foundations: KC KS KH QD
+    ///         cascade: KD
+    ///     ".parse::<GameState>().unwrap().is_solved()
+    /// );
     /// ```
     pub fn is_solved(&self) -> bool {
         self.foundations.0[0].len() == 13 &&
