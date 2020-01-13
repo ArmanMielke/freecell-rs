@@ -1,4 +1,3 @@
-use freecell::game_state_parser::parse_file;
 use freecell::Suit::{Club, Diamond, Heart, Spade};
 use freecell::{Card, Foundations, GameState, ACE, JACK, KING, QUEEN};
 
@@ -88,7 +87,7 @@ fn test_hard_solved_to_6() {
         freecells: [None, None, None, None],
     };
 
-    let actual = parse_file("test-inputs/hard-solved-to-6.txt").unwrap();
+    let actual = GameState::from_file("test-inputs/hard-solved-to-6.txt").unwrap();
 
     assert_eq!(actual, expected);
 }

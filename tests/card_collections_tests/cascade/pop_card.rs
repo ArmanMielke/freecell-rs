@@ -1,6 +1,5 @@
-use freecell::game_state_parser;
 use freecell::Suit::{Diamond, Heart, Spade};
-use freecell::{Card, CardCollection, Cascade};
+use freecell::{Card, CardCollection, Cascade, GameState};
 
 #[test]
 fn test_empty() {
@@ -10,7 +9,7 @@ fn test_empty() {
 
 #[test]
 fn test_not_empty() {
-    let game_state = game_state_parser::parse_file("test-inputs/hard-solved-to-5.txt").unwrap();
+    let game_state = GameState::from_file("test-inputs/hard-solved-to-5.txt").unwrap();
     let expected = vec![
         (
             vec![

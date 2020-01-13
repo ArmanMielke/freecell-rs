@@ -1,10 +1,9 @@
 use freecell::Suit::{Club, Diamond, Heart, Spade};
-use freecell::game_state_parser;
-use freecell::{Card, Move, Position, JACK, KING, QUEEN};
+use freecell::{Card, GameState, Move, Position, JACK, KING, QUEEN};
 
 #[test]
 fn test_hard_solved_to_6() {
-    let game_state = game_state_parser::parse_file("test-inputs/hard-solved-to-6.txt").unwrap();
+    let game_state = GameState::from_file("test-inputs/hard-solved-to-6.txt").unwrap();
     for (_, legal_move) in game_state.legal_moves() {
         assert!(game_state.allows_move(legal_move));
     }

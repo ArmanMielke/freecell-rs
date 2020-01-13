@@ -1,10 +1,9 @@
 use freecell::Suit::{Club, Diamond, Heart, Spade};
-use freecell::game_state_parser;
-use freecell::{Card, Move, POSITIONS};
+use freecell::{Card, GameState, Move, POSITIONS};
 
 #[test]
 fn test_easy_game_over() {
-    let game_state = game_state_parser::parse_file("test-inputs/easy-game-over.txt").unwrap();
+    let game_state = GameState::from_file("test-inputs/easy-game-over.txt").unwrap();
 
     // for every single card, ...
     for &suit in &[Club, Diamond, Heart, Spade] {

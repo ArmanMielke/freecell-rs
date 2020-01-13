@@ -28,8 +28,6 @@
 //! If the `"serialization"` feature is enabled, the `Serialize` and `Deserialize` traits from
 //! [`serde`](https://docs.rs/serde) are implemented for all types exported by this crate.
 
-pub mod game_state_parser;
-
 mod card;
 mod card_collections;
 mod game_move;

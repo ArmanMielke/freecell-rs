@@ -1,10 +1,9 @@
 use freecell::Suit::{Club, Diamond, Spade};
-use freecell::game_state_parser;
-use freecell::{Card, Move, Position, JACK, KING, QUEEN};
+use freecell::{Card, GameState, Move, Position, JACK, KING, QUEEN};
 
 #[test]
 fn test_all_move_types_allowed() {
-    let game_state = game_state_parser::parse_file("test-inputs/every-move-type-possible.txt").unwrap();
+    let game_state = GameState::from_file("test-inputs/every-move-type-possible.txt").unwrap();
     for (_, legal_move) in game_state.legal_moves() {
         assert!(game_state.allows_move(legal_move));
     }
