@@ -1,6 +1,6 @@
 # FreeCell
 
-[![build](https://github.com/Arman-Mielke/freecell-rs/workflows/build/badge.svg)](https://github.com/Arman-Mielke/freecell-rs/actions)
+[![build](https://img.shields.io/github/workflow/status/Arman-Mielke/freecell-rs/build)](https://github.com/Arman-Mielke/freecell-rs/actions)
 [![coverage](https://img.shields.io/codecov/c/github/Arman-Mielke/freecell-rs)](https://codecov.io/gh/Arman-Mielke/freecell-rs)
 [![crates.io](https://img.shields.io/crates/v/freecell)](https://crates.io/crates/freecell)
 [![docs.rs](https://docs.rs/freecell/badge.svg)](https://docs.rs/freecell)
