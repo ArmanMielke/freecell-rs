@@ -1,6 +1,6 @@
 # FreeCell
 
-[![tests](https://github.com/Arman-Mielke/freecell-rs/workflows/tests/badge.svg)](https://github.com/Arman-Mielke/freecell-rs/actions)
+[![build](https://github.com/Arman-Mielke/freecell-rs/workflows/build/badge.svg)](https://github.com/Arman-Mielke/freecell-rs/actions)
 [![crates.io](https://img.shields.io/crates/v/freecell)](https://crates.io/crates/freecell)
 [![docs.rs](https://docs.rs/freecell/badge.svg)](https://docs.rs/freecell)
 [![unsafe forbidden](https://img.shields.io/badge/unsafe-forbidden-success.svg)](https://github.com/rust-secure-code/safety-dance/)
