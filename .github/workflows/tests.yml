@@ -11,8 +11,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Build
-      run: cargo build --verbose --all-features
-    - name: Run tests
-      run: cargo test --verbose
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Run tests and generate coverage report
+      uses: actions-rs/tarpaulin@v0.1
+      with:
+        args: '--ignore-tests'
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        # Repository upload token (required)
+        token: ${{ secrets.CODECOV_TOKEN }}
+        # Path to coverage file to upload (optional)
+        file: ./cobertura.xml
+        # Flag upload to group coverage metrics (e.g. unittests | integration | ui,chrome) (optional)
+        #flags: unittests
+        # User defined upload name. Visible in Codecov UI (optional)
+        name: FreeCell
+        # Specify the location of the .codecov.yml config file (optional)
+        #yml: ./codecov.yml
+        # Specify whether or not CI build should fail if Codecov runs into an error during upload (optional, default = false)
+        #fail_ci_if_error: true
