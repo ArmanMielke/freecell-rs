@@ -8,8 +8,10 @@
 
 
 Game objects and rules for the solitaire card game [FreeCell](https://en.wikipedia.org/wiki/FreeCell), written in Rust.
+The goal of this library is to aid in the implementation of a FreeCell game, as well as solvers for that game.
 
-**THIS PROJECT IS A WORK IN PROGRESS**
+**THIS PROJECT IS A WORK IN PROGRESS.**
+While the basic features are mostly implemented, most of the optimisations useful for efficient solvers are still missing.
 
 
 
@@ -34,6 +36,18 @@ All cards are face-up at all times.
 Not all deals are solvable, but the probability of an unsolvable deal is very low. It is estimated that 99.999% of possible deals are solvable.
 
 Source: [Wikipedia](https://en.wikipedia.org/wiki/FreeCell#Rules)
+
+
+
+## Examples
+
+**TODO**
+
+
+
+## Contributing
+
+**TODO**
 
 
 
