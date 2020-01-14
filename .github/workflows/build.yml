@@ -29,7 +29,7 @@ jobs:
         # Flag upload to group coverage metrics (e.g. unittests | integration | ui,chrome) (optional)
         #flags: unittests
         # User defined upload name. Visible in Codecov UI (optional)
-        name: FreeCell
+        #name: freecell-rs
         # Specify the location of the .codecov.yml config file (optional)
         #yml: ./codecov.yml
         # Specify whether or not CI build should fail if Codecov runs into an error during upload (optional, default = false)
