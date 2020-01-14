@@ -18,9 +18,6 @@
     - https://bheisler.github.io/criterion.rs/book/criterion_rs.html
     - https://github.com/ferrous-systems/flamegraph
 - **[v1]** explain the [rules](README.md) in more detail (find a better source?)
-- **[v1]** exclude unneded files in `Cargo.toml`
-    - e.g. `.github`
-- **[v1]** can test inputs be excluded?
 
 
 ## API Guidelines **[v1]**

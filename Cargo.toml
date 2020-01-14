@@ -3,6 +3,7 @@ name = "freecell"
 version = "0.1.0"
 authors = ["Arman Mielke <arman.mielke@yahoo.de>"]
 edition = '2018'
+exclude = ["/.github/", ".gitignore"]
 
 description = "Game objects and rules for the solitaire card game FreeCell"
 repository = "https://github.com/Arman-Mielke/freecell-rs"
