@@ -104,6 +104,8 @@ impl CardCollection for Freecell {
 ///     Vec::new()
 /// );
 /// ```
+// TODO [v1] make this a tuple struct and implement Display, Debug and FromStr for it
+// TODO [v1] the formats for Display and Debug must be consistent with FromStr (test this!)
 pub type Freecells = [Freecell; 4];
 
 /// Converts a string to [`Freecells`](type.Freecells.html).

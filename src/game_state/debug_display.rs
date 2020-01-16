@@ -27,7 +27,8 @@ impl Display for GameState {
     }
 }
 
-// TODO [v1] document that the debug output can be used as input file
+// TODO [v1] document that the Debug output can be used as input for FromStr
+// TODO [v1] make it so the same is true for Display (and document that)
 // TODO [med priority] test whether this outputs in the same format that the test inputs use
 impl Debug for GameState {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result {

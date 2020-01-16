@@ -18,6 +18,8 @@ use crate::{Card, CardCollection, Suit, ACE};
 /// See struct Foundations.
 pub type Foundation = Vec<Card>;
 
+// TODO [v1] document that the output of Display and Debug can be parsed again using FromStr
+
 /// Four stacks of cards, where each stack contains only cards of one suit, going from Ace upwards.
 ///
 /// Foundations can be parsed from `&str`s.

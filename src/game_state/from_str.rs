@@ -22,6 +22,7 @@ impl FromStr for GameState {
             };
 
             // the part before the colon determines how the part after the colon should be interpreted
+            // TODO [med priority] make it so all parse functions can handle the first token, too, so that `after_colon` can be replaced by `line`
             let after_colon = &line[colon_position+1..];
             match line[0..colon_position].to_lowercase().trim() {
                 "cascade" => cascades.push(parse_cascade(after_colon)?),
@@ -41,6 +42,7 @@ impl FromStr for GameState {
 fn cascades_vec_to_array(mut cascades: Vec<Cascade>) -> Result<Cascades, String> {
     // make sure cascades has length 8
     if cascades.len() > 8 {
+        // TODO [low priority] make the error message more informative by giving the maximum and actual numbers of cascades
         return Err("Too many cascades".to_string());
     }
     cascades.resize(8, Vec::new());

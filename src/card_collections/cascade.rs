@@ -58,6 +58,8 @@ use crate::{Card, CardCollection, ACE};
 ///     )]
 /// );
 /// ```
+// TODO [v1] make this a tuple struct and implement Display, Debug and FromStr for it
+// TODO [v1] the formats for Display and Debug must be consistent with FromStr (test this!)
 pub type Cascade = Vec<Card>;
 
 fn fits_on_top_of(lower_card: Card, higher_card: Card) -> bool {
@@ -67,8 +69,8 @@ fn fits_on_top_of(lower_card: Card, higher_card: Card) -> bool {
 
 impl CardCollection for Cascade {
     fn add_card(&self, card: Card) -> Result<Cascade, ()> {
+        // TODO [v1] remove this optimisation from here, document it in TODO.md
         // optimisation: aces cannot be put on cascades
-        // TODO [v2+] create a separate, optimised version of Cascades that has this and other optimisations, remove it from here
         if card.rank == ACE {
             return Err(());
         }
