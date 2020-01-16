@@ -98,12 +98,6 @@ fn test_invalid() {
         Err("Could not parse foundations: \"KD XX 8H\"".to_string())
     );
 
-    // cards separated by commas
-    assert_eq!(
-        "JH, TD, 9H".parse::<Foundations>(),
-        Err("Could not parse foundations: \"JH, TD, 9H\"".to_string())
-    );
-
     // too many foundations
     assert_eq!(
         "AC 7H KD JS 5C".parse::<Foundations>(),

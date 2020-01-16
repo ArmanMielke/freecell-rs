@@ -25,7 +25,7 @@ impl FromStr for GameState {
             let after_colon = &line[colon_position+1..];
             match line[0..colon_position].to_lowercase().trim() {
                 "cascade" => cascades.push(parse_cascade(after_colon)?),
-                "foundations" => foundations = after_colon.parse()?,
+                "foundations" => foundations = line.parse()?,
                 "freecells" => freecells = parse_freecells(after_colon)?,
                 token => return Err(format!("Line starts with invalid token: \"{}\"", token)),
             };

@@ -110,8 +110,7 @@ pub type Freecells = [Freecell; 4];
 ///
 /// The input string should consist of up to four tokens, where each token consists of either a card
 /// or "empty", case-insensitive.
-/// The cards follow the format described in [`Card`](struct.Card.html)'s `FromStr`
-/// implementation.
+/// The cards follow the format described in [`Card`](struct.Card.html)'s `FromStr` implementation.
 /// Tokens can optionally be separated by spaces.
 ///
 /// # Examples

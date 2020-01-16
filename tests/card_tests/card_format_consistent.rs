@@ -2,12 +2,12 @@ use freecell::Suit::{Club, Diamond, Heart, Spade};
 use freecell::{Card, ACE, JACK, KING, QUEEN};
 
 const CARDS: [Card; 6] = [
-    Card { suit: Heart, rank: ACE},
-    Card { suit: Diamond, rank: 5},
-    Card { suit: Spade, rank: 10},
-    Card { suit: Heart, rank: JACK},
-    Card { suit: Spade, rank: QUEEN},
-    Card { suit: Club, rank: KING},
+    Card { suit: Heart, rank: ACE },
+    Card { suit: Diamond, rank: 5 },
+    Card { suit: Spade, rank: 10 },
+    Card { suit: Heart, rank: JACK },
+    Card { suit: Spade, rank: QUEEN },
+    Card { suit: Club, rank: KING },
 ];
 
 #[test]

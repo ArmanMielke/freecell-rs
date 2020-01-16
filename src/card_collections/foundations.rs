@@ -179,10 +179,13 @@ impl FromStr for Foundations {
 
     /// Converts a `&str` to `Foundations`.
     ///
-    /// The input should consist of up to four cards of different suits, where each card follows the
-    /// format described in [`Card`](struct.Card.html)'s `FromStr` implementation.
+    /// The input should consist of up to four tokens, where each token consists of either a card or
+    /// "empty", case-insensitive.
+    /// The cards follow the format described in [`Card`](struct.Card.html)'s `FromStr`
+    /// implementation and can optionally be preceded by "up to", case-insensitive.
+    /// All cards should be of different suits.
     /// Each of those cards denotes the highest card in one of the foundations.
-    /// Cards can optionally be separated by spaces.
+    /// Tokens can optionally be separated by spaces, commas or both.
     ///
     /// # Examples
     ///
@@ -216,7 +219,7 @@ impl FromStr for Foundations {
     /// ```
     fn from_str(string: &str) -> Result<Foundations, Self::Err> {
         lazy_static! {
-            static ref FOUNDATIONS_RE: Regex = Regex::new(format!(r"(?i)^\s*({}\s*){}$", CARD_PATTERN, "{0,4}").as_str()).unwrap();
+            static ref FOUNDATIONS_RE: Regex = Regex::new(format!(r"(?i)^\s*(foundations:)?\s*(((up\s*to\s*)?{}|empty)\s*(,\s*)?){}$", CARD_PATTERN, "{0,4}").as_str()).unwrap();
             static ref CARD_RE: Regex = Regex::new(format!(r"(?i){}", CARD_PATTERN).as_str()).unwrap();
         }
 

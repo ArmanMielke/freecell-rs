@@ -60,7 +60,7 @@ fn test_hard_solved_to_2_too_many_foundations_in_multiple_lines() {
 #[test]
 fn test_hard_solved_to_2_too_many_foundations_in_one_line() {
     let actual = GameState::from_file("test-inputs/invalid/hard-solved-to-2-too-many-foundations-in-one-line.txt");
-    let expected = Err("Could not parse foundations: \" 2C 2S 2H 2D 3C\"".to_string());
+    let expected = Err("Could not parse foundations: \"foundations: 2C 2S 2H 2D 3C\"".to_string());
     assert_eq!(actual, expected);
 }
 
