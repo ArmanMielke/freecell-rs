@@ -3,7 +3,7 @@ use freecell::{Card, CardCollection, Cascade, GameState};
 
 #[test]
 fn test_empty() {
-    let cascade: Cascade = Vec::new();
+    let cascade: Cascade = Cascade::new();
     assert_eq!(cascade.pop_card(), Vec::new());
 }
 
@@ -12,12 +12,12 @@ fn test_not_empty() {
     let game_state = GameState::from_file("test-inputs/hard-solved-to-5.txt").unwrap();
     let expected = vec![
         (
-            vec![
+            Cascade(vec![
                 Card { suit: Diamond, rank: 10 },
                 Card { suit: Heart, rank: 9 },
                 Card { suit: Spade, rank: 9 },
                 Card { suit: Diamond, rank: 6 },
-            ],
+            ]),
             Card { suit: Spade, rank: 6 }
         )
     ];

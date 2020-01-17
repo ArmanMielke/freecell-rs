@@ -1,54 +1,54 @@
 use freecell::Suit::{Club, Diamond, Heart, Spade};
-use freecell::{Card, Foundations, GameState, ACE, JACK, KING, QUEEN};
+use freecell::{Card, Cascade, Foundations, GameState, ACE, JACK, KING, QUEEN};
 
 #[test]
 fn test_hard_solved_to_6() {
     let expected = GameState {
         cascades: [
-            vec![
+            Cascade(vec![
                 Card { suit: Club, rank: QUEEN },
                 Card { suit: Spade, rank: QUEEN },
                 Card { suit: Club, rank: 7 },
                 Card { suit: Heart, rank: 10 },
-            ],
-            vec![
+            ]),
+            Cascade(vec![
                 Card { suit: Club, rank: 9 },
                 Card { suit: Spade, rank: KING },
                 Card { suit: Heart, rank: 8 },
                 Card { suit: Heart, rank: JACK },
                 Card { suit: Club, rank: JACK },
-            ],
-            vec![
+            ]),
+            Cascade(vec![
                 Card { suit: Heart, rank: 7 },
                 Card { suit: Club, rank: KING },
-            ],
-            vec![
+            ]),
+            Cascade(vec![
                 Card { suit: Diamond, rank: 10 },
                 Card { suit: Heart, rank: 9 },
                 Card { suit: Spade, rank: 9 },
-            ],
-            vec![
+            ]),
+            Cascade(vec![
                 Card { suit: Spade, rank: 7 },
                 Card { suit: Spade, rank: JACK },
                 Card { suit: Diamond, rank: JACK },
-            ],
-            vec![
+            ]),
+            Cascade(vec![
                 Card { suit: Diamond, rank: 8 },
                 Card { suit: Club, rank: 8 },
                 Card { suit: Diamond, rank: KING },
                 Card { suit: Diamond, rank: QUEEN },
-            ],
-            vec![
+            ]),
+            Cascade(vec![
                 Card { suit: Spade, rank: 10 },
                 Card { suit: Club, rank: 10 },
                 Card { suit: Spade, rank: 8 },
-            ],
-            vec![
+            ]),
+            Cascade(vec![
                 Card { suit: Heart, rank: QUEEN },
                 Card { suit: Diamond, rank: 7 },
                 Card { suit: Diamond, rank: 9 },
                 Card { suit: Heart, rank: KING },
-            ],
+            ]),
         ],
         foundations: Foundations([
             vec![

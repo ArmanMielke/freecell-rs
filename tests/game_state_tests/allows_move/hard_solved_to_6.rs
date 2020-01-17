@@ -14,7 +14,7 @@ fn test_hard_solved_to_6() {
 
     // card cannot be removed from the cascade (but it can be added to the destination)
     let card = Card { suit: Heart, rank: 7 };
-    assert!(game_state.cascades[2].contains(&card));
+    assert!(game_state.cascades[2].0.contains(&card));
     assert!(!game_state.allows_move(
         Move { card, from: Position::Cascade(2), to: Position::Foundations }
     ));
@@ -32,8 +32,8 @@ fn test_hard_solved_to_6() {
 
     // card is not in the freecells (but it can be added to the destination)
     let card = Card { suit: Club, rank: JACK };
-    assert_eq!(game_state.cascades[1].last().unwrap(), &card);
-    assert_eq!(game_state.cascades[5].last().unwrap(), &Card { suit: Diamond, rank: QUEEN });
+    assert_eq!(game_state.cascades[1].0.last().unwrap(), &card);
+    assert_eq!(game_state.cascades[5].0.last().unwrap(), &Card { suit: Diamond, rank: QUEEN });
     assert!(!game_state.allows_move(
         Move { card, from: Position::Freecell(0), to: Position::Cascade(5) }
     ));
@@ -41,8 +41,8 @@ fn test_hard_solved_to_6() {
 
     // to and from swapped, would otherwise be legal
     let card = Card { suit: Heart, rank: 10 };
-    assert_eq!(game_state.cascades[0].last().unwrap(), &card);
-    assert_eq!(game_state.cascades[1].last().unwrap(), &Card { suit: Club, rank: JACK });
+    assert_eq!(game_state.cascades[0].0.last().unwrap(), &card);
+    assert_eq!(game_state.cascades[1].0.last().unwrap(), &Card { suit: Club, rank: JACK });
     assert!(!game_state.allows_move(
         Move {
             card,
@@ -58,7 +58,7 @@ fn test_hard_solved_to_6() {
 
     // card cannot be added to the cascade (but it can be removed from its original position)
     let card = Card { suit: Spade, rank: 9};
-    assert_eq!(game_state.cascades[3].last().unwrap(), &card);
+    assert_eq!(game_state.cascades[3].0.last().unwrap(), &card);
     assert!(!game_state.allows_move(
         Move {
             card,
@@ -70,7 +70,7 @@ fn test_hard_solved_to_6() {
 
     // card cannot be added to the foundations (but it can be removed from its original position)
     let card = Card { suit: Heart, rank: KING };
-    assert_eq!(game_state.cascades[7].last().unwrap(), &card);
+    assert_eq!(game_state.cascades[7].0.last().unwrap(), &card);
     assert!(!game_state.allows_move(
         Move {
             card,

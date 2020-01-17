@@ -23,7 +23,7 @@ fn count_cards(game_state: &GameState) -> [i32; 52] {
     let mut card_count = [0; 52];
 
     for cascade in game_state.cascades.iter() {
-        for &card in cascade {
+        for &card in cascade.0.iter() {
             card_count[card_index(card)] += 1;
         }
     }

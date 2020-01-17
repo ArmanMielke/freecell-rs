@@ -1,36 +1,36 @@
 use freecell::Suit::{Club, Diamond, Heart, Spade};
-use freecell::{Card, Foundations, GameState, ACE, JACK, KING, QUEEN};
+use freecell::{Card, Cascade, Foundations, GameState, ACE, JACK, KING, QUEEN};
 
 #[test]
 fn test_hard_solved_to_t_empty_cascades_omitted() {
     let expected = GameState {
         cascades: [
-            vec![
+            Cascade(vec![
                 Card { suit: Club, rank: QUEEN },
                 Card { suit: Spade, rank: QUEEN },
-            ],
-            vec![
+            ]),
+            Cascade(vec![
                 Card { suit: Spade, rank: KING },
                 Card { suit: Heart, rank: JACK },
                 Card { suit: Club, rank: JACK },
-            ],
-            vec![
+            ]),
+            Cascade(vec![
                 Card { suit: Club, rank: KING },
-            ],
-            vec![
+            ]),
+            Cascade(vec![
                 Card { suit: Spade, rank: JACK },
                 Card { suit: Diamond, rank: JACK },
-            ],
-            vec![
+            ]),
+            Cascade(vec![
                 Card { suit: Diamond, rank: KING },
                 Card { suit: Diamond, rank: QUEEN },
-            ],
-            vec![
+            ]),
+            Cascade(vec![
                 Card { suit: Heart, rank: QUEEN },
                 Card { suit: Heart, rank: KING },
-            ],
-            Vec::new(),
-            Vec::new(),
+            ]),
+            Cascade::new(),
+            Cascade::new(),
         ],
         foundations: Foundations([
             vec![

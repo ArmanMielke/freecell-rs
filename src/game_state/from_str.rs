@@ -45,7 +45,7 @@ fn cascades_vec_to_array(mut cascades: Vec<Cascade>) -> Result<Cascades, String>
         // TODO [low priority] make the error message more informative by giving the maximum and actual numbers of cascades
         return Err("Too many cascades".to_string());
     }
-    cascades.resize(8, Vec::new());
+    cascades.resize(8, Cascade::new());
 
     // convert to array
     Ok([

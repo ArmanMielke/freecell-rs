@@ -9,7 +9,7 @@ impl Display for GameState {
 
         // cascades
         for (i, cascade) in self.cascades.iter().enumerate() {
-            let cascade_cards: Vec<String> = cascade.iter().map(
+            let cascade_cards: Vec<String> = cascade.0.iter().map(
                 |card| card.to_string()
             ).collect();
             writeln!(f, "Cascade {}: {}", i + 1, cascade_cards.join(", "))?;
@@ -38,7 +38,7 @@ impl Debug for GameState {
         // cascades
         for cascade in &self.cascades {
             write!(f, "Cascade:")?;
-            for card in cascade {
+            for card in cascade.0.iter() {
                 write!(f, " {:?}", card)?;
             }
             writeln!(f)?;

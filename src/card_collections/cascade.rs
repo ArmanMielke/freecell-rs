@@ -23,44 +23,60 @@ use crate::{Card, CardCollection};
 ///
 /// ```
 /// # use freecell::Suit::{Club, Heart, Spade};
-/// # use freecell::{parse_cascade, Card, CardCollection, ACE};
+/// # use freecell::{parse_cascade, Card, CardCollection, Cascade, ACE};
 /// let cascade = parse_cascade("9S AC 7H").unwrap();
 /// assert_eq!(
 ///     cascade,
-///     vec![
+///     Cascade(vec![
 ///         Card { suit: Spade, rank: 9 },
 ///         Card { suit: Club, rank: ACE },
 ///         Card { suit: Heart, rank: 7 },
-///     ]
+///     ])
 /// );
 ///
 /// // The 6 of Spades fits on top of the 7 of Hearts,
 /// // since it is of a different colour and one rank lower.
 /// assert_eq!(
 ///     cascade.add_card(Card { suit: Spade, rank: 6 }),
-///     Ok(vec![
+///     Ok(Cascade(vec![
 ///         Card { suit: Spade, rank: 9 },
 ///         Card { suit: Club, rank: ACE },
 ///         Card { suit: Heart, rank: 7 },
 ///         Card { suit: Spade, rank: 6 },
-///     ])
+///     ]))
 /// );
 ///
 /// // Only the top card of the cascade can be removed.
 /// assert_eq!(
 ///     cascade.pop_card(),
 ///     vec![(
-///         vec![
+///         Cascade(vec![
 ///             Card { suit: Spade, rank: 9 },
 ///             Card { suit: Club, rank: ACE },
-///         ],
+///         ]),
 ///         Card { suit: Heart, rank: 7 }
 ///     )]
 /// );
 /// ```
-// TODO [v1] make this a tuple struct and implement Display, Debug and FromStr for it
+// TODO [v1] implement Display, Debug and FromStr for this
 // TODO [v1] the formats for Display and Debug must be consistent with FromStr (test this!)
-pub type Cascade = Vec<Card>;
+// TODO [low priority] make this iterable? search for ".0.iter()" and ".0.last()" for places where this can be used
+#[derive(Clone, Debug, Default, Eq, Hash, PartialEq)]
+pub struct Cascade(pub Vec<Card>);
+
+impl Cascade {
+    /// Creates an empty cascade
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use freecell::Cascade;
+    /// assert_eq!(Cascade::new(), Cascade(Vec::new()))
+    /// ```
+    pub fn new() -> Cascade {
+        Cascade::default()
+    }
+}
 
 fn fits_on_top_of(lower_card: Card, higher_card: Card) -> bool {
     lower_card.suit.colour() != higher_card.suit.colour() &&
@@ -69,13 +85,13 @@ fn fits_on_top_of(lower_card: Card, higher_card: Card) -> bool {
 
 impl CardCollection for Cascade {
     fn add_card(&self, card: Card) -> Result<Cascade, ()> {
-        match self.last() {
+        match self.0.last() {
             // the cascade contains at least one card
             Some(&top_card) => {
                 if fits_on_top_of(card, top_card) {
                     // the new card can be put onto this cascade
                     let mut clone = (*self).clone();
-                    clone.push(card);
+                    clone.0.push(card);
                     Ok(clone)
                 } else {
                     // the new card cannot be put onto this cascade
@@ -84,13 +100,13 @@ impl CardCollection for Cascade {
             }
 
             // the cascade is empty => the card can be put here, creating a cascade with one card
-            None => Ok(vec![card]),
+            None => Ok(Cascade(vec![card])),
         }
     }
 
     fn pop_card(&self) -> Vec<(Cascade, Card)> {
         let mut clone = (*self).clone();
-        match clone.pop() {
+        match clone.0.pop() {
             Some(card) => vec![(clone, card)],
             None => Vec::with_capacity(0),
         }
@@ -103,20 +119,18 @@ impl CardCollection for Cascade {
 /// described in [`Card`](struct.Card.html)'s `FromStr` implementation.
 /// Cards can optionally be separated by spaces.
 ///
-/// # Examples
+/// # Example
 ///
 /// ```
 /// # use freecell::Suit::{Club, Heart, Spade};
-/// # use freecell::{parse_cascade, Card, ACE};
-/// assert_eq!(parse_cascade(""), Ok(Vec::new()));
-///
+/// # use freecell::{parse_cascade, Card, Cascade, ACE};
 /// assert_eq!(
 ///     parse_cascade("9S AC 7H"),
-///     Ok(vec![
+///     Ok(Cascade(vec![
 ///         Card { suit: Spade, rank: 9 },
 ///         Card { suit: Club, rank: ACE },
 ///         Card { suit: Heart, rank: 7 },
-///     ])
+///     ]))
 /// );
 /// ```
 pub fn parse_cascade<S: Into<String>>(string: S) -> Result<Cascade, String> {
@@ -130,7 +144,11 @@ pub fn parse_cascade<S: Into<String>>(string: S) -> Result<Cascade, String> {
         return Err(format!("Could not parse cascade: \"{}\"", string))
     }
 
-    Ok(CARD_RE.find_iter(string).map(|re_match| re_match.as_str().parse().unwrap()).collect())
+    Ok(Cascade(
+        CARD_RE.find_iter(string)
+            .map(|re_match| re_match.as_str().parse().unwrap())
+            .collect()
+    ))
 }
 
 /// A collection of 8 Cascades.

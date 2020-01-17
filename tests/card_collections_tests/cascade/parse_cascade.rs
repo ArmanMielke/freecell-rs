@@ -1,9 +1,9 @@
 use freecell::Suit::{Club, Diamond, Heart, Spade};
-use freecell::{parse_cascade, Card, ACE, KING, QUEEN};
+use freecell::{parse_cascade, Card, Cascade, ACE, KING, QUEEN};
 
 #[test]
 fn test_empty() {
-    assert_eq!(parse_cascade(""), Ok(Vec::new()));
+    assert_eq!(parse_cascade(""), Ok(Cascade::new()));
 }
 
 #[test]
@@ -11,31 +11,31 @@ fn test_non_empty() {
     // short card representation
     assert_eq!(
         parse_cascade("9S 7H AC"),
-        Ok(vec![
+        Ok(Cascade(vec![
             Card { suit: Spade, rank: 9 },
             Card { suit: Heart, rank: 7 },
             Card { suit: Club, rank: ACE },
-        ])
+        ]))
     );
 
     // short card representation without spaces between cards
     assert_eq!(
         parse_cascade("3D6CKCQH"),
-        Ok(vec![
+        Ok(Cascade(vec![
             Card { suit: Diamond, rank: 3 },
             Card { suit: Club, rank: 6 },
             Card { suit: Club, rank: KING },
             Card { suit: Heart, rank: QUEEN },
-        ])
+        ]))
     );
 
     // long card representation
     assert_eq!(
         parse_cascade("10 of Hearts  4 of Clubs"),
-        Ok(vec![
+        Ok(Cascade(vec![
             Card { suit: Heart, rank: 10 },
             Card { suit: Club, rank: 4 },
-        ])
+        ]))
     );
 }
 

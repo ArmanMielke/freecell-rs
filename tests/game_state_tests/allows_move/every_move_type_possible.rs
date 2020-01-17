@@ -17,14 +17,14 @@ fn test_all_move_types_allowed() {
 
     // cascade -> cascade
     let card = Card { suit: Spade, rank: QUEEN };
-    assert_eq!(game_state.cascades[5].last().unwrap(), &card);
+    assert_eq!(game_state.cascades[5].0.last().unwrap(), &card);
     assert!(!game_state.allows_move(
         Move { card, from: Position::Cascade(5), to: Position::Cascade(0) }
     ));
 
     // cascade -> foundations
     let card = Card { suit: Diamond, rank: QUEEN };
-    assert_eq!(game_state.cascades[7].last().unwrap(), &card);
+    assert_eq!(game_state.cascades[7].0.last().unwrap(), &card);
     assert!(!game_state.allows_move(
         Move { card, from: Position::Cascade(7), to: Position::Foundations }
     ));

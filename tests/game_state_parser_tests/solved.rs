@@ -1,18 +1,18 @@
 use freecell::Suit::{Club, Diamond, Heart, Spade};
-use freecell::{Card, Foundations, GameState, ACE, JACK, KING, QUEEN};
+use freecell::{Card, Cascade, Foundations, GameState, ACE, JACK, KING, QUEEN};
 
 #[test]
 fn test_solved() {
     let expected = GameState {
         cascades: [
-            Vec::new(),
-            Vec::new(),
-            Vec::new(),
-            Vec::new(),
-            Vec::new(),
-            Vec::new(),
-            Vec::new(),
-            Vec::new(),
+            Cascade::new(),
+            Cascade::new(),
+            Cascade::new(),
+            Cascade::new(),
+            Cascade::new(),
+            Cascade::new(),
+            Cascade::new(),
+            Cascade::new(),
         ],
         foundations: Foundations([
             vec![
