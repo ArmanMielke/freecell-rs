@@ -1,6 +1,8 @@
 use lazy_static::lazy_static;
 use regex::Regex;
 
+use std::str::FromStr;
+
 use crate::card::CARD_PATTERN;
 use crate::{Card, CardCollection};
 
@@ -8,7 +10,8 @@ use crate::{Card, CardCollection};
 ///
 /// The end of the `Vec` is the top of the stack.
 ///
-/// Can be parsed with [`parse_cascade`](fn.parse_cascade.html).
+/// Cascades can be parsed from `&str`s.
+/// See the description for `FromStr` below for details.
 ///
 /// # Rules
 ///
@@ -23,8 +26,8 @@ use crate::{Card, CardCollection};
 ///
 /// ```
 /// # use freecell::Suit::{Club, Heart, Spade};
-/// # use freecell::{parse_cascade, Card, CardCollection, Cascade, ACE};
-/// let cascade = parse_cascade("9S AC 7H").unwrap();
+/// # use freecell::{Card, CardCollection, Cascade, ACE};
+/// let cascade: Cascade = "9S AC 7H".parse().unwrap();
 /// assert_eq!(
 ///     cascade,
 ///     Cascade(vec![
@@ -58,7 +61,7 @@ use crate::{Card, CardCollection};
 ///     )]
 /// );
 /// ```
-// TODO [v1] implement Display, Debug and FromStr for this
+// TODO [v1] implement Display and Debug for this
 // TODO [v1] the formats for Display and Debug must be consistent with FromStr (test this!)
 // TODO [low priority] make this iterable? search for ".0.iter()" and ".0.last()" for places where this can be used
 #[derive(Clone, Debug, Default, Eq, Hash, PartialEq)]
@@ -113,42 +116,45 @@ impl CardCollection for Cascade {
     }
 }
 
-/// Converts a string to a [`Cascade`](type.Cascade.html).
-///
-/// The input string should consist of any number of cards, where the cards follow the format
-/// described in [`Card`](struct.Card.html)'s `FromStr` implementation.
-/// Cards can optionally be separated by spaces.
-///
-/// # Example
-///
-/// ```
-/// # use freecell::Suit::{Club, Heart, Spade};
-/// # use freecell::{parse_cascade, Card, Cascade, ACE};
-/// assert_eq!(
-///     parse_cascade("9S AC 7H"),
-///     Ok(Cascade(vec![
-///         Card { suit: Spade, rank: 9 },
-///         Card { suit: Club, rank: ACE },
-///         Card { suit: Heart, rank: 7 },
-///     ]))
-/// );
-/// ```
-pub fn parse_cascade<S: Into<String>>(string: S) -> Result<Cascade, String> {
-    lazy_static! {
-        static ref CASCADE_RE: Regex = Regex::new(format!(r"(?i)^\s*({}\s*)*$", CARD_PATTERN).as_str()).unwrap();
-        static ref CARD_RE: Regex = Regex::new(format!(r"(?i){}", CARD_PATTERN).as_str()).unwrap();
-    }
+impl FromStr for Cascade {
+    type Err = String;
 
-    let string = &string.into();
-    if !CASCADE_RE.is_match(string) {
-        return Err(format!("Could not parse cascade: \"{}\"", string))
-    }
+    /// Converts a `&str` to a `Cascade`.
+    ///
+    /// The input should consist of any number of cards, where the cards follow the format described
+    /// in [`Card`](struct.Card.html)'s `FromStr` implementation.
+    /// Cards can optionally be separated by spaces, commas or both.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// # use freecell::Suit::{Club, Heart, Spade};
+    /// # use freecell::{Card, Cascade, ACE};
+    /// assert_eq!(
+    ///     "9S AC 7H".parse(),
+    ///     Ok(Cascade(vec![
+    ///         Card { suit: Spade, rank: 9 },
+    ///         Card { suit: Club, rank: ACE },
+    ///         Card { suit: Heart, rank: 7 },
+    ///     ]))
+    /// );
+    /// ```
+    fn from_str(string: &str) -> Result<Cascade, Self::Err> {
+        lazy_static! {
+            static ref CASCADE_RE: Regex = Regex::new(format!(r"(?i)^\s*({}\s*)*$", CARD_PATTERN).as_str()).unwrap();
+            static ref CARD_RE: Regex = Regex::new(format!(r"(?i){}", CARD_PATTERN).as_str()).unwrap();
+        }
 
-    Ok(Cascade(
-        CARD_RE.find_iter(string)
-            .map(|re_match| re_match.as_str().parse().unwrap())
-            .collect()
-    ))
+        if !CASCADE_RE.is_match(string) {
+            return Err(format!("Could not parse cascade: \"{}\"", string))
+        }
+
+        Ok(Cascade(
+            CARD_RE.find_iter(string)
+                .map(|re_match| re_match.as_str().parse().unwrap())
+                .collect()
+        ))
+    }
 }
 
 /// A collection of 8 Cascades.

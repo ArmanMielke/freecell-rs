@@ -1,7 +1,7 @@
 use std::str::FromStr;
 
 use super::GameState;
-use crate::{parse_cascade, parse_freecells, Cascade, Cascades, Foundations};
+use crate::{parse_freecells, Cascade, Cascades, Foundations};
 
 impl FromStr for GameState {
     type Err = String;
@@ -25,7 +25,7 @@ impl FromStr for GameState {
             // TODO [med priority] make it so all parse functions can handle the first token, too, so that `after_colon` can be replaced by `line`
             let after_colon = &line[colon_position+1..];
             match line[0..colon_position].to_lowercase().trim() {
-                "cascade" => cascades.push(parse_cascade(after_colon)?),
+                "cascade" => cascades.push(after_colon.parse()?),
                 "foundations" => foundations = line.parse()?,
                 "freecells" => freecells = parse_freecells(after_colon)?,
                 token => return Err(format!("Line starts with invalid token: \"{}\"", token)),
