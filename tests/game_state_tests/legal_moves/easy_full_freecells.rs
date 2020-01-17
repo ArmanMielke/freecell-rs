@@ -42,6 +42,14 @@ fn test_easy_full_freecells() {
             },
         ),
         (
+            GameState::from_file("test-inputs/move-results/easy-full-freecells/ad-from-freecell0-to-cascade6.txt").unwrap(),
+            Move {
+                card: Card { suit: Diamond, rank: ACE },
+                from: Position::Freecell(0),
+                to: Position::Cascade(6),
+            },
+        ),
+        (
             GameState::from_file("test-inputs/move-results/easy-full-freecells/ad-from-freecell0-to-foundations.txt").unwrap(),
             Move {
                 card: Card { suit: Diamond, rank: ACE },

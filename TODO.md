@@ -14,6 +14,7 @@
         - all freecells are one card collection together, implemented as set-like data structure
         - different implementation of `legal_moves()` that returns fewer moves if some of them are equivalent (e.g. if there are multiple empty cascades)
         - if there are safe moves, `legal_moves()` only returns the first one of those
+        - note: a possible optimisation would be that aces cannot be put anywhere other than on foundations, but that is already included in the safe move optimisation
 - **[v2+]** measure and visualize performance
     - https://bheisler.github.io/criterion.rs/book/criterion_rs.html
     - https://github.com/ferrous-systems/flamegraph

@@ -2,7 +2,7 @@ use lazy_static::lazy_static;
 use regex::Regex;
 
 use crate::card::CARD_PATTERN;
-use crate::{Card, CardCollection, ACE};
+use crate::{Card, CardCollection};
 
 /// A stack of arbitrary cards.
 ///
@@ -69,12 +69,6 @@ fn fits_on_top_of(lower_card: Card, higher_card: Card) -> bool {
 
 impl CardCollection for Cascade {
     fn add_card(&self, card: Card) -> Result<Cascade, ()> {
-        // TODO [v1] remove this optimisation from here, document it in TODO.md
-        // optimisation: aces cannot be put on cascades
-        if card.rank == ACE {
-            return Err(());
-        }
-
         match self.last() {
             // the cascade contains at least one card
             Some(&top_card) => {
