@@ -9,7 +9,7 @@
 
 
 Game objects and rules for the solitaire card game [FreeCell](https://en.wikipedia.org/wiki/FreeCell), written in Rust.
-The goal of this library is to aid in the implementation of a FreeCell game, as well as solvers for that game.
+The goal of this crate is to aid in the implementation of both a FreeCell game and solvers for FreeCell.
 
 **THIS PROJECT IS A WORK IN PROGRESS.**
 While the basic features are mostly implemented, most of the optimisations useful for efficient solvers are still missing.
@@ -40,10 +40,76 @@ Source: [Wikipedia](https://en.wikipedia.org/wiki/FreeCell#Rules)
 
 
 
-## Examples
+## Usage
+
+The central struct of this crate is [`GameState`](https://docs.rs/freecell/latest/freecell/struct.GameState.html), which represents the state of the board (i.e. the positions of all cards) at one point during the course of a game.
+It can be used to check whether a given move is allowed in this state...
+```rust
+// TODO add example
+```
+...or to generate all moves that the player can make in this game state, each of them paired with the game state they would result in.
+```rust
+// TODO add example
+```
+
+
+On top of these, `GameState` provides numerous other methods useful for dealing with board states.
+
+### Parsing
+
+Almost all structs provided by this crate implement `FromStr`.
+Parsing is case-insensitive for each of them.
+The format for parsing any of those structs is the same as the format used by their `Debug` and `Display` implementations.
+This means that the output of `Display` and `Debug` can be converted back to the original object:
+```rust
+// TODO add example (cascade)
+```
+
+In the following the formats for each of the structs will be explained in detail.
+
+#### Parsing [`Card`s](https://docs.rs/freecell/latest/freecell/struct.Card.html)
+
+`Card`s can be represented using a short or a long format.
+
+The short format consists of two or three characters where the first one or two characters denote the card's rank and the last character denotes the suit.
+The character(s) denoting the rank must either be a number between 1 and 13 or one of "A" for Ace, "T" for 10, "J" for Jack, "Q" for Queen or "K" for King.
+The character denoting the suit must be one of "C" for Club, "S" for Spade, "H" for Heart or "D" for Diamond.
+```rust
+assert_eq!(Ok(Card { suit: Diamond, rank: ACE }), "AD".parse());
+assert_eq!(Ok(Card { suit: Club, rank: 4 }), "4C".parse());
+assert_eq!(Ok(Card { suit: Heart, rank: 10 }), "th".parse());
+```
+
+The long format is of the form `<rank> of <suit>`, optionally with an `s` at the end.
+The rank can either be the rank's number (in digits) or its name.
+```rust
+assert_eq!(Ok(Card { suit: Diamond, rank: JACK }), "Jack of Diamonds".parse());
+assert_eq!(Ok(Card { suit: Club, rank: 3 }), "3 of club".parse());
+```
+
+#### Parsing [`Cascade`s](https://docs.rs/freecell/latest/freecell/struct.Cascade.html)
 
 **TODO**
 
+#### Parsing [`Card`s](https://docs.rs/freecell/latest/freecell/struct.Card.html)
+
+**TODO**
+
+#### Parsing [`Card`s](https://docs.rs/freecell/latest/freecell/struct.Card.html)
+
+**TODO**
+
+#### Parsing [`GameState`s](https://docs.rs/freecell/latest/freecell/struct.GameState.html)
+
+**TODO explain the format for `GameState`**
+
+`GameState::from_file(path)` can be used if the game state's description is stored in a file.
+
+
+### Serialization
+
+If the `"serialization"` feature is enabled, the `Serialize` and `Deserialize` traits from
+[`serde`](https://docs.rs/serde) are implemented for all types exported by this crate.
 
 
 ## Contributing

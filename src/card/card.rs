@@ -99,22 +99,22 @@ impl FromStr for Card {
     ///
     /// # The short format used by Debug
     ///
-    /// The card is represented by a string of two characters.
-    /// The first character denotes the card's rank:
-    /// - 'A' or '1' - Ace
-    /// - '2' - 2
+    /// The card is represented by a string of two or three characters.
+    /// The first one or two character(s) denote the card's rank:
+    /// - "1" or "A" for Ace
+    /// - "2"
     /// - ...
-    /// - '9' - 9
-    /// - 'T' - 10
-    /// - 'J' - Jack
-    /// - 'Q' - Queen
-    /// - 'K' - King
+    /// - "9"
+    /// - "10" or "T"
+    /// - "11" or "J" for Jack
+    /// - "12" or "Q" for Queen
+    /// - "13" or "K" for King
     ///
-    /// The second character denotes the suit:
-    /// - 'C' - Club
-    /// - 'S' - Spade
-    /// - 'H' - Heart
-    /// - 'D' - Diamond
+    /// The last character denotes the suit:
+    /// - "C" for Club
+    /// - "S" for Spade
+    /// - "H" for Heart
+    /// - "D" for Diamond
     ///
     /// ## Examples
     ///
@@ -128,13 +128,14 @@ impl FromStr for Card {
     /// assert_eq!(Ok(Card { suit: Diamond, rank: 10 }), "TD".parse());
     /// assert_eq!(Ok(Card { suit: Club, rank: JACK }), "jc".parse());
     /// assert_eq!(Ok(Card { suit: Spade, rank: QUEEN }), "qS".parse());
-    /// assert_eq!(Ok(Card { suit: Heart, rank: KING }), "Kh".parse());
+    /// assert_eq!(Ok(Card { suit: Heart, rank: KING }), "13h".parse());
     /// ```
     ///
     /// # The long format used by Display
     ///
-    /// The card is represented by a string of the form "\<rank> of \<suit>s", where
-    /// \<rank> can be the rank's number or its name.
+    /// The card is represented by a string of the form "\<rank> of \<suit>", optionally with an 's'
+    /// at the end.
+    /// \<rank> can be the rank's number (in digits) or its name.
     ///
     /// ## Examples
     ///
