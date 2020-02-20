@@ -5,6 +5,7 @@
 [![crates.io](https://img.shields.io/crates/v/freecell)](https://crates.io/crates/freecell)
 [![docs.rs](https://docs.rs/freecell/badge.svg)](https://docs.rs/freecell)
 [![unsafe forbidden](https://img.shields.io/badge/unsafe-forbidden-success.svg)](https://github.com/rust-secure-code/safety-dance/)
+[![dependency status](https://deps.rs/repo/github/Arman-Mielke/freecell-rs/status.svg)](https://deps.rs/repo/github/Arman-Mielke/freecell-rs)
 [![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/freecell)](#license)
 
 
