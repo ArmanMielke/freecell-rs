@@ -1,5 +1,7 @@
 # TODO
 
+[![dependency status](https://deps.rs/repo/github/Arman-Mielke/freecell-rs/status.svg)](https://deps.rs/repo/github/Arman-Mielke/freecell-rs)
+
 - **[v2+]** add `fn random_game() -> GameState` or `GameState::random() -> GameState`
     - there may be a better name
     - can be a separate feature so not everyone needs to compile the rand crate and its 4 dependencies

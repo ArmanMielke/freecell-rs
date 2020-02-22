@@ -13,16 +13,6 @@
     <a style="margin: 0 5px" href="https://docs.rs/freecell">
         <img src="https://docs.rs/freecell/badge.svg" alt="docs.rs">
     </a>
-    <br/>
-    <a style="margin: 0 5px" href="https://github.com/rust-secure-code/safety-dance/">
-        <img src="https://img.shields.io/badge/unsafe-forbidden-success.svg" alt="unsafe forbidden">
-    </a>
-    <a style="margin: 0 5px" href="https://deps.rs/repo/github/Arman-Mielke/freecell-rs">
-        <img src="https://deps.rs/repo/github/Arman-Mielke/freecell-rs/status.svg" alt="dependency status">
-    </a>
-    <a style="margin: 0 5px" href="#license">
-        <img src="https://img.shields.io/crates/l/freecell" alt="License: MIT OR Apache-2.0">
-    </a>
 </p>
 <br/>
 
