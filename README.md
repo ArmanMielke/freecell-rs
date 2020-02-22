@@ -48,7 +48,7 @@ This library uses the following rules of FreeCell:
     - Cards are dealt face-up into eight [*cascades*](https://en.wikipedia.org/wiki/Glossary_of_patience_terms#Deal_terms), four of which comprise seven cards each and four of which comprise six cards each.
 - Building during play
     - The top card of each cascade begins a [tableau](https://en.wikipedia.org/wiki/Glossary_of_patience_terms#Layout_terms).
-    - Tableaux must be built down by alternating colors.
+    - Tableaus must be built down by alternating colors.
     - Foundations are built up by suit.
 - Moves
     - Any freecell card or top card of any cascade may be moved to build on a tableau, or moved to an empty cell, an empty cascade, or its foundation.
@@ -141,13 +141,20 @@ If the `"serialization"` feature is enabled, the `Serialize` and `Deserialize` t
 
 ## Roadmap
 
-- [ ] First release
-    - [X] Provide structs for implementing a FreeCell game
-    - [ ] Allow parsing those structs from strings
-- [ ] Allow generating a random game
-- [ ] Provide optimised structs for implementing a FreeCell solver
+Before a feature is ticked off as completed, it must be thoroughly tested, well-documented and released on [crates.io](https://crates.io/crates/freecell).
 
-Features are only completed once they are thoroughly tested and documented.
+- [ ] Release 1.0.0
+    - [ ] Provide structs for implementing a FreeCell game
+    - [ ] Allow parsing those structs from strings
+- [ ] Allow generating a random starting board
+- [ ] Provide additional, optimised structs for implementing a FreeCell solver
+
+The optimisations mentioned in the last bullet point primarily aim at reducing the branching factor, for example
+- If multiple moves result in equivalent game states, `legal_moves()` only returns one of those moves (e.g. moving a card to freecell 1 vs. moving it to freecell 2)
+- `Eq` treats equivalent game states as equal
+- `legal_moves()` only returns one move if there is an obvious safe move (like moving an ace to a foundation)
+
+The goal is to make searching for a solution significantly faster.
 
 
 
