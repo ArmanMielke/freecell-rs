@@ -122,7 +122,11 @@ If the `"serialization"` feature is enabled, the `Serialize` and `Deserialize` t
 
 ## Contributing
 
-**TODO**
+Feedback, suggestions and other contributions are always welcome!
+
+If you notice a bug, please open an [issue](https://github.com/Arman-Mielke/freecell-rs/issues).
+
+For pull requests, we ask that all contributed code follows Rust's [style guidelines](https://doc.rust-lang.org/1.12.1/style/) (within reason).
 
 
 
