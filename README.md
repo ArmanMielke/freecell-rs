@@ -24,6 +24,20 @@ While the basic features are mostly implemented, most of the optimisations usefu
 
 
 
+
+## Table of Contents
+
+- [FreeCell Rules](#FreeCell-Rules)
+- [Usage](#Usage)
+    - [Parsing](#Parsing)
+    - [Serialization](#Serialization)
+- [Roadmap](#Roadmap)
+- [Contributing](#Contributing)
+- [License](#License)
+
+
+
+
 ## FreeCell Rules
 
 This library uses the following rules of FreeCell:
@@ -48,6 +62,7 @@ Source: [Wikipedia](https://en.wikipedia.org/wiki/FreeCell#Rules)
 
 
 
+
 ## Usage
 
 The central struct of this crate is [`GameState`](https://docs.rs/freecell/latest/freecell/struct.GameState.html), which represents the state of the board (i.e. the positions of all cards) at one point during the course of a game.
@@ -60,8 +75,9 @@ It can be used to check whether a given move is allowed in this state...
 // TODO add example
 ```
 
-
 On top of these, `GameState` provides numerous other methods useful for dealing with board states.
+
+
 
 ### Parsing
 
@@ -114,10 +130,12 @@ assert_eq!(Ok(Card { suit: Club, rank: 3 }), "3 of club".parse());
 `GameState::from_file(path)` can be used if the game state's description is stored in a file.
 
 
+
 ### Serialization
 
 If the `"serialization"` feature is enabled, the `Serialize` and `Deserialize` traits from
 [`serde`](https://docs.rs/serde) are implemented for all types exported by this crate.
+
 
 
 
@@ -133,6 +151,7 @@ Features are only completed once they are thoroughly tested and documented.
 
 
 
+
 ## Contributing
 
 Feedback, suggestions and other contributions are always welcome!
@@ -140,6 +159,7 @@ Feedback, suggestions and other contributions are always welcome!
 If you notice a bug, please open an [issue](https://github.com/Arman-Mielke/freecell-rs/issues).
 
 For pull requests, we ask that all contributed code follows Rust's [style guidelines](https://doc.rust-lang.org/1.12.1/style/) (within reason).
+
 
 
 
