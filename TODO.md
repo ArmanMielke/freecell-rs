@@ -21,6 +21,7 @@
     - https://bheisler.github.io/criterion.rs/book/criterion_rs.html
     - https://github.com/ferrous-systems/flamegraph
 - **[v1]** explain the [rules](README.md) in more detail (find a better source?)
+- configure rustfmt and clippy
 
 
 ## API Guidelines **[v1]**
