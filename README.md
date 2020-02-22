@@ -1,13 +1,30 @@
-# FreeCell
+<h1 align="center">:clubs::hearts::spades:️:diamonds:️<br/>FreeCell</h1>
 
-[![build](https://img.shields.io/github/workflow/status/Arman-Mielke/freecell-rs/build)](https://github.com/Arman-Mielke/freecell-rs/actions)
-[![coverage](https://img.shields.io/codecov/c/github/Arman-Mielke/freecell-rs)](https://codecov.io/gh/Arman-Mielke/freecell-rs)
-[![crates.io](https://img.shields.io/crates/v/freecell)](https://crates.io/crates/freecell)
-[![docs.rs](https://docs.rs/freecell/badge.svg)](https://docs.rs/freecell)
-[![unsafe forbidden](https://img.shields.io/badge/unsafe-forbidden-success.svg)](https://github.com/rust-secure-code/safety-dance/)
-[![dependency status](https://deps.rs/repo/github/Arman-Mielke/freecell-rs/status.svg)](https://deps.rs/repo/github/Arman-Mielke/freecell-rs)
-[![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/freecell)](#license)
-
+<p align="center">
+    <a style="margin: 0 5px" href="https://github.com/Arman-Mielke/freecell-rs/actions">
+        <img src="https://img.shields.io/github/workflow/status/Arman-Mielke/freecell-rs/build" alt="build">
+    </a>
+    <a style="margin: 0 5px" href="https://codecov.io/gh/Arman-Mielke/freecell-rs">
+        <img src="https://img.shields.io/codecov/c/github/Arman-Mielke/freecell-rs" alt="coverage">
+    </a>
+    <a style="margin: 0 5px" href="https://crates.io/crates/freecell">
+        <img src="https://img.shields.io/crates/v/freecell" alt="crates.io">
+    </a>
+    <a style="margin: 0 5px" href="https://docs.rs/freecell">
+        <img src="https://docs.rs/freecell/badge.svg" alt="docs.rs">
+    </a>
+    <br/>
+    <a style="margin: 0 5px" href="https://github.com/rust-secure-code/safety-dance/">
+        <img src="https://img.shields.io/badge/unsafe-forbidden-success.svg" alt="unsafe forbidden">
+    </a>
+    <a style="margin: 0 5px" href="https://deps.rs/repo/github/Arman-Mielke/freecell-rs">
+        <img src="https://deps.rs/repo/github/Arman-Mielke/freecell-rs/status.svg" alt="dependency status">
+    </a>
+    <a style="margin: 0 5px" href="#license">
+        <img src="https://img.shields.io/crates/l/freecell" alt="License: MIT OR Apache-2.0">
+    </a>
+</p>
+<br/>
 
 Game objects and rules for the solitaire card game [FreeCell](https://en.wikipedia.org/wiki/FreeCell), written in Rust.
 The goal of this crate is to aid in the implementation of both a FreeCell game and solvers for FreeCell.
