@@ -120,6 +120,19 @@ If the `"serialization"` feature is enabled, the `Serialize` and `Deserialize` t
 [`serde`](https://docs.rs/serde) are implemented for all types exported by this crate.
 
 
+
+## Roadmap
+
+- [ ] First release
+    - [X] Provide structs for implementing a FreeCell game
+    - [ ] Allow parsing those structs from strings
+- [ ] Allow generating a random game
+- [ ] Provide optimised structs for implementing a FreeCell solver
+
+Features are only completed once they are thoroughly tested and documented.
+
+
+
 ## Contributing
 
 Feedback, suggestions and other contributions are always welcome!
