@@ -93,7 +93,7 @@ In the following the formats for each of the structs will be explained in detail
 
 #### Parsing [`Card`s](https://docs.rs/freecell/latest/freecell/struct.Card.html)
 
-`Card`s can be represented using a short or a long format.
+Cards can be represented using a short or a long format.
 
 The short format consists of two or three characters where the first one or two characters denote the card's rank and the last character denotes the suit.
 The character(s) denoting the rank must either be a number between 1 and 13 or one of "A" for Ace, "T" for 10, "J" for Jack, "Q" for Queen or "K" for King.
@@ -111,17 +111,21 @@ assert_eq!(Ok(Card { suit: Diamond, rank: JACK }), "Jack of Diamonds".parse());
 assert_eq!(Ok(Card { suit: Club, rank: 3 }), "3 of club".parse());
 ```
 
-#### Parsing [`Cascade`s](https://docs.rs/freecell/latest/freecell/struct.Cascade.html)
+#### Parsing [`Cascade`s](https://docs.rs/freecell/latest/freecell/struct.Cascade.html), [`Foundation`s](https://docs.rs/freecell/latest/freecell/struct.Card.html) and [`Freecell`s](https://docs.rs/freecell/latest/freecell/struct.Card.html)
 
-**TODO**
+These three structs can be represented as sequences of cards, optionally separeted by spaces, commas or both.
 
-#### Parsing [`Card`s](https://docs.rs/freecell/latest/freecell/struct.Card.html)
+All four foundations are represented by one sequence of up to four cards, where each of the provided cards indicates the highest card on that foundation.
+Therefore, at most one card of each suit should be provided.
+The order of the cards does not matter here, as foundations are always stored in the same order internally.
 
-**TODO**
+Freecells can be parsed from a sequence of at most four cards.
+Each of the cards can be replaced with `empty`, to indicate that the corresponding freecell is empty.
+The order of the cards does matter for freecells.
 
-#### Parsing [`Card`s](https://docs.rs/freecell/latest/freecell/struct.Card.html)
-
-**TODO**
+```rust
+// TODO add examples (one for each of the 3 structs)
+```
 
 #### Parsing [`GameState`s](https://docs.rs/freecell/latest/freecell/struct.GameState.html)
 
