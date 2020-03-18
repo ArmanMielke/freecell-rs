@@ -66,6 +66,7 @@ use crate::{Card, CardCollection};
 // TODO [v1] implement Display and Debug for this
 // TODO [v1] the formats for Display and Debug must be consistent with FromStr (test this!)
 // TODO [low priority] make this iterable? search for ".0.iter()" and ".0.last()" for places where this can be used
+// TODO                implement Deref or Index for this?
 #[derive(Clone, Debug, Default, Eq, Hash, PartialEq)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Cascade(pub Vec<Card>);

@@ -22,6 +22,9 @@
     - https://github.com/ferrous-systems/flamegraph
 - **[v1]** explain the [rules](README.md) in more detail (find a better source?)
 - configure rustfmt and clippy
+- **[v2+]** define proper error types (maybe an enum)
+    - consider using the failure crate
+    - might be useful: https://crates.io/crates/thiserror
 
 
 ## API Guidelines **[v1]**

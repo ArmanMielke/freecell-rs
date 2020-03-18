@@ -42,6 +42,7 @@ impl GameState {
     ///
     /// This is equivalent to reading the contents of the file as `&str` and using that as input
     /// for `GameState::from_str`
+    // TODO consider borrowing the file name: `file_name: &P` it doesn't really need to be consumed here, right?
     pub fn from_file<P: AsRef<Path>>(file_name: P) -> Result<GameState, String> {
         let mut file = match File::open(file_name) {
             Ok(file) => file,

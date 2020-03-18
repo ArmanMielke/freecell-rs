@@ -98,6 +98,7 @@ pub type Foundation = Vec<Card>;
 /// // Cards can never be removed from foundations.
 /// assert_eq!(foundations.pop_card(), Vec::new());
 /// ```
+// TODO [low priority] implement Index for this?
 #[derive(Clone, Default, Eq, Hash, PartialEq)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Foundations(pub [Foundation; 4]);
