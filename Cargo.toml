@@ -15,6 +15,9 @@ license = "MIT OR Apache-2.0"
 [badges]
 codecov = { repository = "Arman-Mielke/freecell-rs", service = "github" }
 
+[features]
+default = ["serde"]
+
 [dependencies]
 # TODO consider making these less specific
 lazy_static = "1.4.0"
