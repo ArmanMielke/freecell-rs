@@ -230,7 +230,9 @@ impl FromStr for Foundations {
             return Err(format!("Could not parse foundations: \"{}\"", string))
         }
 
-        let top_cards: Vec<Card> = CARD_RE.find_iter(string).map(|re_match| re_match.as_str().parse().unwrap()).collect();
+        let top_cards: Vec<Card> = CARD_RE.find_iter(string)
+            .map(|re_match| re_match.as_str().parse().unwrap())
+            .collect();
 
         let mut foundations = Foundations::new();
         for card in top_cards {

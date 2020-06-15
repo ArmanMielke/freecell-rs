@@ -47,15 +47,15 @@ impl GameState {
         // calls pop_card() at the desired card collection and replaces the returned card
         // collections with AnyCardCollections
         match position {
-            Position::Cascade(i) => self.cascades[i].pop_card().drain(..).map(
-                |(cascade, card)| (AnyCardCollection::Cascade(i, cascade), card)
-            ).collect(),
-            Position::Foundations => self.foundations.pop_card().drain(..).map(
-                |(foundations, card)| (AnyCardCollection::Foundations(foundations), card)
-            ).collect(),
-            Position::Freecell(i) => self.freecells[i].pop_card().drain(..).map(
-                |(freecell, card)| (AnyCardCollection::Freecell(i, freecell), card)
-            ).collect(),
+            Position::Cascade(i) => self.cascades[i].pop_card().drain(..)
+                .map(|(cascade, card)| (AnyCardCollection::Cascade(i, cascade), card))
+                .collect(),
+            Position::Foundations => self.foundations.pop_card().drain(..)
+                .map(|(foundations, card)| (AnyCardCollection::Foundations(foundations), card))
+                .collect(),
+            Position::Freecell(i) => self.freecells[i].pop_card().drain(..)
+                .map(|(freecell, card)| (AnyCardCollection::Freecell(i, freecell), card))
+                .collect(),
         }
     }
 

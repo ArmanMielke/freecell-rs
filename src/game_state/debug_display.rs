@@ -9,20 +9,20 @@ impl Display for GameState {
 
         // cascades
         for (i, cascade) in self.cascades.iter().enumerate() {
-            let cascade_cards: Vec<String> = cascade.0.iter().map(
-                |card| card.to_string()
-            ).collect();
+            let cascade_cards: Vec<String> = cascade.0.iter()
+                .map(|card| card.to_string())
+                .collect();
             writeln!(f, "Cascade {}: {}", i + 1, cascade_cards.join(", "))?;
         }
         writeln!(f)?;
 
         // freecells
-        let freecell_cards: Vec<String> = self.freecells.iter().map(
-            |some_card| match some_card {
+        let freecell_cards: Vec<String> = self.freecells.iter()
+            .map(|some_card| match some_card {
                 Some(card) => card.to_string(),
-                None => String::from("Empty")
-            }
-        ).collect();
+                None => String::from("Empty"),
+            })
+            .collect();
         writeln!(f, "Freecells: {}", freecell_cards.join(", "))
     }
 }

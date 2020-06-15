@@ -124,9 +124,9 @@ impl CardCollection for Cascade {
 // TODO test
 impl Display for Cascade {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), Error> {
-        let cards: Vec<String> = self.0.iter().map(
-            |card| card.to_string()
-        ).collect();
+        let cards: Vec<String> = self.0.iter()
+            .map(|card| card.to_string())
+            .collect();
         writeln!(f, "Cascade: {}", cards.join(", "))
     }
 }
