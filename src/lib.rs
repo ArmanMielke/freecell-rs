@@ -15,7 +15,12 @@
     unused_qualifications,
 )]
 // TODO check whether this would be useful
-// #![warn(unreachable_pub)]
+/*
+#![warn(
+    unreachable_pub,
+    missing_doc_code_examples,
+)]
+*/
 
 // This should generally mirror the contents of README.md, without the badges and the contributing
 // and license sections.
