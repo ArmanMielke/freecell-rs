@@ -3,6 +3,7 @@ use regex::Regex;
 #[cfg(feature = "serde")]
 use serde::{Serialize, Deserialize};
 
+use std::fmt::{Display, Error, Formatter};
 use std::str::FromStr;
 
 use crate::card::CARD_PATTERN;
@@ -117,6 +118,16 @@ impl CardCollection for Cascade {
             Some(card) => vec![(clone, card)],
             None => Vec::with_capacity(0),
         }
+    }
+}
+
+// TODO test
+impl Display for Cascade {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), Error> {
+        let cards: Vec<String> = self.0.iter().map(
+            |card| card.to_string()
+        ).collect();
+        writeln!(f, "Cascade: {}", cards.join(", "))
     }
 }
 
