@@ -1,11 +1,11 @@
 <h1 align="center">:clubs::hearts::spades:️:diamonds:️<br/>FreeCell</h1>
 
 <p align="center">
-    <a style="margin: 0 5px" href="https://github.com/Arman-Mielke/freecell-rs/actions">
-        <img src="https://img.shields.io/github/workflow/status/Arman-Mielke/freecell-rs/build" alt="build">
+    <a style="margin: 0 5px" href="https://github.com/ArmanMielke/freecell-rs/actions">
+        <img src="https://img.shields.io/github/workflow/status/ArmanMielke/freecell-rs/build" alt="build">
     </a>
-    <a style="margin: 0 5px" href="https://codecov.io/gh/Arman-Mielke/freecell-rs">
-        <img src="https://img.shields.io/codecov/c/github/Arman-Mielke/freecell-rs" alt="coverage">
+    <a style="margin: 0 5px" href="https://codecov.io/gh/ArmanMielke/freecell-rs">
+        <img src="https://img.shields.io/codecov/c/github/ArmanMielke/freecell-rs" alt="coverage">
     </a>
     <a style="margin: 0 5px" href="https://crates.io/crates/freecell">
         <img src="https://img.shields.io/crates/v/freecell" alt="crates.io">
