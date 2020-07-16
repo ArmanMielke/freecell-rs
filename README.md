@@ -176,4 +176,4 @@ For pull requests, we ask that all contributed code follows Rust's [style guidel
 
 ## License
 
-Licensed under either of <a href="LICENSE-APACHE">Apache License, Version 2.0</a> or <a href="LICENSE-MIT">MIT license</a> at your option.
+Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or [MIT license](LICENSE-MIT) at your option.
