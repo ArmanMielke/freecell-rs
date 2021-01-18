@@ -7,7 +7,7 @@ use std::hash::{Hash, Hasher};
 use std::io::Read;
 use std::path::Path;
 
-use crate::{Cascades, Foundations, Freecells};
+use crate::{Cascades, Foundations, Freecells, Card, Suit, ACE, Cascade};
 
 pub type GameStateId = u64;
 
@@ -55,6 +55,54 @@ impl GameState {
         }
 
         contents.parse()
+    }
+
+    /// Sets up an initial game state from a random "seed".
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use freecell::GameState;
+    /// assert_eq!(&vec!["cascade: 7D TD TH KD 4C 4S JD",
+    ///                  "cascade: AD 7S QC 5H QS TS KS",
+    ///                  "cascade: 5C QD 3H 9S 9C 2H KC",
+    ///                  "cascade: 3S AC 9D 3C 9H 5D 4H",
+    ///                  "cascade: 5S 6D 6S 8S 7C JC",
+    ///                  "cascade: 8C 8H 8D 7H 6H 6C",
+    ///                  "cascade: 2D AS 3D 4D 2C JH",
+    ///                  "cascade: AH KH TC JS 2S QH"].join("\n")
+    ///            .parse::<GameState>().unwrap(),
+    ///            &GameState::from_seed(617));
+    /// ```
+    pub fn from_seed(mut rand_seed: i32) -> GameState {
+	let suits = vec![Suit::Club, Suit::Diamond, Suit::Heart, Suit::Spade];
+	let mut lcg = || {
+	    rand_seed = rand_seed.wrapping_mul(214013).wrapping_add(2531011)
+		& 0x7fffffff;
+	    rand_seed >> 16
+	};
+	let mut deck: Vec<Card> = (0..52)
+	    .map(|i| {
+		let r: u8 = (i / 4) as u8;
+		Card{
+		    suit: suits[i % 4],
+		    rank: match r { 0 => ACE, _ => r + 1},
+		}
+	    })
+	    .collect();
+        let mut cards: Vec<Vec<Card>> = (0..8).map(|_| Vec::with_capacity(7)).collect();
+	for i in 0..52 {
+	    let which = lcg() as usize % deck.len(); // select a random card
+	    cards[i % 8].push(deck.swap_remove(which)); // add to the next cascade
+	}
+	GameState{
+	    cascades: [Cascade(cards[0].clone()), Cascade(cards[1].clone()),
+		       Cascade(cards[2].clone()), Cascade(cards[3].clone()),
+		       Cascade(cards[4].clone()), Cascade(cards[5].clone()),
+		       Cascade(cards[6].clone()), Cascade(cards[7].clone())],
+	    foundations: Foundations::new(),
+	    freecells: [None, None, None, None],
+	}
     }
 
     /// Returns `true` if all cards are on the foundations, `false` otherwise.
